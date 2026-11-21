@@ -1,0 +1,591 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Урок 1. Первые шаги в нейросети Kimi</title><style>*{box-sizing:border-box}body{margin:0;background:#F3EEE4;font-family:Georgia,serif;color:#2F3A2C}
+.pg{max-width:680px;margin:0 auto;padding:18px 14px 40px}
+.hero{background:linear-gradient(160deg,#E3E8D6,#FBF8F2 55%);border:1px solid #DDD5C6;border-radius:18px;padding:22px 20px}
+.k{font-family:Arial;font-size:11px;letter-spacing:.12em;color:#6B7A5E}
+h1{font-size:27px;font-weight:500;margin:6px 0 4px;line-height:1.15}.sub{font-family:Arial;font-size:13px;color:#5E5A4E}
+.top{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.calm,.note{background:#E6EAD9;border-radius:10px;padding:10px 12px;font-family:Arial;font-size:13px;line-height:1.5;margin:10px 0}
+.warn{background:#F8F0DA;border:1px solid #E3D2A6;border-radius:10px;padding:9px 12px;font-family:Arial;font-size:13px;margin:8px 0}
+.bl{margin-top:22px}.bn{font-family:Arial;font-size:11px;letter-spacing:.12em;color:#6B7A5E}.bt{font-size:21px;font-weight:500;margin:2px 0 10px}
+details{background:#FBF8F2;border:1px solid #E2DACB;border-radius:12px;margin-bottom:8px}
+summary{list-style:none;cursor:pointer;padding:12px 13px;display:flex;align-items:center;gap:11px;font-size:15.5px}summary::-webkit-details-marker{display:none}
+summary:after{content:"›";margin-left:auto;color:#5E5A4E;font-size:20px;transition:.2s}details[open] summary:after{transform:rotate(90deg)}
+.nm{background:#D7DDCB;color:#3E4A36;border-radius:6px;font-family:Arial;font-size:11px;padding:3px 7px}
+.bd{padding:0 14px 14px 14px}.bd p,.bd li{font-family:Arial;font-size:13.5px;line-height:1.55}.ds{color:#4A473D;margin:0 0 8px}
+h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;margin:4px 0}
+.bs{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.b,.b2{font-family:Arial;font-size:12.5px;border-radius:8px;padding:8px 11px;text-decoration:none;display:inline-block}
+.b{background:#6B7A5E;color:#fff}.b2{border:1px solid #B9C2A8;color:#4C5B3F;background:#fff}
+.ft{margin-top:30px;text-align:center;font-family:Arial;font-size:11.5px;color:#5E5A4E}.sec{margin-top:26px}.sec h2{font-size:21px;font-weight:500;margin:0 0 10px}
+.lead{font-family:Arial;font-size:14.5px;line-height:1.6;color:#3E4A36;margin:12px 0 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.card{background:#FBF8F2;border:1px solid #E2DACB;border-radius:12px;padding:12px}
+.card b{display:block;font-weight:500;font-size:15px;margin-bottom:3px}.card span{font-family:Arial;font-size:12.5px;line-height:1.45;color:#5E5A4E}
+.steps{counter-reset:s}.st{display:flex;gap:11px;background:#FBF8F2;border:1px solid #E2DACB;border-radius:12px;padding:11px 12px;margin-bottom:7px}
+.st:before{counter-increment:s;content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:#6B7A5E;color:#fff;font-family:Arial;font-size:13px;display:flex;align-items:center;justify-content:center}
+.st div{font-family:Arial;font-size:13px;line-height:1.5}.st b{font-family:Georgia;font-weight:500;font-size:15px;display:block}
+.nums{display:flex;gap:8px;margin-top:14px}.nums div{flex:1;background:#FBF8F2;border:1px solid #DDD5C6;border-radius:12px;padding:10px 6px;text-align:center}
+.nums b{display:block;font-size:24px;font-weight:500;color:#4C5B3F}.nums span{font-family:Arial;font-size:11px;color:#5E5A4E}
+.bd2{font-family:Arial;font-size:13px;color:#5E5A4E;margin:-4px 0 10px;line-height:1.5}
+.author{background:linear-gradient(160deg,#FBF8F2,#E6EAD9);border:1px solid #DDD5C6;border-radius:16px;padding:18px}
+.author p{font-family:Arial;font-size:13.5px;line-height:1.6;margin:6px 0}
+@media(max-width:420px){.grid{grid-template-columns:1fr}}details,.card,.st,.calm,.warn,.note,.author{break-inside:avoid;page-break-inside:avoid}
+.doc{background:#FBF8F2;border:1px solid #DDD5C6;border-radius:16px;padding:18px 16px;margin-top:12px}
+.doc h1{font-size:25px}.doc h2{font-size:20px;font-weight:500;margin:28px 0 8px;padding-top:12px;border-top:1px solid #E2DACB}
+.doc h3{font-size:16.5px;font-weight:500;margin:22px 0 6px;color:#3E4A36}
+.doc p,.doc li,.doc td,.doc th{font-family:Arial;font-size:14px;line-height:1.6}
+.doc img{max-width:100%;height:auto;border-radius:10px;border:1px solid #E2DACB;margin:8px 0;display:block}
+.doc table{border-collapse:collapse;width:100%;margin:8px 0;display:block;overflow-x:auto}.doc td,.doc th{border:1px solid #E2DACB;padding:6px 8px;text-align:left;vertical-align:top}.doc th{background:#E6EAD9}
+.doc code{background:#F1ECE1;padding:1px 4px;border-radius:4px;font-size:13px}.doc pre{background:#F6F1E7;border:1px solid #E2DACB;border-radius:9px;padding:10px;white-space:pre-wrap;font-size:13px}
+.doc blockquote{margin:8px 0;padding:8px 12px;background:#E6EAD9;border-radius:10px}.doc hr{border:none;border-top:1px dashed #E2DACB;margin:18px 0}
+.back{font-family:Arial;font-size:13px;color:#4C5B3F;text-decoration:none}</style><link rel="stylesheet" href="../img/theme.css"><link rel="icon" href="../img/girl_soft_b.png"><meta name="robots" content="noindex,nofollow"><style>/* v7: академический дизайн DF Института */
+@font-face{font-family:Manrope;font-weight:600;src:url(img/manrope-cyrillic-600-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:700;src:url(img/manrope-cyrillic-700-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:800;src:url(img/manrope-cyrillic-800-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:600;src:url(img/manrope-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:700;src:url(img/manrope-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:800;src:url(img/manrope-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;src:url(img/inter-cyrillic-400-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:500;src:url(img/inter-cyrillic-500-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:600;src:url(img/inter-cyrillic-600-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:400;src:url(img/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url(img/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(img/inter-latin-600-normal.woff2) format("woff2")}
+
+:root{--milk:#F7F6F1;--white:#fff;--sage:#E7EBDD;--olive:#7F8E67;--dolive:#596748;--blue:#DCE7E9;--sand:#E9DDCB;--ink:#303631;--cap:#8A8D82}
+body{background:var(--milk)!important;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.kmast{position:fixed;top:0;left:0;right:0;height:84px;z-index:50;display:flex;align-items:center;gap:20px;padding:0 26px;background:#fff;box-shadow:0 1px 0 #ECEAE2,0 8px 24px rgba(70,72,55,.06)}
+.klogo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.klg{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font:800 18px Manrope,sans-serif;color:var(--dolive);background:linear-gradient(160deg,#fff,#EEF0E6);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 3px rgba(89,103,72,.12),0 4px 10px rgba(70,72,55,.14)}
+.klogo b{display:block;font:700 19px Manrope,sans-serif;color:var(--ink)}.klogo small{font-size:12.5px;color:var(--cap)}
+.ktop{margin-left:auto;display:flex;gap:4px}.ktop a{font-size:15px;font-weight:500;color:#4A4F48;text-decoration:none;padding:9px 13px;border-radius:12px}.ktop a:hover{background:var(--milk)}
+.kburger{display:none;border:0;width:44px;height:44px;border-radius:14px;color:#fff;font-size:18px;cursor:pointer;background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 4px 10px rgba(89,103,72,.3)}
+.kside{position:fixed;top:84px;left:0;bottom:0;width:300px;overflow:auto;background:#fff;box-shadow:1px 0 0 #ECEAE2;padding:16px 14px 30px;z-index:40}
+.kback{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:14px;font:600 15px Inter,sans-serif;color:#fff;text-decoration:none;background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(48,54,49,.18),0 6px 14px rgba(89,103,72,.28)}
+.kttl{margin:16px 6px 4px;font:700 16px/1.3 Manrope,sans-serif;color:var(--ink)}
+.kprog{margin:8px 6px 14px;font-size:13px;color:var(--cap)}.kbar{height:8px;border-radius:9px;background:#ECEBE3;margin-top:6px;overflow:hidden}.kbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#A3B18A,#7F8E67);transition:width .3s}
+.kgrp{margin-bottom:6px}
+.kgh{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;cursor:pointer;padding:10px 10px;border-radius:14px;font:600 14.5px/1.3 Inter,sans-serif;color:var(--ink);
+ background:linear-gradient(180deg,#FFFFFF,#F3F3EC);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.08),0 3px 8px rgba(70,72,55,.08),0 0 0 1px #ECEBE3}
+.kgh .kn{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;font:700 13px Manrope,sans-serif;color:#fff;background:linear-gradient(160deg,#93A27A,#6E7D57);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 5px rgba(89,103,72,.3)}
+.kgh .kc{margin-left:auto;font-size:12px;color:var(--cap);font-weight:500}
+.kgrp.on .kgh{background:var(--sage);color:var(--dolive)}
+.kst{display:none;margin:4px 0 8px 24px;padding-left:12px;border-left:2px solid #ECEBE3}
+.kgrp.open .kst{display:block}
+.kst a{display:block;padding:6px 8px;border-radius:10px;font-size:13.5px;line-height:1.35;color:#4A4F48;text-decoration:none}
+.kst a b{color:var(--cap);font-weight:600;margin-right:4px}
+.kst a:hover{background:var(--milk)}.kst a.on{background:var(--sage);color:var(--ink);font-weight:600}.kst a.on b{color:var(--dolive)}
+.kmain{margin-left:300px;padding-top:84px}
+.kmain .pg{max-width:900px;margin:0 auto;padding:24px 28px 60px}
+.kmain h2{scroll-margin-top:100px}.kmain h3{scroll-margin-top:100px}
+.kmain h1,.kmain h2,.kmain h3{font-family:Manrope,Inter,sans-serif}
+.kmain .doc{background:#fff;border-radius:22px;box-shadow:inset 0 1px 0 #fff,0 10px 26px rgba(70,72,55,.09),0 2px 5px rgba(70,72,55,.06)}
+.kmain .doc h2{color:var(--dolive)}
+.kmain img{border-radius:12px}
+.kpn{display:flex;justify-content:space-between;gap:10px;margin:18px 0 0}
+.kpn a{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border-radius:14px;font:600 15px Inter,sans-serif;text-decoration:none;color:var(--dolive);background:linear-gradient(180deg,#fff,#F1F1EA);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.1),0 4px 10px rgba(70,72,55,.1),0 0 0 1px #E4E4DA}
+.kshade{display:none}
+.kmain .topnav,.kmain>.pg>.back{display:none}
+
+.kside .kgh{background:linear-gradient(180deg,#FFFFFF,#F3F3EC)!important;color:var(--ink)!important;border-radius:14px!important;padding:10px!important;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.08),0 3px 8px rgba(70,72,55,.08),0 0 0 1px #ECEBE3!important;font:600 14.5px/1.3 Inter,sans-serif!important}
+.kside .kgrp.on .kgh{background:linear-gradient(180deg,#EEF1E6,#E7EBDD)!important;color:var(--dolive)!important;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.12),0 3px 8px rgba(70,72,55,.1),0 0 0 1px #D9DFCB!important}
+.kside .kgh span,.kmast span,.kside span{font-family:inherit;margin:0;font-size:inherit;color:inherit}
+.kside .kgh .kn{font:700 13px/30px Manrope,sans-serif!important;color:#fff!important}
+.kside .kgh .kc{font-size:12px!important;color:var(--cap)!important;font-weight:500}
+.kmast .klg{color:var(--dolive)!important}.kside .kgh .kc{margin-left:auto!important}
+.kmast .klogo small{font-size:12.5px;color:var(--cap)}.kmast .klogo b{color:var(--ink)}
+.kmast .kburger{background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B)!important;border-radius:14px!important;padding:0!important;width:44px;height:44px}
+@media(max-width:1100px){.ktop{display:none}}
+@media(max-width:900px){
+ .kmast{height:68px;padding:0 12px;gap:10px}.kburger{display:block}.klogo b{font-size:16px}.klogo small{font-size:11px}.klg{width:42px;height:42px}
+ .kside{top:0;z-index:60;width:min(320px,88vw);transform:translateX(-105%);transition:transform .25s;border-radius:0 22px 22px 0}
+ body.knav .kside{transform:none}body.knav .kshade{display:block;position:fixed;inset:0;background:rgba(40,40,30,.35);z-index:55}
+ .kmain{margin-left:0;padding-top:68px}.kmain .pg{padding:16px 12px 50px}
+}
+</style></head><body><header class="kmast"><button class="kburger" id="kb" type="button" aria-label="Навигация">☰</button><a class="klogo" href="index.html#home"><span class="klg">DF</span><span><b>DF Институт Учителей</b><small>Авторская методика: от идеи до диплома</small></span></a>
+<nav class="ktop"><a href="index.html#home">Главная</a><a href="index.html#z12">К уроку в программе</a><a href="../konstruktor.html">Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav></header>
+<aside class="kside" id="ks"><a class="kback" href="index.html#z12">← К программе обучения</a><div class="kttl">Урок 1. Первые шаги в нейросети Kimi</div><div class="kprog"><span id="kpt">Шаг 1 из 57</span><div class="kbar"><i id="kbar"></i></div></div><div class="kgrp" data-g="1"><button class="kgh" type="button"><span class="kn">1</span><span>Начало</span><span class="kc">1–3</span></button><div class="kst"><a href="#k1" data-k="1"><b>1.</b>Ас-саляму алейкум, дорогие коллеги</a><a href="#k2" data-k="2"><b>2.</b>Цели урока</a><a href="#k3" data-k="3"><b>3.</b>План урока</a></div></div><div class="kgrp" data-g="2"><button class="kgh" type="button"><span class="kn">2</span><span>Вход в Kimi</span><span class="kc">4–10</span></button><div class="kst"><a href="#k4" data-k="4"><b>4.</b>Куда заходить: правильный адрес Kimi</a><a href="#k5" data-k="5"><b>5.</b>Как зайти на kimi.ai: через Google и через Яндекс</a><a href="#k6" data-k="6"><b>6.</b>Яндекс: куда вписывать адрес</a><a href="#k7" data-k="7"><b>7.</b>Что выбрать: два способа зайти на kimi.ai</a><a href="#k8" data-k="8"><b>8.</b>Результаты поиска: какую ссылку нажать</a><a href="#k9" data-k="9"><b>9.</b>Правило для любого браузера</a><a href="#k10" data-k="10"><b>10.</b>Если Kimi открылся на китайском</a></div></div><div class="kgrp" data-g="3"><button class="kgh" type="button"><span class="kn">3</span><span>Экран и кнопки</span><span class="kc">11–17</span></button><div class="kst"><a href="#k11" data-k="11"><b>11.</b>Нейросеть — помощник, а не источник</a><a href="#k12" data-k="12"><b>12.</b>Главный экран Kimi</a><a href="#k13" data-k="13"><b>13.</b>Выбор модели и глубины ответа</a><a href="#k14" data-k="14"><b>14.</b>Открываем боковую панель</a><a href="#k15" data-k="15"><b>15.</b>Боковая панель Kimi</a><a href="#k16" data-k="16"><b>16.</b>Меню «Ещё»</a><a href="#k17" data-k="17"><b>17.</b>Меню профиля</a></div></div><div class="kgrp" data-g="4"><button class="kgh" type="button"><span class="kn">4</span><span>Рассказываем о себе</span><span class="kc">18–27</span></button><div class="kst"><a href="#k18" data-k="18"><b>18.</b>Настройки Kimi</a><a href="#k19" data-k="19"><b>19.</b>Три места, где Kimi хранит знания о вас</a><a href="#k20" data-k="20"><b>20.</b>Настройки сеанса</a><a href="#k21" data-k="21"><b>21.</b>Образец для поля «Инструкции для Kimi»</a><a href="#k22" data-k="22"><b>22.</b>Образец заполнения</a><a href="#k23" data-k="23"><b>23.</b>Проверяем, что настройки сохранились</a><a href="#k24" data-k="24"><b>24.</b>Как вернуться из настроек в чат</a><a href="#k25" data-k="25"><b>25.</b>Если открылась страница Kimi Work</a><a href="#k26" data-k="26"><b>26.</b>Проверка: «Что ты знаешь обо мне?»</a><a href="#k27" data-k="27"><b>27.</b>Читаем ответ Kimi</a></div></div><div class="kgrp" data-g="5"><button class="kgh" type="button"><span class="kn">5</span><span>Память</span><span class="kc">28–30</span></button><div class="kst"><a href="#k28" data-k="28"><b>28.</b>Просим Kimi запомнить</a><a href="#k29" data-k="29"><b>29.</b>Проверяем, что Kimi запомнил</a><a href="#k30" data-k="30"><b>30.</b>Частые фразы — банк запросов</a></div></div><div class="kgrp" data-g="6"><button class="kgh" type="button"><span class="kn">6</span><span>Проект курса</span><span class="kc">31–36</span></button><div class="kst"><a href="#k31" data-k="31"><b>31.</b>Создаём проект</a><a href="#k32" data-k="32"><b>32.</b>Нажимаем «Создать»</a><a href="#k33" data-k="33"><b>33.</b>Страница проекта</a><a href="#k34" data-k="34"><b>34.</b>Добавляем инструкции проекта</a><a href="#k35" data-k="35"><b>35.</b>Окно «Инструкции»</a><a href="#k36" data-k="36"><b>36.</b>Инструкция сохранена</a></div></div><div class="kgrp" data-g="7"><button class="kgh" type="button"><span class="kn">7</span><span>Файлы проекта</span><span class="kc">37–45</span></button><div class="kst"><a href="#k37" data-k="37"><b>37.</b>Окно «Добавить файлы»</a><a href="#k38" data-k="38"><b>38.</b>Откуда взять файл</a><a href="#k39" data-k="39"><b>39.</b>Написать текст</a><a href="#k40" data-k="40"><b>40.</b>Файл в проекте</a><a href="#k41" data-k="41"><b>41.</b>Проверяем, видит ли Kimi файл</a><a href="#k42" data-k="42"><b>42.</b>Kimi не увидел файл</a><a href="#k43" data-k="43"><b>43.</b>Где лежат файлы проекта</a><a href="#k44" data-k="44"><b>44.</b>Называем файл точно — Kimi его видит</a><a href="#k45" data-k="45"><b>45.</b>Правило: называем файл точно</a></div></div><div class="kgrp" data-g="8"><button class="kgh" type="button"><span class="kn">8</span><span>Проекты для диплома</span><span class="kc">46–48</span></button><div class="kst"><a href="#k46" data-k="46"><b>46.</b>Проекты для диплома</a><a href="#k47" data-k="47"><b>47.</b>Порядок работы в каждом проекте</a><a href="#k48" data-k="48"><b>48.</b>Правила безопасности учителя</a></div></div><div class="kgrp" data-g="9"><button class="kgh" type="button"><span class="kn">9</span><span>Практика</span><span class="kc">49–52</span></button><div class="kst"><a href="#k49" data-k="49"><b>49.</b>Задание 1. Первый запрос и его правка</a><a href="#k50" data-k="50"><b>50.</b>Задание 2. Расскажите Kimi о себе</a><a href="#k51" data-k="51"><b>51.</b>Задание 3. Проверьте память</a><a href="#k52" data-k="52"><b>52.</b>Задание 4. Создайте проект и проверьте файл</a></div></div><div class="kgrp" data-g="10"><button class="kgh" type="button"><span class="kn">10</span><span>Закрепление</span><span class="kc">53–57</span></button><div class="kst"><a href="#k53" data-k="53"><b>53.</b>Распределение по категориям</a><a href="#k54" data-k="54"><b>54.</b>Термины урока</a><a href="#k55" data-k="55"><b>55.</b>Домашнее задание</a><a href="#k56" data-k="56"><b>56.</b>Рефлексия</a><a href="#k57" data-k="57"><b>57.</b>Что дальше</a></div></div></aside><div class="kshade" id="ksh"></div><main class="kmain"><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="../konstruktor.html">Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
+<a class="back" href="index.html#z12">← К программе обучения</a>
+<div class="warn" style="margin-top:12px"><b>Обязательно.</b> Пройдите урок полностью и всё установите до следующего занятия.</div>
+<div class="doc"><h1>Урок 1. Первые шаги в нейросети Kimi</h1>
+<h2 id="s1">1. Начало</h2>
+<h3 id="k1">Шаг 1. Ас-саляму алейкум, дорогие коллеги</h3>
+<p>Ас-саляму алейкум, дорогие коллеги. Сегодня первый урок блока «ИИ для преподавателя таджвида». Без сложной теории — только то, что понадобится в работе уже завтра.</p>
+<p>Мы разберёмся, из чего состоит экран нейросети Kimi и какие кнопки нужны учителю. Расскажем Kimi о себе, чтобы он отвечал под нашу работу. Узнаем, где он хранит знания о нас и как этим управлять. И создадим рабочее место — проект — для дипломного курса.</p>
+<p>Урок построен так: объяснение на настоящих экранах Kimi, показ на примере, четыре практических задания, приём на закрепление, домашнее задание и рефлексия.</p>
+<hr />
+<h3 id="k2">Шаг 2. Цели урока</h3>
+<p>Цели урока. После урока вы сможете:</p>
+<ol>
+<li>Найти на экране Kimi главные кнопки и понять, для чего каждая.</li>
+<li>Рассказать Kimi о себе так, чтобы ответы подходили вашей работе.</li>
+<li>Различать настройки сеанса, память и проект — и понимать, что куда записывать.</li>
+<li>Создать рабочее место для своего дипломного курса.</li>
+</ol>
+<hr />
+<h3 id="k3">Шаг 3. План урока</h3>
+<p>План урока из пяти шагов. Сначала проверим готовность: правильный сайт и вход в аккаунт. Потом разберём экран и кнопки. Затем — память и рабочее место. После этого четыре практических задания. И в конце закрепление: приём, термины, домашнее задание и рефлексия.</p>
+<hr />
+<h2 id="s2">2. Вход в Kimi</h2>
+<h3 id="k4">Шаг 4. Куда заходить: правильный адрес Kimi</h3>
+<p><img alt="Куда заходить: правильный адрес Kimi" src="../kimi-1/img/s6.jpg" /></p>
+<p>Сначала самое важное — куда заходить. Нам нужен сайт kimi.ai. Он открывается сразу на русском, вход — через аккаунт Google. На главном экране вы увидите «Новый проект» и «Слайды».</p>
+<p>Два адреса, куда мы не заходим. Первый — kimi.com: он может открыть китайскую версию, где вход только через WeChat или китайский номер телефона +86. Такое окно просто закрываем. Второй — platform.kimi.ai: это кабинет для программистов, там ключи API, баланс в долларах и кнопка «Пополнить счёт». Сюда не заходим и ничего не пополняем.</p>
+<hr />
+<h3 id="k5">Шаг 5. Как зайти на kimi.ai: через Google и через Яндекс</h3>
+<p><img alt="Как зайти на kimi.ai: через Google и через Яндекс" src="../kimi-1/img/s7.jpg" /></p>
+<p>Главное правило: адрес kimi.ai вписываем в адресную строку браузера, а не ищем через поиск. В поиске много сайтов-посредников.</p>
+<p>Если у вас Google Chrome: открываем браузер, нажимаем на адресную строку вверху, вписываем kimi.ai и нажимаем Enter. Входим через аккаунт Google.</p>
+<p>Если у вас Яндекс Браузер: открываем его и нажимаем на строку вверху — в Яндексе это и адрес, и поиск одновременно. Вписываем kimi.ai и выбираем подсказку с адресом kimi.ai, а не «Найти в Яндексе». Входим через аккаунт Google.</p>
+<p>Внимание: если сайт просит оплату в рублях или называется «Kimi на русском» — это посредник, а не официальный Kimi. Закрываем.</p>
+<hr />
+<h3 id="k6">Шаг 6. Яндекс: куда вписывать адрес</h3>
+<p><img alt="Яндекс: куда вписывать адрес" src="../kimi-1/img/s8.jpg" /></p>
+<p>Частая ошибка — вписать kimi.ai в поиск на странице Яндекса. Посмотрите на скрин.</p>
+<p>Зелёная метка 1 — верхняя адресная строка браузера. Адрес вписываем сюда.</p>
+<p>Красная метка 2 — поиск Яндекса на самой странице. Сюда адрес не вписываем.</p>
+<p>Красная метка 3 — реклама. Сюда не нажимаем.</p>
+<p>Красная метка 4 — подсказки поиска вроде «купить подписку» или «скачать». Они могут вести к посредникам.</p>
+<hr />
+<h3 id="k7">Шаг 7. Что выбрать: два способа зайти на kimi.ai</h3>
+<p>Подсказки под строкой поиска Яндекса — это поисковые запросы, а не сам сайт. Поэтому из списка лучше ничего не выбирать.</p>
+<p>Самый надёжный способ. Первое: нажимаем на верхнюю строку браузера, где сейчас написано ya.ru. Второе: стираем ya.ru и вписываем kimi.ai. Третье: нажимаем «Перейти» на клавиатуре. Сразу откроется Kimi, без поиска.</p>
+<p>Если всё же ищете через Яндекс. Первое: нажимаем первую подсказку «kimi.ai нейросеть официальный сайт» или оранжевую стрелку. Второе: в результатах смотрим не на заголовок, а на адрес под ним — нужен ровно kimi.ai. Третье: пропускаем результаты с пометкой «Реклама» и похожие адреса — с буквами «ru», с дефисами, со словами «на русском».</p>
+<hr />
+<h3 id="k8">Шаг 8. Результаты поиска: какую ссылку нажать</h3>
+<p><img alt="Результаты поиска: какую ссылку нажать" src="../kimi-1/img/s10.jpg" /></p>
+<p>Вот результаты поиска. Нажимаем только ту ссылку, у которой под заголовком зелёный адрес kimi.ai. Заголовок может быть на английском — это нормально.</p>
+<ol>
+<li>kimi.ai, официальный сайт. Нажимаем.</li>
+<li>habr.com, статья о Kimi, а не сам сайт.</li>
+<li>vc.ru, тоже статья.</li>
+<li>stiva.ai, сайт-посредник.</li>
+<li>kimi.su, посредник «Kimi на русском».</li>
+<li>kimi-official.com. Похож на официальный, но это не адрес Kimi.</li>
+</ol>
+<p>Правило: смотрим на зелёный адрес, а не на заголовок.</p>
+<hr />
+<h3 id="k9">Шаг 9. Правило для любого браузера</h3>
+<p>Это правило одинаковое для Google Chrome, Яндекс Браузера, Safari и любого другого браузера.</p>
+<p>Первое: вписываем адрес kimi.ai в верхнюю адресную строку и нажимаем «Перейти».</p>
+<p>Второе: если ищем через поиск — смотрим не на заголовок, а на адрес под ним, и переходим только по ссылке с адресом kimi.ai.</p>
+<p>Третье: после перехода проверяем адресную строку — там должно быть kimi.ai. Другой адрес — закрываем вкладку.</p>
+<p>Главное: название сайта может быть любым, а адрес у официального Kimi один — kimi.ai.</p>
+<hr />
+<h3 id="k10">Шаг 10. Если Kimi открылся на китайском</h3>
+<p><img alt="Если Kimi открылся на китайском" src="../kimi-1/img/s12.jpg" /></p>
+<p>Запасной шаг. Если Kimi вдруг открылся на китайском — вот перевод кнопок.</p>
+<ol>
+<li>«Войти».</li>
+<li>скачать программу для компьютера, не обязательно.</li>
+<li>поле запроса.</li>
+<li>«плюс», прикрепить файл.</li>
+<li>выбор модели.</li>
+<li>выбрать проект.</li>
+<li>режимы: презентация, документ, таблица, дизайн.</li>
+<li>надпись «текст создан ИИ, проверяйте внимательно».</li>
+</ol>
+<p>Чтобы включить русский: «Войти», потом «Настройки», потом «Общие», потом «Язык» и выбираем «Русский».</p>
+<p>А если окно входа просит WeChat или номер +86 — это китайская версия. Закрываем и переходим на kimi.ai.</p>
+<hr />
+<h2 id="s3">3. Экран и кнопки</h2>
+<h3 id="k11">Шаг 11. Нейросеть — помощник, а не источник</h3>
+<p>Главная мысль урока. Нейросеть умеет объяснять тему простым языком, предлагать структуру урока и задания, составлять таблицы, тесты и вопросы, переписывать текст под возраст ученицы, готовить черновик презентации.</p>
+<p>Но она не умеет гарантировать точность — она ошибается уверенным тоном. Она не источник текста Корана и арабского текста. Она не знает вашу методику, пока вы её не опишете. И она не отвечает за материал — автор вы.</p>
+<p>Нейросеть готовит черновик. Автор материала — вы, и каждое слово вы проверяете сами.</p>
+<hr />
+<h3 id="k12">Шаг 12. Главный экран Kimi</h3>
+<p><img alt="Главный экран Kimi" src="../kimi-1/img/s15.jpg" /></p>
+<p>Это главный экран Kimi. Пройдём по номерам.</p>
+<ol>
+<li>боковая панель: проекты, чаты, профиль.</li>
+<li>«Повысить план», это платно, для урока не нужно.</li>
+<li>поле запроса. Если ввести знак «/», появятся плагины и навыки.</li>
+<li>«плюс», прикрепить файл или фото.</li>
+<li>«Быстрый / Высокий»: модель и глубина ответа. Разберём на следующем шаге.</li>
+<li>микрофон, голосовой ввод.</li>
+<li>«Новый проект».</li>
+<li>«Плагины»: почта, диск, календарь. Пока не нужны.</li>
+<li>«Использовать для компьютера». Не нужно.</li>
+<li>режимы: «Слайды», «Глубокое исследование» и другие.</li>
+</ol>
+<hr />
+<h3 id="k13">Шаг 13. Выбор модели и глубины ответа</h3>
+<p><img alt="Выбор модели и глубины ответа" src="../kimi-1/img/s16.jpg" /></p>
+<p>Справа в поле ввода есть кнопка «Быстрый / Высокий». Нажимаем на неё — откроется меню.</p>
+<p>Первое слово, «Быстрый», — это модель, которая сейчас выбрана. Второе, «Высокий», — интенсивность рассуждений: насколько глубоко Kimi думает перед ответом.</p>
+<p>В меню три модели. K3.1 Pro — для сложных задач и профессиональной работы. K2.8 Preview — баланс скорости и качества. «Быстрый» — мгновенные короткие ответы. Пункт «Другие модели» нам пока не нужен.</p>
+<p>Для простого вопроса выбираем «Быстрый». Для плана урока и презентации — K3.1 Pro или K2.8. Если при выборе модели Kimi просит оплату, возвращаемся на K2.8.</p>
+<hr />
+<h3 id="k14">Шаг 14. Открываем боковую панель</h3>
+<p><img alt="Открываем боковую панель" src="../kimi-1/img/01_otkryt_panel.jpg" /></p>
+<p>Посмотрите в левый верхний угол экрана Kimi. Там маленький значок — квадрат с полоской слева. Нажимаем на него, и слева откроется боковая панель. В ней собрано всё, что нам нужно для работы.</p>
+<hr />
+<h3 id="k15">Шаг 15. Боковая панель Kimi</h3>
+<p><img alt="Боковая панель Kimi" src="../kimi-1/img/02_bokovaya_panel.jpg" /></p>
+<p>Пройдём по боковой панели сверху вниз.</p>
+<ol>
+<li>значок Kimi с буквой K. Если нажать, панель закрепится на экране.</li>
+<li>«Новый чат». Каждую новую задачу начинаем отсюда: одна задача — один чат.</li>
+<li>«Мой Kimi».</li>
+<li>«Плагины»: подключение почты, диска, календаря. На этом уроке не нужны.</li>
+<li>«Задачи по расписанию»: Kimi может выполнять задание в назначенное время. Пока не нужно.</li>
+<li>«Вдохновение»: примеры запросов. Можно посмотреть для идей.</li>
+<li>«Слайды»: создание презентаций. Подробно — в уроке по дизайну.</li>
+<li>«3D Make». Нам не нужно.</li>
+<li>«Ещё»: дополнительные режимы.</li>
+<li>«Проекты» и «Новый проект». Здесь создаём рабочее место для дипломного курса.</li>
+<li>«Чаты», история переписок.</li>
+<li>«Invite to Earn», приглашение за бонусы. Не нажимаем.</li>
+<li>«Обновить», переход на платный тариф.</li>
+<li>стрелка вниз: скачать приложение. Не обязательно.</li>
+</ol>
+<p>Внизу слева — ваше фото и имя. Это профиль.</p>
+<hr />
+<h3 id="k16">Шаг 16. Меню «Ещё»</h3>
+<p><img alt="Меню «Ещё»" src="../kimi-1/img/16_menu_eshche.jpg" /></p>
+<p>Пункт «Ещё» раскрывает полный список. Чтобы спрятать его обратно, нажимаем «Свернуть».</p>
+<p>Пригодятся учителю: «Слайды» — презентации, «Документы» — тексты, планы, пособия, «Таблицы» — трекеры и расписания, «Дизайн» с пометкой Beta — оформление.</p>
+<p>Разберём позже: «Глубокое исследование» и «Создать приложение».</p>
+<p>Не нужно: «Kimi Work», «Kimi Code», «Kimi Claw» — это для программистов. И «Платформа Kimi» — это тот самый platform.kimi.ai, кабинет с оплатой в долларах. Не нажимаем.</p>
+<hr />
+<h3 id="k17">Шаг 17. Меню профиля</h3>
+<p><img alt="Меню профиля" src="../kimi-1/img/03_menu_profilya.jpg" /></p>
+<p>Нажимаем на своё фото и имя внизу боковой панели. Над ними откроется меню.</p>
+<ol>
+<li>«Скачать приложение». Не обязательно, работаем на сайте.</li>
+<li>«Планы подписки», платные тарифы. Для работы над дипломом нам понадобится платный тариф — об этом в конце урока.</li>
+<li>«Подарочная карта». Не нужно.</li>
+<li>«О нас». Не нужно.</li>
+<li>«Язык». Если Kimi открылся на английском или китайском, выбираем здесь «Русский».</li>
+<li>«Центр сообщений», уведомления.</li>
+<li>«Получить помощь», если что-то не работает.</li>
+<li>«Настройки». Самый важный пункт: здесь мы рассказываем Kimi о себе.</li>
+</ol>
+<hr />
+<h2 id="s4">4. Рассказываем о себе</h2>
+<h3 id="k18">Шаг 18. Настройки Kimi</h3>
+<p><img alt="Настройки Kimi" src="../kimi-1/img/04_nastroiki.jpg" /></p>
+<p>Мы в настройках. Слева меню, справа раздел «Аккаунт и безопасность»: видно, что вход выполнен через Google.</p>
+<p>Внизу левого меню — раздел «Персонализация». Здесь мы рассказываем Kimi о себе. В нём три пункта: 1 — «Память», 2 — «Настройки сеанса», 3 — «Частые фразы».</p>
+<p>Чего не нажимаем: «Моя подписка», «Платежи и счета», «Подарочная карта» — это платное. «Выйти» — выход из аккаунта. И «Удалить учётную запись» внизу мелким шрифтом — это удаление аккаунта, никогда не нажимаем.</p>
+<hr />
+<h3 id="k19">Шаг 19. Три места, где Kimi хранит знания о вас</h3>
+<p>Главная схема урока. В Kimi три места, где хранятся знания о вас.</p>
+<p>Первое — «Настройки сеанса». Это постоянный текст о себе и о том, как отвечать. Пишете вы сами, один раз, и он действует во всех чатах.</p>
+<p>Второе — «Память». Это то, что Kimi запомнил из разговоров. Она пополняется сама или по просьбе «Запомни…». Действует во всех чатах, пока не удалите.</p>
+<p>Третье — «Проект». Это папка для одного курса: чаты, файлы и свои инструкции. Действует только внутри проекта.</p>
+<ul>
+<li><strong>Настройки сеанса</strong>: Кто вы и как отвечать Кто заполняет: Пишете сами, один раз Где действует: Во всех чатах Что Kimi запомнил из разговоров Кто заполняет: Сама или по просьбе «Запомни…» Где действует: Во всех чатах, пока не удалите Папка курса: чаты, файлы, инструкции Кто заполняет: Создаёте под одну задачу Где действует: Только внутри проекта</li>
+</ul>
+<hr />
+<h3 id="k20">Шаг 20. Настройки сеанса</h3>
+<p><img alt="Настройки сеанса" src="../kimi-1/img/07_nastroiki_seansa.jpg" /></p>
+<p>В разделе «Персонализация» открываем «Настройки сеанса». Вверху написано: Kimi будет применять эти настройки во всех диалогах. Значит, пишем один раз — и Kimi помнит это в каждом новом чате.</p>
+<ol>
+<li>поле «Как Kimi к вам обращаться?». Пишем имя и фамилию.</li>
+<li>«Профессия». Нажимаем на стрелку и выбираем «Учёба и подготовка к экзаменам».</li>
+<li>«Инструкции для Kimi», до 1500 знаков. Главное поле: о себе и как Kimi должен отвечать. Образец — на следующем шаге.</li>
+<li>«Сохранить». Обязательно нажимаем после заполнения.</li>
+</ol>
+<hr />
+<h3 id="k21">Шаг 21. Образец для поля «Инструкции для Kimi»</h3>
+<p>Вот образец текста для поля «Инструкции для Kimi». Копируем его и заменяем всё, что в квадратных скобках, своими данными. Скобки в тексте не оставляем: что напишем в настройках, то Kimi и повторит.</p>
+<pre><code class="language-text">Я преподаватель таджвида. Веду онлайн-уроки для [взрослых учениц / детей]. Мой курс: [название]. Ученицы начинающие, говорят по-русски, арабские термины знают не все. Я готовлю планы уроков, презентации, домашние задания, тесты и материалы для учениц.
+Как отвечать:
+— на русском языке, простыми словами, по шагам;
+— текст Корана и арабский текст не пиши по памяти, пиши: «проверьте по источнику»;
+— если не уверен, так и скажи, не придумывай;
+— презентации делай в формате PPTX;
+— в конце каждого ответа напоминай: это ответ ИИ, автор материала — я, я проверю каждое слово.
+</code></pre>
+<hr />
+<h3 id="k22">Шаг 22. Образец заполнения</h3>
+<p><img alt="Образец заполнения" src="../kimi-1/img/08_obrazec_nastroek.jpg" /></p>
+<p>Вот как выглядят заполненные настройки.</p>
+<ol>
+<li>имя: так Kimi будет к нам обращаться.</li>
+<li>профессия выбрана из списка.</li>
+<li>в инструкции вставлен образец. Внизу счётчик: 549 знаков из 1500, место ещё есть.</li>
+<li>«Сохранить». Пока поля пустые, кнопка серая. После заполнения она стала чёрной — нажимаем.</li>
+</ol>
+<p>Текст в квадратных скобках заменяем своими данными: кого вы учите и как называется ваш курс.</p>
+<hr />
+<h3 id="k23">Шаг 23. Проверяем, что настройки сохранились</h3>
+<p><img alt="Проверяем, что настройки сохранились" src="../kimi-1/img/09_sohraneno.jpg" /></p>
+<p>После нажатия «Сохранить» смотрим на кнопку. Если она снова серая — настройки сохранились.</p>
+<p>Обратите внимание: когда мы написали только имя, настройки не сохранились. Когда добавили фамилию — сохранились. Поэтому в первом поле пишем имя и фамилию.</p>
+<hr />
+<h3 id="k24">Шаг 24. Как вернуться из настроек в чат</h3>
+<p><img alt="Как вернуться из настроек в чат" src="../kimi-1/img/11_nazad_v_chat.jpg" /></p>
+<p>Из настроек в чат возвращаемся кнопкой «Назад» в левом верхнем углу. Откроется главный экран с полем ввода — здесь мы и пишем Kimi.</p>
+<hr />
+<h3 id="k25">Шаг 25. Если открылась страница Kimi Work</h3>
+<p><img alt="Если открылась страница Kimi Work" src="../kimi-1/img/10_kimi_work.jpg" /></p>
+<p>В настройках есть синяя ссылка «Kimi Work». Если нажать на неё, откроется страница программы для компьютера. Она нам не нужна, ничего не скачиваем, кнопку «Скопировать ссылку для скачивания» не нажимаем. Чтобы вернуться в чат, нажимаем «Попробовать Kimi» в правом верхнем углу.</p>
+<hr />
+<h3 id="k26">Шаг 26. Проверка: «Что ты знаешь обо мне?»</h3>
+<p><img alt="Проверка: «Что ты знаешь обо мне?»" src="../kimi-1/img/12_vopros_proverka.jpg" /></p>
+<p>Проверяем, запомнил ли Kimi наши настройки. На главном экране в поле ввода пишем: «Что ты знаешь обо мне?» — и нажимаем чёрную стрелку справа. Пока стрелка не нажата, Kimi вопрос не получил.</p>
+<hr />
+<h3 id="k27">Шаг 27. Читаем ответ Kimi</h3>
+<p><img alt="Читаем ответ Kimi" src="../kimi-1/img/13_otvet_proverka.jpg" /></p>
+<p>Kimi ответил. Разберём по частям.</p>
+<ol>
+<li>«Долгосрочная память пока пустая». Это нормально: мы только начали. Память заполнится сама или по просьбе «Запомни…».</li>
+<li>имя: Kimi называет нас так, как мы написали в настройках.</li>
+<li>о себе: Kimi пересказал наши инструкции.</li>
+<li>как отвечать: правила он тоже видит.</li>
+<li>напоминание в конце: «Это ответ ИИ; автор материала — вы». Мы сами вписали это в инструкции — и Kimi выполнил.</li>
+<li>кнопки под ответом: озвучить, копировать, повторить ответ, поделиться, оценить.</li>
+</ol>
+<p>Слева в истории появился новый чат — так сохраняется каждый разговор.</p>
+<hr />
+<h2 id="s5">5. Память</h2>
+<h3 id="k28">Шаг 28. Просим Kimi запомнить</h3>
+<p><img alt="Просим Kimi запомнить" src="../kimi-1/img/14_zapomni.jpg" /></p>
+<p>Kimi может запомнить важное, если попросить прямо. Пишем в чат: «Запомни: мой курс называется …, ученицы — взрослые» — и отправляем.</p>
+<ol>
+<li>наш запрос начинается со слова «Запомни». Это главное слово.</li>
+<li>строка на английском со значком документа. Это служебная запись: Kimi сохраняет данные. Не обращаем внимания.</li>
+<li>«Запомнила»: запись сохранена.</li>
+<li>Kimi сам перечисляет, что теперь в памяти. Проверяем, всё ли верно.</li>
+<li>напоминание в конце на месте, инструкция работает.</li>
+<li>Kimi сам назвал чат по-английски. Это нормально.</li>
+</ol>
+<p>Если что-то изменится, пишем: «Обнови: …».</p>
+<hr />
+<h3 id="k29">Шаг 29. Проверяем, что Kimi запомнил</h3>
+<p><img alt="Проверяем, что Kimi запомнил" src="../kimi-1/img/15_pamyat_zapis.jpg" /></p>
+<p>Снова открываем «Настройки», раздел «Память».</p>
+<ol>
+<li>«Создавать записи из чатов». Переключатель включён: Kimi сам запоминает важное.</li>
+<li>«Пространство для запомненного». Здесь лежит то, что Kimi о нас знает. Стрелка справа открывает записи: их можно исправить или удалить.</li>
+<li>«О тебе»: кто мы и чем занимаемся.</li>
+<li>«Текущий курс»: то, что мы попросили запомнить.</li>
+<li>«Особенности работы». Этот раздел Kimi составил сам, по нашим прошлым чатам. Поэтому память нужно регулярно проверять и удалять лишнее. «Импорт» — перенос памяти из другой нейросети, пока не нужен.</li>
+</ol>
+<hr />
+<h3 id="k30">Шаг 30. Частые фразы — банк запросов</h3>
+<p><img alt="Частые фразы — банк запросов" src="../kimi-1/img/06_chastye_frazy.jpg" /></p>
+<p>Открываем «Частые фразы». Внутри раздел называется «Шаблоны». Это готовые запросы, которые не нужно печатать каждый раз, — ваш банк промтов.</p>
+<ol>
+<li>«Добавить шаблон».</li>
+<li>«Слово вызова» — короткое имя шаблона.</li>
+<li>«Содержимое» — сам текст запроса.</li>
+</ol>
+<p>Например, слово вызова «план», содержимое: «Составь план урока по теме … для …: повторение, переход, новая тема, практика, домашнее задание, рефлексия».</p>
+<hr />
+<h2 id="s6">6. Проект курса</h2>
+<h3 id="k31">Шаг 31. Создаём проект</h3>
+<p><img alt="Создаём проект" src="../kimi-1/img/17_novyi_proekt.jpg" /></p>
+<p>Проект — это папка для одного курса. На экране так и написано: «Все материалы одной темы в одном месте».</p>
+<ol>
+<li>в боковой панели, под заголовком «Проекты», нажимаем «Новый проект».</li>
+<li>в поле «Придумайте название» пишем название по шаблону.</li>
+<li>значок папки можно сменить. Это по желанию.</li>
+</ol>
+<hr />
+<h3 id="k32">Шаг 32. Нажимаем «Создать»</h3>
+<p><img alt="Нажимаем «Создать»" src="../kimi-1/img/18_sozdat_proekt.jpg" /></p>
+<p>Вписали название. Справа появилась чёрная кнопка «Создать» — нажимаем. Проект откроется сам.</p>
+<hr />
+<h3 id="k33">Шаг 33. Страница проекта</h3>
+<p><img alt="Страница проекта" src="../kimi-1/img/19_stranica_proekta.jpg" /></p>
+<p>Открылась страница проекта. Посередине написано: «Общий контекст для всех чатов проекта». Всё, что мы положим в проект, Kimi будет учитывать в каждом его чате.</p>
+<ol>
+<li>название проекта. Три точки справа — меню проекта.</li>
+<li>«Инструкции» с плюсом: что Kimi должен знать в этом проекте.</li>
+<li>«Файлы» с плюсом: пособие, план курса, шаблоны.</li>
+<li>поле чата внутри проекта: каждый чат здесь видит инструкции и файлы.</li>
+<li>«Общий контекст для всех чатов проекта».</li>
+</ol>
+<hr />
+<h3 id="k34">Шаг 34. Добавляем инструкции проекта</h3>
+<p><img alt="Добавляем инструкции проекта" src="../kimi-1/img/20_instr_plus.jpg" /></p>
+<p>У карточки «Инструкции» нажимаем «плюс».</p>
+<pre><code class="language-text">Это мой дипломный курс «[название]» для [взрослых учениц / детей] с нуля. Курс проходит онлайн, в группе до 5 учениц.
+Опирайся на файлы проекта: пособие и план курса. Если в файлах нет ответа — так и скажи.
+Каждый урок строй по порядку: дуа, повторение, новая тема, практика, домашнее задание, рефлексия.
+Арабский текст и аяты не пиши по памяти — пиши «проверьте по источнику».
+Презентации — в формате PPTX.
+</code></pre>
+<hr />
+<h3 id="k35">Шаг 35. Окно «Инструкции»</h3>
+<p><img alt="Окно «Инструкции»" src="../kimi-1/img/21_instr_okno.jpg" /></p>
+<p>Открывается окно «Инструкции». Вставляем текст. Если он длинный, окно прокручивается вниз. Квадратные скобки заменяем своими данными. Нажимаем «Добавить». «Отмена» закрывает окно без сохранения.</p>
+<hr />
+<h3 id="k36">Шаг 36. Инструкция сохранена</h3>
+<p><img alt="Инструкция сохранена" src="../kimi-1/img/22_instr_sohranena.jpg" /></p>
+<p>Начало инструкции видно в карточке. Вместо «плюса» появился карандаш: нажав на него, инструкцию можно открыть и исправить. Теперь каждый чат внутри проекта будет следовать этим инструкциям.</p>
+<p>Дальше — «плюс» у «Файлов».</p>
+<hr />
+<h2 id="s7">7. Файлы проекта</h2>
+<h3 id="k37">Шаг 37. Окно «Добавить файлы»</h3>
+<p><img alt="Окно «Добавить файлы»" src="../kimi-1/img/23_dobavit_faily.jpg" /></p>
+<p>Нажимаем «плюс» у «Файлов». Открывается окно «Добавить файлы».</p>
+<ol>
+<li>вверху: «Общее хранилище всех проектов» и сколько уже использовано. Место общее для всех проектов, поэтому лишнее не загружаем.</li>
+<li>«Загрузите файл»: файл с устройства, каждый до 100 МБ.</li>
+<li>«Написать текст»: вписать текст прямо сюда, до 5000 символов.</li>
+</ol>
+<hr />
+<h3 id="k38">Шаг 38. Откуда взять файл</h3>
+<p><img alt="Откуда взять файл" src="../kimi-1/img/24_otkuda_fail.jpg" /></p>
+<p>Нажимаем «Загрузите файл». Появляется меню.</p>
+<ol>
+<li>«Google Диск».</li>
+<li>«Выбрать файлы» с планшета или компьютера: план курса, пособие, шаблон.</li>
+<li>«Снять фото или видео».</li>
+<li>«Фотогалерея», например фото страницы пособия.</li>
+</ol>
+<p>Помним: арабский текст на фото Kimi может прочитать с ошибками. Каждое слово проверяем по источнику.</p>
+<hr />
+<h3 id="k39">Шаг 39. Написать текст</h3>
+<p><img alt="Написать текст" src="../kimi-1/img/25_napisat_tekst.jpg" /></p>
+<p>Если нажать «Написать текст», откроется окно «Добавить текст».</p>
+<ol>
+<li>«Заголовок», название файла. Если оставить пустым, названием станут первые 10 символов. Лучше написать понятное название, например «План курса».</li>
+<li>«Содержимое текста», обязательное поле со звёздочкой.</li>
+<li>«Добавить» становится чёрной, когда текст вписан. Нажимаем.</li>
+</ol>
+<hr />
+<h3 id="k40">Шаг 40. Файл в проекте</h3>
+<p><img alt="Файл в проекте" src="../kimi-1/img/26_fail_zagruzhen.jpg" /></p>
+<p>После загрузки файл появляется в карточке «Файлы»: видно название и размер.</p>
+<ol>
+<li>файл загружен.</li>
+<li>«плюс», добавить ещё.</li>
+<li>«Файлы чатов проекта»: здесь собираются все файлы проекта и файлы, прикреплённые в его чатах.</li>
+</ol>
+<hr />
+<h3 id="k41">Шаг 41. Проверяем, видит ли Kimi файл</h3>
+<p><img alt="Проверяем, видит ли Kimi файл" src="../kimi-1/img/27_proverka_failov.jpg" /></p>
+<p>Теперь проверяем, что Kimi видит файл. В поле чата проекта пишем: «Перечисли файлы, которые ты видишь в проекте» — и нажимаем стрелку.</p>
+<hr />
+<h3 id="k42">Шаг 42. Kimi не увидел файл</h3>
+<p><img alt="Kimi не увидел файл" src="../kimi-1/img/28_kimi_ne_vidit.jpg" /></p>
+<p>Kimi ответил: «в проекте нет ни одного файла» — хотя PDF загружен и виден в карточке. Он посмотрел свою память, а не файлы проекта.</p>
+<p>Поэтому проверка обязательна: без неё Kimi собрал бы материал, не открыв наш файл.</p>
+<hr />
+<h3 id="k43">Шаг 43. Где лежат файлы проекта</h3>
+<p><img alt="Где лежат файлы проекта" src="../kimi-1/img/29_faily_chatov.jpg" /></p>
+<p>В карточке «Файлы» нажимаем стрелку у «Файлы чатов проекта». Откроется окно.</p>
+<ol>
+<li>папка upload: сюда попадают загруженные файлы.</li>
+<li>полное название файла.</li>
+<li>стрелка вниз справа: скачать файл обратно.</li>
+<li>окно просмотра.</li>
+</ol>
+<p>Полное название пригодится нам на следующем шаге.</p>
+<hr />
+<h3 id="k44">Шаг 44. Называем файл точно — Kimi его видит</h3>
+<p><img alt="Называем файл точно — Kimi его видит" src="../kimi-1/img/30_kimi_vidit_fail.jpg" /></p>
+<p>Пишем в чат проекта: «Открой файл „…“ из файлов проекта (карточка „Файлы“ справа) и кратко перескажи, о чём он». Указываем точное название и где файл лежит.</p>
+<p>И Kimi открыл файл и пересказал его по блокам. Обратите внимание: он сам предупредил, что аяты в файле вставлены картинками и текст надо сверять с Кораном. Напоминание в конце тоже на месте.</p>
+<pre><code class="language-text">Открой файл «[точное название файла]» из файлов проекта (карточка «Файлы» справа) и кратко перескажи, о чём он.
+</code></pre>
+<hr />
+<h3 id="k45">Шаг 45. Правило: называем файл точно</h3>
+<p>Это обязательное правило работы с проектами. Kimi не всегда видит файлы проекта сам. Поэтому в каждом запросе на сборку пишем точное название файла и где он лежит: «в файлах проекта, карточка „Файлы“ справа».</p>
+<p>Сборку начинаем только после того, как Kimi пересказал каждый нужный файл своими словами.</p>
+<p>Если не получается: называем файл точно; не помогло — новый чат внутри проекта; не помогло — прикрепляем файл прямо в чат через «плюс». PDF, сохранённый из презентации, может оказаться картинками без текста — тогда загружаем сам PPTX.</p>
+<blockquote>
+<p><strong>Сборку начинаем только после того, как Kimi пересказал каждый нужный файл своими словами.</strong></p>
+</blockquote>
+<hr />
+<h2 id="s8">8. Проекты для диплома</h2>
+<h3 id="k46">Шаг 46. Проекты для диплома</h3>
+<p>Для работы над дипломом нужен платный тариф Kimi: на бесплатном можно создать только два проекта, а нам нужно восемь. Тариф оформляем через ваше фото внизу слева — «Планы подписки».</p>
+<p>Создаём восемь проектов, по одному на каждый результат. DF_00 — общие материалы, архив. DF_01 — вводная презентация. DF_02 — первый содержательный урок. DF_03 — продолжающийся урок. DF_04 — завершающий урок и зачёт. DF_05 — защитная презентация. DF_06 — пояснительная записка. DF_07 — речь к защите.</p>
+<p>Главное правило: один проект — один результат. В проект 02 не загружаем материалы 01, 03 и 04.</p>
+<ul>
+<li><code>DF_00_Общие_материалы_архив</code></li>
+<li><code>DF_01_Вводная_презентация</code></li>
+<li><code>DF_02_Первый_содержательный_урок</code></li>
+<li><code>DF_03_Продолжающийся_урок</code></li>
+<li><code>DF_04_Завершающий_урок_зачёт</code></li>
+<li><code>DF_05_Защитная_презентация</code></li>
+<li><code>DF_06_Пояснительная_записка</code></li>
+<li><code>DF_07_Речь_к_защите</code></li>
+</ul>
+<hr />
+<h3 id="k47">Шаг 47. Порядок работы в каждом проекте</h3>
+<p>Порядок для каждого проекта.</p>
+<ol>
+<li>Сайт kimi.ai, входим в аккаунт.</li>
+<li>В боковой панели, под «Проекты», нажимаем «Новый проект».</li>
+<li>Пишем название по шаблону, нажимаем «Создать».</li>
+<li>У карточки «Инструкции» — «плюс», вставляем скилл и правила этапа, «Добавить».</li>
+<li>У «Файлов» — «плюс», «Загрузите файл»: скелет, карта, источники, референс дизайна и скриншоты только этого этапа.</li>
+<li>Просим Kimi открыть каждый файл по точному названию и пересказать.</li>
+<li>Вставляем промпт сборки и просим сначала показать план.</li>
+<li>Проверяем план и только потом продолжаем сборку. Каждую версию сохраняем отдельно, с номером версии в названии файла.</li>
+</ol>
+<hr />
+<h3 id="k48">Шаг 48. Правила безопасности учителя</h3>
+<p>Правила безопасности, они повторяются в каждом уроке блока.</p>
+<p>Личные данные: ФИО, телефоны, оценки и фото учениц в нейросеть не вводим.</p>
+<p>Текст Корана: аяты и арабский текст берём только из проверенного источника.</p>
+<p>Проверка: каждое слово ответа проверяем сами, перед тем как дать ученицам.</p>
+<p>Авторство: нейросеть делает черновик, автор материала — учитель.</p>
+<p>Пароли и документы не отправляем никогда.</p>
+<hr />
+<h2 id="s9">9. Практика</h2>
+<h3 id="k49">Шаг 49. Задание 1. Первый запрос и его правка</h3>
+<p>Задание 1. Нажмите «Новый чат». Вставьте запрос из рамки ниже и отправьте. Потом наведите на своё сообщение и нажмите карандаш. Замените «для взрослой ученицы» на «для ребёнка 8 лет» и отправьте. Сравните два ответа: что изменилось? Время — 3 минуты.</p>
+<pre><code class="language-text">Объясни простыми словами, что такое махрадж. Для взрослой ученицы, которая только начала учить таджвид. 3 предложения.
+</code></pre>
+<hr />
+<h3 id="k50">Шаг 50. Задание 2. Расскажите Kimi о себе</h3>
+<p>Задание 2. Откройте фото внизу слева, «Настройки», «Настройки сеанса». Впишите имя и фамилию, выберите профессию, вставьте образец в «Инструкции для Kimi», замените скобки своими данными и нажмите «Сохранить». В новом чате спросите: «Что ты знаешь обо мне?» Время — 3 минуты.</p>
+<hr />
+<h3 id="k51">Шаг 51. Задание 3. Проверьте память</h3>
+<p>Задание 3. Отправьте фразу «Запомни: мой дипломный курс называется …». Потом откройте «Настройки», «Память», «Пространство для запомненного» и найдите запись о курсе. Лишнее удалите. Время — 2 минуты.</p>
+<pre><code class="language-text">Запомни: мой дипломный курс называется [название].
+</code></pre>
+<hr />
+<h3 id="k52">Шаг 52. Задание 4. Создайте проект и проверьте файл</h3>
+<p>Задание 4. Создайте проект DF_01_Вводная_презентация. Добавьте инструкцию проекта. Загрузите один файл, например план курса. В чате проекта попросите Kimi открыть этот файл по точному названию и пересказать его. Время — 3 минуты.</p>
+<hr />
+<h2 id="s10">10. Закрепление</h2>
+<h3 id="k53">Шаг 53. Распределение по категориям</h3>
+<p>Приём на закрепление «Распределение по категориям». Прочитайте восемь карточек. Для каждой выберите, куда она относится: Н — настройки сеанса, П — память, Пр — проект, или «Никуда». Напишите в чат ответы цифрами и буквами, например «1-Н, 2-Никуда». Одну карточку объясните: почему именно туда? Подумать — одна минута, ответ — 30–40 секунд.</p>
+<ol>
+<li>Я преподаю таджвид взрослым</li>
+<li>Пароль от почты</li>
+<li>Файл пособия по курсу</li>
+<li>Сейчас мой курс — 30 уроков</li>
+<li>Отвечай по шагам</li>
+<li>Телефоны учениц</li>
+<li>Шаблон презентации</li>
+<li>Мы решили делать ДЗ с алгоритмом</li>
+</ol>
+<p>Н — настройки сеанса · П — память · Пр — проект · Никуда</p>
+<p><strong>Показать ответы:</strong> 1-Н, 2-Никуда, 3-Пр, 4-П, 5-Н, 6-Никуда, 7-Пр, 8-П. Шаблон презентации можно положить и в настройки, если он один на все курсы.</p>
+<hr />
+<h3 id="k54">Шаг 54. Термины урока</h3>
+<p>Термины урока, они попадут в пособие. Нейросеть — программа, которая отвечает текстом на ваш запрос. Запрос, или промт, — ваше сообщение с задачей. Чат — одна переписка на одну задачу. Настройки сеанса — постоянный текст о себе и о том, как отвечать. Память — то, что Kimi запомнил о вас. Проект — папка с чатами, файлами и инструкциями для одной задачи. Файлы проекта — материалы, на которые Kimi опирается в проекте. Шаблон — готовый запрос из «Частых фраз».</p>
+<hr />
+<h3 id="k55">Шаг 55. Домашнее задание</h3>
+<p>Домашнее задание. Первое: доведите до конца «Настройки сеанса» — замените все скобки своими данными и проверьте вопросом «Что ты знаешь обо мне?». Второе: создайте проект DF_00_Общие_материалы_архив, загрузите программу курса и попросите Kimi пересказать файл по точному названию. Третье: отметьте в чек-листе по каждому заданию — «выполнено», «получилось» или «есть вопросы».</p>
+<hr />
+<h3 id="k56">Шаг 56. Рефлексия</h3>
+<p>Рефлексия, ответы в чат одной фразой. Что сегодня было самым полезным для моей работы? Что пока непонятно в настройках? Для какой задачи курса я первым делом использую свой проект?</p>
+<hr />
+<h3 id="k57">Шаг 57. Что дальше</h3>
+<p>Сегодня мы узнали экран и главные кнопки, рассказали Kimi о себе, проверили память и создали рабочее место для курса. В следующем уроке разберём, как ставить задачу нейросети: из чего состоит хороший запрос, как получить нужный формат ответа и как уточнять и исправлять ответ.</p>
+<hr />
+<p><em>Джазакумуллаху хайран. Нейросеть — ваш помощник, автор курса — вы.</em></p>
+<p><sub>Rem · Разработка авторских методик · tajweedjazari4@cloud.com</sub></p></div>
+<div class="bs" style="margin-top:16px"><a class="b" href="index.html#z12">← К программе обучения</a><a class="b2" href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank">Сдать домашнее задание</a></div>
+<div class="ft">Разработка авторских методик · Rem · tajweedjazari4@cloud.com</div><div class="remft"><img src="../img/rem_graphite.png" alt="Rem"><span>· tajweedjazari4@cloud.com</span></div></div><script>(function(){var N=57,G=[].slice.call(document.querySelectorAll('.kgrp')),L=[].slice.call(document.querySelectorAll('.kst a')),H=[].slice.call(document.querySelectorAll('.kmain h3[id^=k]'));
+G.forEach(function(g){g.querySelector('.kgh').onclick=function(){var o=g.classList.contains('open');g.classList.toggle('open',!o);if(!o){document.getElementById('s'+g.dataset.g).scrollIntoView({block:'start'})}}});
+L.forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('knav')})});
+document.getElementById('kb').onclick=function(){document.body.classList.add('knav')};document.getElementById('ksh').onclick=function(){document.body.classList.remove('knav')};
+var last=0;function spy(){var k=1;for(var i=0;i<H.length;i++){if(H[i].getBoundingClientRect().top<140)k=i+1;else break}if(k==last)return;last=k;
+ L.forEach(function(a){a.classList.toggle('on',+a.dataset.k==k)});var on=document.querySelector('.kst a.on');
+ G.forEach(function(g){var has=g.contains(on);g.classList.toggle('on',has);if(has)g.classList.add('open')});
+ if(on&&window.innerWidth>900){var r=on.getBoundingClientRect(),sb=document.getElementById('ks');if(r.top<100||r.bottom>window.innerHeight-20)on.scrollIntoView({block:'center'})}
+ document.getElementById('kpt').textContent='Шаг '+k+' из '+N;document.getElementById('kbar').style.width=(k/N*100)+'%'}
+window.addEventListener('scroll',spy,{passive:true});spy();})();</script></body></html>
