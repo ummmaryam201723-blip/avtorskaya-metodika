@@ -38,101 +38,157 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 .doc table{border-collapse:collapse;width:100%;margin:8px 0;display:block;overflow-x:auto}.doc td,.doc th{border:1px solid #E2DACB;padding:6px 8px;text-align:left;vertical-align:top}.doc th{background:#E6EAD9}
 .doc code{background:#F1ECE1;padding:1px 4px;border-radius:4px;font-size:13px}.doc pre{background:#F6F1E7;border:1px solid #E2DACB;border-radius:9px;padding:10px;white-space:pre-wrap;font-size:13px}
 .doc blockquote{margin:8px 0;padding:8px 12px;background:#E6EAD9;border-radius:10px}.doc hr{border:none;border-top:1px dashed #E2DACB;margin:18px 0}
-.back{font-family:Arial;font-size:13px;color:#4C5B3F;text-decoration:none}</style><link rel="stylesheet" href="img/theme.css"><link rel="icon" href="img/girl_soft_b.png"></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html">Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
+.back{font-family:Arial;font-size:13px;color:#4C5B3F;text-decoration:none}</style><link rel="stylesheet" href="img/theme.css"><link rel="icon" href="img/girl_soft_b.png"><meta name="robots" content="noindex,nofollow"><style>/* v7: академический дизайн DF Института */
+@font-face{font-family:Manrope;font-weight:600;src:url(img/manrope-cyrillic-600-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:700;src:url(img/manrope-cyrillic-700-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:800;src:url(img/manrope-cyrillic-800-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Manrope;font-weight:600;src:url(img/manrope-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:700;src:url(img/manrope-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:Manrope;font-weight:800;src:url(img/manrope-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:400;src:url(img/inter-cyrillic-400-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:500;src:url(img/inter-cyrillic-500-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:600;src:url(img/inter-cyrillic-600-normal.woff2) format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-weight:400;src:url(img/inter-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:500;src:url(img/inter-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Inter;font-weight:600;src:url(img/inter-latin-600-normal.woff2) format("woff2")}
+
+:root{--milk:#F7F6F1;--white:#fff;--sage:#E7EBDD;--olive:#7F8E67;--dolive:#596748;--blue:#DCE7E9;--sand:#E9DDCB;--ink:#303631;--cap:#8A8D82}
+body{background:var(--milk)!important;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.kmast{position:fixed;top:0;left:0;right:0;height:84px;z-index:50;display:flex;align-items:center;gap:20px;padding:0 26px;background:#fff;box-shadow:0 1px 0 #ECEAE2,0 8px 24px rgba(70,72,55,.06)}
+.klogo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.klg{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font:800 18px Manrope,sans-serif;color:var(--dolive);background:linear-gradient(160deg,#fff,#EEF0E6);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 3px rgba(89,103,72,.12),0 4px 10px rgba(70,72,55,.14)}
+.klogo b{display:block;font:700 19px Manrope,sans-serif;color:var(--ink)}.klogo small{font-size:12.5px;color:var(--cap)}
+.ktop{margin-left:auto;display:flex;gap:4px}.ktop a{font-size:15px;font-weight:500;color:#4A4F48;text-decoration:none;padding:9px 13px;border-radius:12px}.ktop a:hover{background:var(--milk)}
+.kburger{display:none;border:0;width:44px;height:44px;border-radius:14px;color:#fff;font-size:18px;cursor:pointer;background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 4px 10px rgba(89,103,72,.3)}
+.kside{position:fixed;top:84px;left:0;bottom:0;width:300px;overflow:auto;background:#fff;box-shadow:1px 0 0 #ECEAE2;padding:16px 14px 30px;z-index:40}
+.kback{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:14px;font:600 15px Inter,sans-serif;color:#fff;text-decoration:none;background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -2px 0 rgba(48,54,49,.18),0 6px 14px rgba(89,103,72,.28)}
+.kttl{margin:16px 6px 4px;font:700 16px/1.3 Manrope,sans-serif;color:var(--ink)}
+.kprog{margin:8px 6px 14px;font-size:13px;color:var(--cap)}.kbar{height:8px;border-radius:9px;background:#ECEBE3;margin-top:6px;overflow:hidden}.kbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#A3B18A,#7F8E67);transition:width .3s}
+.kgrp{margin-bottom:6px}
+.kgh{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;cursor:pointer;padding:10px 10px;border-radius:14px;font:600 14.5px/1.3 Inter,sans-serif;color:var(--ink);
+ background:linear-gradient(180deg,#FFFFFF,#F3F3EC);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.08),0 3px 8px rgba(70,72,55,.08),0 0 0 1px #ECEBE3}
+.kgh .kn{flex:none;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;font:700 13px Manrope,sans-serif;color:#fff;background:linear-gradient(160deg,#93A27A,#6E7D57);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 2px 5px rgba(89,103,72,.3)}
+.kgh .kc{margin-left:auto;font-size:12px;color:var(--cap);font-weight:500}
+.kgrp.on .kgh{background:var(--sage);color:var(--dolive)}
+.kst{display:none;margin:4px 0 8px 24px;padding-left:12px;border-left:2px solid #ECEBE3}
+.kgrp.open .kst{display:block}
+.kst a{display:block;padding:6px 8px;border-radius:10px;font-size:13.5px;line-height:1.35;color:#4A4F48;text-decoration:none}
+.kst a b{color:var(--cap);font-weight:600;margin-right:4px}
+.kst a:hover{background:var(--milk)}.kst a.on{background:var(--sage);color:var(--ink);font-weight:600}.kst a.on b{color:var(--dolive)}
+.kmain{margin-left:300px;padding-top:84px}
+.kmain .pg{max-width:900px;margin:0 auto;padding:24px 28px 60px}
+.kmain h2{scroll-margin-top:100px}.kmain h3{scroll-margin-top:100px}
+.kmain h1,.kmain h2,.kmain h3{font-family:Manrope,Inter,sans-serif}
+.kmain .doc{background:#fff;border-radius:22px;box-shadow:inset 0 1px 0 #fff,0 10px 26px rgba(70,72,55,.09),0 2px 5px rgba(70,72,55,.06)}
+.kmain .doc h2{color:var(--dolive)}
+.kmain img{border-radius:12px}
+.kpn{display:flex;justify-content:space-between;gap:10px;margin:18px 0 0}
+.kpn a{display:inline-flex;align-items:center;min-height:46px;padding:0 18px;border-radius:14px;font:600 15px Inter,sans-serif;text-decoration:none;color:var(--dolive);background:linear-gradient(180deg,#fff,#F1F1EA);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.1),0 4px 10px rgba(70,72,55,.1),0 0 0 1px #E4E4DA}
+.kshade{display:none}
+.kmain .topnav,.kmain>.pg>.back{display:none}
+
+.kside .kgh{background:linear-gradient(180deg,#FFFFFF,#F3F3EC)!important;color:var(--ink)!important;border-radius:14px!important;padding:10px!important;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.08),0 3px 8px rgba(70,72,55,.08),0 0 0 1px #ECEBE3!important;font:600 14.5px/1.3 Inter,sans-serif!important}
+.kside .kgrp.on .kgh{background:linear-gradient(180deg,#EEF1E6,#E7EBDD)!important;color:var(--dolive)!important;box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(89,103,72,.12),0 3px 8px rgba(70,72,55,.1),0 0 0 1px #D9DFCB!important}
+.kside .kgh span,.kmast span,.kside span{font-family:inherit;margin:0;font-size:inherit;color:inherit}
+.kside .kgh .kn{font:700 13px/30px Manrope,sans-serif!important;color:#fff!important}
+.kside .kgh .kc{font-size:12px!important;color:var(--cap)!important;font-weight:500}
+.kmast .klg{color:var(--dolive)!important}.kside .kgh .kc{margin-left:auto!important}
+.kmast .klogo small{font-size:12.5px;color:var(--cap)}.kmast .klogo b{color:var(--ink)}
+.kmast .kburger{background:linear-gradient(180deg,#93A27A,#7F8E67 55%,#717F5B)!important;border-radius:14px!important;padding:0!important;width:44px;height:44px}
+@media(max-width:1100px){.ktop{display:none}}
+/* v9: тактильный 3D-макет — claymorphism + мягкий неоморфизм */
+:root{
+ --base:#EFEDE6;--panel:#F7F6F1;--card:#FCFBF8;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+ --stone:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .26 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='.35'/%3E%3C/svg%3E");
+ --lift:0 1.5px 0 rgba(255,255,255,.95) inset,0 -1px 0 rgba(120,115,95,.06) inset,0 3px 0 #E4E1D6,0 14px 30px -6px rgba(84,80,62,.16),0 4px 10px rgba(84,80,62,.06);
+ --liftS:0 1px 0 rgba(255,255,255,.95) inset,0 2px 0 #E6E3D9,0 8px 18px -4px rgba(84,80,62,.14);
+ --clay:inset 0 2px 1px rgba(255,255,255,.42),inset 0 -1px 2px rgba(48,54,49,.06),0 8px 18px -4px rgba(89,103,72,.38),0 2px 4px rgba(89,103,72,.18);
+ --clayL:inset 0 2px 1px rgba(255,255,255,1),inset 0 -1px 2px rgba(120,115,95,.06),0 8px 18px -5px rgba(84,80,62,.2),0 2px 4px rgba(84,80,62,.08);
+}
+/* основа: матовая штукатурка */
+body{background-color:var(--base);background-image:var(--grain),radial-gradient(1200px 700px at 15% -10%,#F6F5F0,transparent 60%),radial-gradient(900px 600px at 100% 100%,#E7E5DC,transparent 60%)!important;background-attachment:fixed}
+/* шапка — парящая панель */
+.mast,.kmast{top:14px;left:14px;right:14px;border-radius:30px;background:var(--panel)!important;background-image:var(--grain)!important;box-shadow:var(--lift)!important}
+.lg,.klg{border-radius:50%!important;background:radial-gradient(circle at 35% 28%,#FFFFFF,#ECEBE3 70%)!important;box-shadow:var(--clayL)!important}
+.topnav a,.ktop a{border-radius:999px}
+.topnav a.active{background:var(--sage);box-shadow:var(--liftS)}
+/* боковая панель — отдельный объект */
+.sidebar{top:132px!important;left:14px;bottom:14px;width:290px;border-radius:30px!important;background:var(--panel)!important;background-image:var(--grain)!important;box-shadow:var(--lift)!important;padding:14px 12px 22px}
+.kside{top:118px;left:14px;bottom:14px;border-radius:30px;background:var(--panel)!important;background-image:var(--grain)!important;box-shadow:var(--lift)!important}
+main{margin-left:318px!important;padding-top:132px!important}
+.kmain{margin-left:328px;padding-top:112px}
+.crumbs{padding-top:4px}
+/* большая панель контента */
+.content{background:rgba(247,246,241,.86);background-image:var(--grain);border-radius:40px;box-shadow:var(--lift);margin:6px 14px 24px 0!important;padding:30px 32px 50px!important;max-width:1020px}
+/* карточки — матовая плотная бумага / керамика */
+.box,.card,.les,.mcard,.mhero,.acts div,.facts>div,.endm,.step,.hero2,.aboutb,.kmain .doc,.lib,.pf{border-radius:26px!important;background-color:var(--card);box-shadow:var(--lift)!important;border:0}
+.les.cur,.mcard.cur{box-shadow:var(--lift),0 0 0 2px rgba(127,142,103,.55)!important}
+.step{background:linear-gradient(160deg,#FFFFFF,#F3F5EC)!important}
+.aboutb{background:linear-gradient(160deg,#EEF1E6,#E3E8D7)!important}
+.card.o{background:linear-gradient(160deg,#E8F0F1,#DCE7E9)!important}
+.mgoal div{border-radius:18px;box-shadow:var(--liftS)!important}
+.rule{border-radius:20px!important;box-shadow:var(--liftS)!important}
+.tag,.kind,.now,.okm{border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 2px 5px rgba(84,80,62,.1)}
+/* кнопки — накладные капсулы из матового силикона */
+.btn3d,.olb,.sgo,.kback,.kpn a{border-radius:999px!important;min-height:50px;padding:0 26px;
+ background:linear-gradient(180deg,#8D9C74 0%,#7F8E67 60%,#76855F 100%)!important;box-shadow:var(--clay)!important;color:#fff!important}
+.btn3d.alt,.ago,.kpn a{color:var(--dolive)!important;background:linear-gradient(180deg,#FFFFFF,#F2F1EB)!important;box-shadow:var(--clayL)!important}
+.btn3d:hover,.olb:hover,.sgo:hover,.kback:hover{transform:translateY(-2px)}
+.btn3d:active,.olb:active{transform:translateY(0);box-shadow:var(--clay)!important}
+.mat,.ch{border-radius:999px!important;min-height:48px;padding:0 22px;box-shadow:var(--clayL)!important;background:linear-gradient(180deg,#FFFFFF,#F2F1EB)!important}
+.les.open .mat,.ch.main,.ch.pres{background:linear-gradient(180deg,#8D9C74,#7F8E67 60%,#76855F)!important;box-shadow:var(--clay)!important;color:#fff!important}
+.ch.skl{background:linear-gradient(180deg,#EEF4F5,#DCE7E9)!important;box-shadow:inset 0 2px 1px rgba(255,255,255,.9),0 8px 18px -5px rgba(70,95,100,.25),0 2px 4px rgba(70,95,100,.1)!important}
+.ch.add{background:var(--card)!important;box-shadow:var(--clayL)!important}
+.sts{border-radius:999px!important;border:0!important;background:var(--card)!important;box-shadow:inset 0 1px 3px rgba(84,80,62,.12),0 1px 0 #fff!important;padding:0 14px}
+.nav,.modnav,.sl{border-radius:999px}
+.modnav{border-radius:22px}
+.nav.active,.modnav.active,.sl.cur{background:linear-gradient(180deg,#EEF1E6,#E4E9D8)!important;box-shadow:var(--liftS)}
+.kside .kgh{border-radius:999px!important;box-shadow:var(--clayL)!important}
+.kside .kgrp.on .kgh{box-shadow:var(--clayL),0 0 0 1.5px rgba(127,142,103,.4)!important}
+/* круглые объёмные элементы — глина */
+.mb,.dot,.facts b,.kgh .kn,.smn,.vnav,#vx{border-radius:50%!important;box-shadow:inset 0 2px 1px rgba(255,255,255,.4),inset 0 -2px 3px rgba(48,54,49,.08),0 6px 12px -3px rgba(89,103,72,.4)!important}
+.mb,.dot,.facts b,.kgh .kn{background:radial-gradient(circle at 34% 28%,#9DAB86,#7F8E67 55%,#6F7D59)!important}
+.modnav.lock .mb{background:radial-gradient(circle at 34% 28%,#C7CFB7,#AEB99B)!important}
+.vnav,#vx{background:radial-gradient(circle at 34% 28%,#FFFFFF,#ECEBE3)!important;border-radius:50%!important}
+/* декоративные камни */
+.hero2{position:relative;overflow:visible!important}
+.hero2:before,.hero2:after{content:"";position:absolute;border-radius:50%;pointer-events:none;z-index:3;background-image:var(--stone)}
+.hero2:before{width:74px;height:66px;left:-18px;bottom:-22px;background-color:#D9D6CB;background-image:var(--stone),radial-gradient(circle at 35% 28%,#EEECE5,#CFCBBF 70%);box-shadow:inset 0 2px 2px rgba(255,255,255,.6),0 12px 20px -6px rgba(84,80,62,.35);border-radius:52% 48% 46% 54%/56% 52% 48% 44%}
+.hero2:after{width:40px;height:36px;left:48px;bottom:-14px;background-image:var(--stone),radial-gradient(circle at 35% 28%,#E3E9D7,#B9C3A6 72%);box-shadow:inset 0 2px 2px rgba(255,255,255,.55),0 10px 16px -6px rgba(84,80,62,.35);border-radius:48% 52% 55% 45%/52% 46% 54% 48%}
+.himg{overflow:hidden;border-radius:0 26px 26px 0}
+.mhero{position:relative}
+.mhero:after{content:"";position:absolute;right:26px;top:24px;width:58px;height:52px;background-image:var(--stone),radial-gradient(circle at 35% 28%,#EEF2F2,#C9D8DB 72%);border-radius:52% 48% 46% 54%/56% 52% 48% 44%;box-shadow:inset 0 2px 2px rgba(255,255,255,.6),0 12px 18px -6px rgba(84,80,62,.3)}
+.farewell{box-shadow:var(--lift)!important;border-radius:30px!important}
+@media(max-width:900px){
+ .mast,.kmast{top:8px;left:8px;right:8px;border-radius:24px}
+ .sidebar,.kside{top:0!important;left:0;bottom:0;border-radius:0 28px 28px 0!important}
+ main{margin-left:0!important;padding-top:88px!important}.kmain{margin-left:0;padding-top:84px}
+ .content{margin:4px 8px 18px!important;padding:18px 14px 40px!important;border-radius:30px}
+ .mhero:after{width:40px;height:36px;right:16px;top:16px}
+}
+body:before{content:"";position:fixed;top:0;left:0;right:0;height:14px;background:var(--base);z-index:49}
+@media(max-width:900px){body:before{height:8px}}
+
+@media(max-width:900px){
+ .kmast{height:68px;padding:0 12px;gap:10px}.kburger{display:block}.klogo b{font-size:16px}.klogo small{font-size:11px}.klg{width:42px;height:42px}
+ .kside{top:0;z-index:60;width:min(320px,88vw);transform:translateX(-105%);transition:transform .25s;border-radius:0 22px 22px 0}
+ body.knav .kside{transform:none}body.knav .kshade{display:block;position:fixed;inset:0;background:rgba(40,40,30,.35);z-index:55}
+ .kmain{margin-left:0;padding-top:68px}.kmain .pg{padding:16px 12px 50px}
+}
+</style></head><body><header class="kmast"><button class="kburger" id="kb" type="button" aria-label="Навигация">☰</button><a class="klogo" href="index.html#home"><span class="klg">DF</span><span><b>DF Институт Учителей</b><small>Авторская методика: от идеи до диплома</small></span></a>
+<nav class="ktop"><a href="index.html#home">Главная</a><a href="index.html#z13">К уроку в программе</a><a href="konstruktor.html">Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav></header>
+<aside class="kside" id="ks"><a class="kback" href="index.html#z13">← К программе обучения</a><div class="kttl">Урок 2. Презентация в своём дизайне: Kimi</div><div class="kprog"><span id="kpt">Шаг 1 из 51</span><div class="kbar"><i id="kbar"></i></div></div><div class="kgrp" data-g="1"><button class="kgh" type="button"><span class="kn">1</span><span>Начало</span><span class="kc">1–3</span></button><div class="kst"><a href="#k1" data-k="1"><b>1.</b>Ас-саляму алейкум, дорогие коллеги</a><a href="#k2" data-k="2"><b>2.</b>Цели урока</a><a href="#k3" data-k="3"><b>3.</b>План урока</a></div></div><div class="kgrp" data-g="2"><button class="kgh" type="button"><span class="kn">2</span><span>Тариф и приложение</span><span class="kc">4–7</span></button><div class="kst"><a href="#k4" data-k="4"><b>4.</b>Почему нужен тариф Plus</a><a href="#k5" data-k="5"><b>5.</b>Что значат цифры в таблице тарифов</a><a href="#k6" data-k="6"><b>6.</b>Окно «Слишком много людей»</a><a href="#k7" data-k="7"><b>7.</b>Kimi на телефоне и планшете</a></div></div><div class="kgrp" data-g="3"><button class="kgh" type="button"><span class="kn">3</span><span>Кнопки интерфейса</span><span class="kc">8–17</span></button><div class="kst"><a href="#k8" data-k="8"><b>8.</b>Поле чата и его кнопки</a><a href="#k9" data-k="9"><b>9.</b>Знак «/»: плагины и навыки</a><a href="#k10" data-k="10"><b>10.</b>Кнопка «+» в поле чата</a><a href="#k11" data-k="11"><b>11.</b>Под полем чата: проект, плагины, режимы</a><a href="#k12" data-k="12"><b>12.</b>Выбрать проект: чат сразу в проекте</a><a href="#k13" data-k="13"><b>13.</b>Страница «Плагины» и вкладка «Навыки»</a><a href="#k14" data-k="14"><b>14.</b>Страница проекта: «Инструкции» и «Файлы»</a><a href="#k15" data-k="15"><b>15.</b>Настройки сеанса — правила о вас</a><a href="#k16" data-k="16"><b>16.</b>«Частые фразы» — банк ваших промтов</a><a href="#k17" data-k="17"><b>17.</b>Что куда вставлять: сводная таблица</a></div></div><div class="kgrp" data-g="4"><button class="kgh" type="button"><span class="kn">4</span><span>Подготовка проекта</span><span class="kc">18–21</span></button><div class="kst"><a href="#k18" data-k="18"><b>18.</b>Порядок сборки: шесть шагов</a><a href="#k19" data-k="19"><b>19.</b>Что положить в «Файлы» проекта</a><a href="#k20" data-k="20"><b>20.</b>Куда вставлять промт: «Инструкции» или чат</a><a href="#k21" data-k="21"><b>21.</b>Инструкция проекта: дизайн и порядок работы</a></div></div><div class="kgrp" data-g="5"><button class="kgh" type="button"><span class="kn">5</span><span>Сборка презентации</span><span class="kc">22–27</span></button><div class="kst"><a href="#k22" data-k="22"><b>22.</b>Новый чат для каждой презентации</a><a href="#k23" data-k="23"><b>23.</b>Запрос 1. Kimi проверяет картинки-образцы</a><a href="#k24" data-k="24"><b>24.</b>Запрос 2. План и текст слайдов</a><a href="#k25" data-k="25"><b>25.</b>Проверяем план сами</a><a href="#k26" data-k="26"><b>26.</b>Запрос 3. Сборка в дизайне</a><a href="#k27" data-k="27"><b>27.</b>Kimi собрал презентацию</a></div></div><div class="kgrp" data-g="6"><button class="kgh" type="button"><span class="kn">6</span><span>Получаем файл</span><span class="kc">28–31</span></button><div class="kst"><a href="#k28" data-k="28"><b>28.</b>Если ссылка не открывается</a><a href="#k29" data-k="29"><b>29.</b>Ссылка sandbox: просим карточку файла</a><a href="#k30" data-k="30"><b>30.</b>Карточка файла и предпросмотр</a><a href="#k31" data-k="31"><b>31.</b>Правки — в том же чате</a></div></div><div class="kgrp" data-g="7"><button class="kgh" type="button"><span class="kn">7</span><span>Открываем и правим PPTX</span><span class="kc">32–36</span></button><div class="kst"><a href="#k32" data-k="32"><b>32.</b>Скачиваем файл: куда сохранить</a><a href="#k33" data-k="33"><b>33.</b>Открываем PPTX в Canva</a><a href="#k34" data-k="34"><b>34.</b>Открываем PPTX в PowerPoint</a><a href="#k35" data-k="35"><b>35.</b>Что проверить после открытия</a><a href="#k36" data-k="36"><b>36.</b>Правим текст и сохраняем</a></div></div><div class="kgrp" data-g="8"><button class="kgh" type="button"><span class="kn">8</span><span>Возможности Kimi для учителя</span><span class="kc">37–44</span></button><div class="kst"><a href="#k37" data-k="37"><b>37.</b>Карта инструментов Kimi</a><a href="#k38" data-k="38"><b>38.</b>Режим «Слайды»: второй способ</a><a href="#k39" data-k="39"><b>39.</b>Навыки и знак «/»</a><a href="#k40" data-k="40"><b>40.</b>Плагины</a><a href="#k41" data-k="41"><b>41.</b>Квизы и игры: «Создать приложение»</a><a href="#k42" data-k="42"><b>42.</b>Документы: карточка ДЗ и термины</a><a href="#k43" data-k="43"><b>43.</b>Таблицы: трекер домашних заданий</a><a href="#k44" data-k="44"><b>44.</b>Глубокое исследование для диплома</a></div></div><div class="kgrp" data-g="9"><button class="kgh" type="button"><span class="kn">9</span><span>Ошибки и проверка</span><span class="kc">45–46</span></button><div class="kst"><a href="#k45" data-k="45"><b>45.</b>Частые ошибки и что делать</a><a href="#k46" data-k="46"><b>46.</b>Чек-лист перед сдачей куратору</a></div></div><div class="kgrp" data-g="10"><button class="kgh" type="button"><span class="kn">10</span><span>Закрепление</span><span class="kc">47–51</span></button><div class="kst"><a href="#k47" data-k="47"><b>47.</b>Практика</a><a href="#k48" data-k="48"><b>48.</b>Термины урока</a><a href="#k49" data-k="49"><b>49.</b>Домашнее задание</a><a href="#k50" data-k="50"><b>50.</b>Рефлексия</a><a href="#k51" data-k="51"><b>51.</b>Что дальше</a></div></div></aside><div class="kshade" id="ksh"></div><main class="kmain"><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html">Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
 <a class="back" href="index.html#z13">← К программе обучения</a>
 <div class="warn" style="margin-top:12px"><b>Обязательно.</b> Пройдите урок полностью до занятия 14: без этого сборка не начнётся.</div>
 <div class="doc"><h1>Урок 2. Презентация в своём дизайне: Kimi</h1>
-<h2>Содержание</h2>
-<ul>
-<li><strong>1. Начало</strong><ul>
-<li>Шаг 1. Ас-саляму алейкум, дорогие коллеги</li>
-<li>Шаг 2. Цели урока</li>
-<li>Шаг 3. План урока</li>
-</ul>
-</li>
-<li><strong>2. Тариф и приложение</strong><ul>
-<li>Шаг 4. Почему нужен тариф Plus</li>
-<li>Шаг 5. Что значат цифры в таблице тарифов</li>
-<li>Шаг 6. Окно «Слишком много людей»</li>
-<li>Шаг 7. Kimi на телефоне и планшете</li>
-</ul>
-</li>
-<li><strong>3. Кнопки интерфейса</strong><ul>
-<li>Шаг 8. Поле чата и его кнопки</li>
-<li>Шаг 9. Знак «/»: плагины и навыки</li>
-<li>Шаг 10. Кнопка «+» в поле чата</li>
-<li>Шаг 11. Под полем чата: проект, плагины, режимы</li>
-<li>Шаг 12. Выбрать проект: чат сразу в проекте</li>
-<li>Шаг 13. Страница «Плагины» и вкладка «Навыки»</li>
-<li>Шаг 14. Страница проекта: «Инструкции» и «Файлы»</li>
-<li>Шаг 15. Настройки сеанса — правила о вас</li>
-<li>Шаг 16. «Частые фразы» — банк ваших промтов</li>
-<li>Шаг 17. Что куда вставлять: сводная таблица</li>
-</ul>
-</li>
-<li><strong>4. Подготовка проекта</strong><ul>
-<li>Шаг 18. Порядок сборки: шесть шагов</li>
-<li>Шаг 19. Что положить в «Файлы» проекта</li>
-<li>Шаг 20. Куда вставлять промт: «Инструкции» или чат</li>
-<li>Шаг 21. Инструкция проекта: дизайн и порядок работы</li>
-</ul>
-</li>
-<li><strong>5. Сборка презентации</strong><ul>
-<li>Шаг 22. Новый чат для каждой презентации</li>
-<li>Шаг 23. Запрос 1. Kimi проверяет картинки-образцы</li>
-<li>Шаг 24. Запрос 2. План и текст слайдов</li>
-<li>Шаг 25. Проверяем план сами</li>
-<li>Шаг 26. Запрос 3. Сборка в дизайне</li>
-<li>Шаг 27. Kimi собрал презентацию</li>
-</ul>
-</li>
-<li><strong>6. Получаем файл</strong><ul>
-<li>Шаг 28. Если ссылка не открывается</li>
-<li>Шаг 29. Ссылка sandbox: просим карточку файла</li>
-<li>Шаг 30. Карточка файла и предпросмотр</li>
-<li>Шаг 31. Правки — в том же чате</li>
-</ul>
-</li>
-<li><strong>7. Открываем и правим PPTX</strong><ul>
-<li>Шаг 32. Скачиваем файл: куда сохранить</li>
-<li>Шаг 33. Открываем PPTX в Canva</li>
-<li>Шаг 34. Открываем PPTX в PowerPoint</li>
-<li>Шаг 35. Что проверить после открытия</li>
-<li>Шаг 36. Правим текст и сохраняем</li>
-</ul>
-</li>
-<li><strong>8. Возможности Kimi для учителя</strong><ul>
-<li>Шаг 37. Карта инструментов Kimi</li>
-<li>Шаг 38. Режим «Слайды»: второй способ</li>
-<li>Шаг 39. Навыки и знак «/»</li>
-<li>Шаг 40. Плагины</li>
-<li>Шаг 41. Квизы и игры: «Создать приложение»</li>
-<li>Шаг 42. Документы: карточка ДЗ и термины</li>
-<li>Шаг 43. Таблицы: трекер домашних заданий</li>
-<li>Шаг 44. Глубокое исследование для диплома</li>
-</ul>
-</li>
-<li><strong>9. Ошибки и проверка</strong><ul>
-<li>Шаг 45. Частые ошибки и что делать</li>
-<li>Шаг 46. Чек-лист перед сдачей куратору</li>
-</ul>
-</li>
-<li><strong>10. Закрепление</strong><ul>
-<li>Шаг 47. Практика</li>
-<li>Шаг 48. Термины урока</li>
-<li>Шаг 49. Домашнее задание</li>
-<li>Шаг 50. Рефлексия</li>
-<li>Шаг 51. Что дальше</li>
-</ul>
-</li>
-</ul>
-<h2>1. Начало</h2>
-<h3>Шаг 1. Ас-саляму алейкум, дорогие коллеги</h3>
+<h2 id="s1">1. Начало</h2>
+<h3 id="k1">Шаг 1. Ас-саляму алейкум, дорогие коллеги</h3>
 <p>Ас-саляму алейкум, дорогие коллеги. Это второй урок блока «ИИ для преподавателя таджвида».</p>
 <p>В первом уроке мы зарегистрировались в Kimi, рассказали ему о себе, разобрались с памятью и создали проекты для дипломной работы. Сегодня мы сделаем главное, ради чего всё это готовили: попросим Kimi собрать презентацию урока сразу в нашем дизайне.</p>
 <p>Мы не будем отдельно рисовать дизайн в Canva или PowerPoint. Задачу на дизайн мы поставим Kimi с самого начала. Kimi выдаст файл PPTX, в котором дизайн уже готов, а вы только проверите и поправите текст.</p>
 <hr />
-<h3>Шаг 2. Цели урока</h3>
+<h3 id="k2">Шаг 2. Цели урока</h3>
 <p>К концу урока вы будете уметь:</p>
 <ol>
 <li>выбрать тариф Kimi, на котором получится собрать все презентации диплома;</li>
@@ -144,7 +200,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>находить решение, если что-то пошло не так, и проверять презентацию перед сдачей куратору.</li>
 </ol>
 <hr />
-<h3>Шаг 3. План урока</h3>
+<h3 id="k3">Шаг 3. План урока</h3>
 <p>Урок большой, он состоит из девяти частей. Проходите его по шагам, в своём темпе, и отмечайте «Пройдено».</p>
 <ol>
 <li>Тариф и приложение: какой тариф нужен и как поставить Kimi на телефон или планшет.</li>
@@ -158,8 +214,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>Закрепление: практика, термины, домашнее задание и рефлексия.</li>
 </ol>
 <hr />
-<h2>2. Тариф и приложение</h2>
-<h3>Шаг 4. Почему нужен тариф Plus</h3>
+<h2 id="s2">2. Тариф и приложение</h2>
+<h3 id="k4">Шаг 4. Почему нужен тариф Plus</h3>
 <p><img alt="Почему нужен тариф Plus" src="kimi-2/img/l2_01_tarify.jpg" /></p>
 <p>Для дипломной работы нам понадобится восемь проектов и несколько презентаций. На бесплатном тарифе Kimi даёт только 2 проекта и 500 МБ хранилища, а в часы нагрузки может вообще не ответить. Поэтому для работы над дипломом нужен платный тариф. Минимальный тариф, которого достаточно, — Plus.</p>
 <p>Посмотрите на экран. Цифра 1 — карточка тарифа Plus. На 16 ноября 2026 года при оплате сразу за год он стоит 15 долларов в месяц. Зачёркнутая цифра 19 долларов — это цена при оплате помесячно.</p>
@@ -168,7 +224,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Тариф Pro дороже: 31 доллар в месяц при оплате за год и 39 при помесячной. Kimi меняет цены и лимиты, поэтому перед оплатой проверьте их на странице тарифов. Он даёт в два раза больше кредитов. Если кредиты на Plus закончатся до конца работы, можно перейти на Pro.</p>
 <p>Страница тарифов открывается кнопкой «Обновить» внизу боковой панели, рядом с вашим именем.</p>
 <hr />
-<h3>Шаг 5. Что значат цифры в таблице тарифов</h3>
+<h3 id="k5">Шаг 5. Что значат цифры в таблице тарифов</h3>
 <p><img alt="Что значат цифры в таблице тарифов" src="kimi-2/img/l2_02_tablica.jpg" /></p>
 <p><img alt="Что значат цифры в таблице тарифов" src="kimi-2/img/l2_19_kvota.jpg" /></p>
 <p>Ниже на странице тарифов есть подробная таблица. Многих пугают в ней слова «2 задачи». Давайте разберём, что они значат.</p>
@@ -182,7 +238,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 1 — дата сброса: в этот день квота обновится. До этой даты на бесплатном тарифе Kimi работать не будет.</p>
 <p>Цифра 2 — «Перейти на другой план» открывает страницу тарифов.</p>
 <hr />
-<h3>Шаг 6. Окно «Слишком много людей»</h3>
+<h3 id="k6">Шаг 6. Окно «Слишком много людей»</h3>
 <p><img alt="Окно «Слишком много людей»" src="kimi-2/img/l2_03_ochered.jpg" /></p>
 <p>Вот так выглядит экран, если Kimi перегружен, а у вас бесплатный тариф. Появляется окно «Уведомление»: «Слишком много людей сейчас общаются с Kimi. Подпишитесь, чтобы попасть в специальную приоритетную очередь».</p>
 <p>Это не ошибка в вашем запросе и не поломка аккаунта. Просто сейчас много пользователей, и запросы без подписки ждут.</p>
@@ -190,7 +246,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 2 — кнопка «Перейти на другой план». Она открывает страницу тарифов.</p>
 <p>На тарифе Plus у вас приоритетная очередь, и такое окно посреди сборки не появится. Поэтому дипломные презентации собираем на платном тарифе.</p>
 <hr />
-<h3>Шаг 7. Kimi на телефоне и планшете</h3>
+<h3 id="k7">Шаг 7. Kimi на телефоне и планшете</h3>
 <p><img alt="Kimi на телефоне и планшете" src="kimi-2/img/l2_04_appstore.jpg" /></p>
 <p>С Kimi можно работать на сайте kimi.ai или в приложении. Аккаунт один и тот же: проекты, файлы и чаты видны и там, и там, если войти тем же способом, например через тот же аккаунт Google.</p>
 <p>Способ 1 — приложение из App Store. Откройте App Store и напишите в поиске «kimi ai».</p>
@@ -201,8 +257,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Способ 2 — значок сайта на экране «Домой». Если в вашем магазине приложений Kimi нет, откройте kimi.ai в Safari, нажмите «Поделиться» — квадрат со стрелкой вверх — и выберите «На экран «Домой»», потом «Добавить». На экране появится значок Kimi. Он открывает тот же сайт, со всеми функциями и проектами.</p>
 <p>Собирать дипломные презентации удобнее на компьютере или планшете: на большом экране лучше видно слайды и план.</p>
 <hr />
-<h2>3. Кнопки интерфейса</h2>
-<h3>Шаг 8. Поле чата и его кнопки</h3>
+<h2 id="s3">3. Кнопки интерфейса</h2>
+<h3 id="k8">Шаг 8. Поле чата и его кнопки</h3>
 <p><img alt="Поле чата и его кнопки" src="kimi-2/img/l2_09_pole_chata.jpg" /></p>
 <p>Прежде чем собирать презентацию, разберём кнопки, с которыми мы будем работать постоянно. Начнём с поля чата — места, куда мы пишем Kimi.</p>
 <p>Цифра 1 — само поле чата. Сюда мы пишем или вставляем промт — задачу на сейчас: «опиши картинки», «составь план», «собери презентацию». Чтобы вставить скопированный промт, нажмите в поле и выберите «Вставить».</p>
@@ -212,7 +268,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 5 — стрелка: отправить сообщение.</p>
 <p>Цифра 6 — кнопки под каждым ответом Kimi: озвучить ответ, скопировать его, попросить ответить заново, поделиться, а также оценить ответ — палец вверх или вниз. Кнопка «Копировать» удобна, когда текст из ответа нужно перенести в свой документ.</p>
 <hr />
-<h3>Шаг 9. Знак «/»: плагины и навыки</h3>
+<h3 id="k9">Шаг 9. Знак «/»: плагины и навыки</h3>
 <p><img alt="Знак «/»: плагины и навыки" src="kimi-2/img/l2_10_slash.jpg" /></p>
 <p>Если в пустом поле чата ввести косую черту «/», откроется список плагинов и навыков. Это быстрый способ вызвать нужный инструмент, не выходя из чата.</p>
 <p>Цифра 1 — вводим «/» в пустое поле чата. На клавиатуре iPad косая черта находится на панели с цифрами и знаками.</p>
@@ -223,7 +279,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Выбрали инструмент — он появится в поле чата. Дальше пишем задачу как обычно и отправляем.</p>
 <p>Чтобы закрыть список, сотрите косую черту.</p>
 <hr />
-<h3>Шаг 10. Кнопка «+» в поле чата</h3>
+<h3 id="k10">Шаг 10. Кнопка «+» в поле чата</h3>
 <p><img alt="Кнопка «+» в поле чата" src="kimi-2/img/l2_12_plus.jpg" /></p>
 <p>Нажмите «+» слева в поле чата. Откроется меню, а сам «+» превратится в крестик.</p>
 <p>Цифра 1 — крестик: закрыть меню.</p>
@@ -232,7 +288,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 4 — «Веб-поиск»: Kimi ищет свежую информацию в интернете. Полезно, когда нужен актуальный факт; найденное проверяйте по источнику.</p>
 <p>Цифра 5 — «Плагины» и кнопка «Просмотреть все»: тот же список, что открывается по знаку «/».</p>
 <hr />
-<h3>Шаг 11. Под полем чата: проект, плагины, режимы</h3>
+<h3 id="k11">Шаг 11. Под полем чата: проект, плагины, режимы</h3>
 <p><img alt="Под полем чата: проект, плагины, режимы" src="kimi-2/img/l2_13_pod_polem.jpg" /></p>
 <p>Под полем чата на главной странице Kimi есть ещё одна строка кнопок.</p>
 <p>Цифра 1 — «Выбрать проект». Этой кнопкой новый чат сразу привязывают к проекту. Разберём её на следующем шаге — это очень важная кнопка.</p>
@@ -241,7 +297,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 4 — быстрые кнопки режимов: «3D Make», «Слайды», «Глубокое исследование», «Создать приложение», «Документы» и другие; стрелка справа листает список. Нажатие на кнопку включает режим, и он появляется в поле чата.</p>
 <p>Если вы случайно включили режим или плагин, его название появляется в поле чата синим цветом. Чтобы выключить, сотрите его в поле.</p>
 <hr />
-<h3>Шаг 12. Выбрать проект: чат сразу в проекте</h3>
+<h3 id="k12">Шаг 12. Выбрать проект: чат сразу в проекте</h3>
 <p><img alt="Выбрать проект: чат сразу в проекте" src="kimi-2/img/l2_14_vybrat_proekt.jpg" /></p>
 <p>Кнопка «Выбрать проект» открывает список.</p>
 <p>Цифра 1 — ваши проекты, например «Правильное чтение с нуля». Выбрали проект — и чат, который вы начнёте, будет внутри этого проекта: Kimi увидит инструкции и файлы проекта.</p>
@@ -252,7 +308,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p><strong>Перед первым сообщением проверяйте: выбран ваш проект, а не «Без проекта».</strong></p>
 </blockquote>
 <hr />
-<h3>Шаг 13. Страница «Плагины» и вкладка «Навыки»</h3>
+<h3 id="k13">Шаг 13. Страница «Плагины» и вкладка «Навыки»</h3>
 <p><img alt="Страница «Плагины» и вкладка «Навыки»" src="kimi-2/img/l2_15_plaginy.jpg" /></p>
 <p>Нажмите «Плагины» в боковой панели. Откроется страница с двумя вкладками.</p>
 <p>Цифра 1 — вкладка «Плагины»: внешние сервисы, которые можно подключить к Kimi — почта, облачные диски, офисные и учебные инструменты. Кнопка «Установить» рядом с каждым.</p>
@@ -261,21 +317,21 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 4 — переключатель списка: «Публичные» — все доступные, «Установлено» — уже подключённые вами, «Пользовательские» — созданные вами.</p>
 <p>Не устанавливайте плагины почты и облачных дисков, где хранятся данные учениц: подключая плагин, вы открываете Kimi доступ к этим данным.</p>
 <hr />
-<h3>Шаг 14. Страница проекта: «Инструкции» и «Файлы»</h3>
+<h3 id="k14">Шаг 14. Страница проекта: «Инструкции» и «Файлы»</h3>
 <p><img alt="Страница проекта: «Инструкции» и «Файлы»" src="kimi-2/img/l2_11_proekt.jpg" /></p>
 <p>Вспомним страницу проекта из первого урока. На ней справа две карточки — это главное место для работы над дипломом.</p>
 <p>Цифра 3 — карточка «Инструкции», с карандашом справа. Сюда вставляем постоянные правила проекта: дизайн, шрифты, порядок работы. Нажимаете на карандаш, вставляете текст, нажимаете «Сохранить».</p>
 <p>Цифра 4 — карточка «Файлы», с плюсом справа. Сюда загружаем файлы для всего проекта: картинки-образцы дизайна, скелет урока, пособие. Цифра 5 — строка «Файлы чатов проекта»: там собраны файлы, которые прикрепляли в отдельных чатах через «+».</p>
 <p>Цифры 1 и 2 — поле чата проекта и кнопка отправки. Задачу пишем здесь, и Kimi сразу видит и инструкции, и файлы.</p>
 <hr />
-<h3>Шаг 15. Настройки сеанса — правила о вас</h3>
+<h3 id="k15">Шаг 15. Настройки сеанса — правила о вас</h3>
 <p><img alt="Настройки сеанса — правила о вас" src="kimi-2/img/07_nastroiki_seansa.jpg" /></p>
 <p>Третье место для текста — «Настройки сеанса». Мы заполнили его в первом уроке. Путь: меню профиля → «Настройки» → «Персонализация» → «Настройки сеанса».</p>
 <p>Здесь пишем то, что касается вас и действует во всех чатах и всех проектах: кто вы, как к вам обращаться, как отвечать. Например: «Я преподаватель таджвида, отвечай по-русски, по шагам, арабский текст по памяти не пиши».</p>
 <p>Правила одного проекта — дизайн конкретной презентации, материалы курса — сюда не пишем. Они идут в «Инструкции» проекта.</p>
 <p>Лимит — 1500 знаков. После заполнения обязательно нажмите «Сохранить».</p>
 <hr />
-<h3>Шаг 16. «Частые фразы» — банк ваших промтов</h3>
+<h3 id="k16">Шаг 16. «Частые фразы» — банк ваших промтов</h3>
 <p><img alt="«Частые фразы» — банк ваших промтов" src="kimi-2/img/06_chastye_frazy.jpg" /></p>
 <p>Четвёртое место — «Частые фразы», или «Шаблоны». Это ваш банк промтов. Путь тот же: «Настройки» → «Персонализация» → «Частые фразы».</p>
 <p>Сюда сохраняют запросы, которые вы повторяете часто: проверку картинок-образцов, просьбу прикрепить файл карточкой, просьбу сократить слайд.</p>
@@ -285,7 +341,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Сохранили — и больше не нужно искать запрос и копировать его: шаблон вызывается по слову вызова прямо в поле чата.</p>
 <p>Совет: сохраните в шаблоны запросы 1, 2 и 3 этого урока и запрос «прикрепи файл карточкой». Тогда сборка каждой новой презентации займёт пару минут.</p>
 <hr />
-<h3>Шаг 17. Что куда вставлять: сводная таблица</h3>
+<h3 id="k17">Шаг 17. Что куда вставлять: сводная таблица</h3>
 <p>Соберём всё вместе. У каждого вида текста своё место. Сохраните эту таблицу — к ней удобно возвращаться.</p>
 <ul>
 <li><strong>Поле чата внутри проекта</strong> — Задача на сейчас: «составь план», «собери», «замени текст»</li>
@@ -299,8 +355,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li><strong>«Выбрать проект» под полем чата или чат на странице проекта</strong> — Чат, который должен видеть проект</li>
 </ul>
 <hr />
-<h2>4. Подготовка проекта</h2>
-<h3>Шаг 18. Порядок сборки: шесть шагов</h3>
+<h2 id="s4">4. Подготовка проекта</h2>
+<h3 id="k18">Шаг 18. Порядок сборки: шесть шагов</h3>
 <p>Прежде чем нажимать кнопки, посмотрим на весь путь целиком. Сборка любой презентации диплома идёт в шесть шагов.</p>
 <ol>
 <li>Загружаем в «Файлы» проекта картинки-образцы дизайна и свой заполненный скелет урока. Каждый файл — с точным понятным названием.</li>
@@ -315,7 +371,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p><strong>Задачу на дизайн ставим с самого начала — в инструкции проекта. Kimi выдаёт PPTX с готовым дизайном, вы правите только текст.</strong></p>
 </blockquote>
 <hr />
-<h3>Шаг 19. Что положить в «Файлы» проекта</h3>
+<h3 id="k19">Шаг 19. Что положить в «Файлы» проекта</h3>
 <p><img alt="Что положить в «Файлы» проекта" src="kimi-2/img/23_dobavit_faily.jpg" /></p>
 <p><img alt="Что положить в «Файлы» проекта" src="kimi-2/img/24_otkuda_fail.jpg" /></p>
 <p><img alt="Что положить в «Файлы» проекта" src="kimi-2/img/26_fail_zagruzhen.jpg" /></p>
@@ -338,7 +394,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li><code>[Пособие_курса].pdf</code> — по желанию: пособие или программа курса</li>
 </ul>
 <hr />
-<h3>Шаг 20. Куда вставлять промт: «Инструкции» или чат</h3>
+<h3 id="k20">Шаг 20. Куда вставлять промт: «Инструкции» или чат</h3>
 <p>Самый частый вопрос: куда вставлять промт — в «Инструкции» проекта или в чат? Ответ зависит от того, что в нём написано.</p>
 <p>В «Инструкции» проекта пишем правила, которые действуют всегда, в каждом чате этого проекта: как оформлять слайды, какие шрифты, в каком порядке работать, как поступать с арабским текстом. Записали один раз — и больше не повторяем.</p>
 <p>В поле чата пишем конкретную задачу на сейчас: «опиши картинки», «составь план урока 2», «собери презентацию», «замени текст на слайде 3».</p>
@@ -348,7 +404,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li><strong>«Инструкции» проекта</strong>: Правила, которые действуют всегда Примеры: Дизайн, шрифты, порядок работы, арабский текст Когда: Один раз, кнопка «Сохранить» Задача на сейчас Примеры: Опиши картинки · составь план · собери · замени текст Когда: Каждый раз новым сообщением</li>
 </ul>
 <hr />
-<h3>Шаг 21. Инструкция проекта: дизайн и порядок работы</h3>
+<h3 id="k21">Шаг 21. Инструкция проекта: дизайн и порядок работы</h3>
 <p><img alt="Инструкция проекта: дизайн и порядок работы" src="kimi-2/img/20_instr_plus.jpg" /></p>
 <p><img alt="Инструкция проекта: дизайн и порядок работы" src="kimi-2/img/21_instr_okno.jpg" /></p>
 <p><img alt="Инструкция проекта: дизайн и порядок работы" src="kimi-2/img/22_instr_sohranena.jpg" /></p>
@@ -378,8 +434,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 — Готовую презентацию сохрани в формате PPTX и прикрепи в чат карточкой файла для скачивания.
 </code></pre>
 <hr />
-<h2>5. Сборка презентации</h2>
-<h3>Шаг 22. Новый чат для каждой презентации</h3>
+<h2 id="s5">5. Сборка презентации</h2>
+<h3 id="k22">Шаг 22. Новый чат для каждой презентации</h3>
 <p><img alt="Новый чат для каждой презентации" src="kimi-2/img/19_stranica_proekta.jpg" /></p>
 <p>Правило работы в проекте: одна презентация — один новый чат. Новый чат начинаем в поле чата на странице проекта (на скрине — цифра 4).</p>
 <p>Собрали презентацию в проекте DF_01 — для следующей идём в её проект и открываем там новый чат. Инструкции и файлы проекта подтянутся сами.</p>
@@ -387,7 +443,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>А вот правки к готовой презентации пишем в том же чате, где она собиралась. Там Kimi помнит план и все ваши решения.</p>
 <p>Чтобы не путаться, называйте чаты понятно, например «Вводная — сборка».</p>
 <hr />
-<h3>Шаг 23. Запрос 1. Kimi проверяет картинки-образцы</h3>
+<h3 id="k23">Шаг 23. Запрос 1. Kimi проверяет картинки-образцы</h3>
 <p><img alt="Запрос 1. Kimi проверяет картинки-образцы" src="kimi-2/img/28_kimi_ne_vidit.jpg" /></p>
 <p><img alt="Запрос 1. Kimi проверяет картинки-образцы" src="kimi-2/img/30_kimi_vidit_fail.jpg" /></p>
 <p>Первый запрос в новом чате проекта — проверка. Мы просим Kimi открыть картинки-образцы и описать дизайн. Ничего не создаём.</p>
@@ -399,7 +455,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <pre><code class="language-text">Открой картинки «Дизайн_образец_1», «Дизайн_образец_2», «Дизайн_образец_3» из файлов проекта (карточка «Файлы» справа). Для каждой опиши дизайн: цвет фона, цвета плашек, где стоит заголовок, где текст, какие есть рамки и украшения. Ничего не создавай, только опиши.
 </code></pre>
 <hr />
-<h3>Шаг 24. Запрос 2. План и текст слайдов</h3>
+<h3 id="k24">Шаг 24. Запрос 2. План и текст слайдов</h3>
 <p><img alt="Запрос 2. План и текст слайдов" src="kimi-2/img/l2_09_pole_chata.jpg" /></p>
 <p>Второй запрос — план и текст. Здесь Kimi открывает ваш скелет и пишет текст каждого слайда строго по нему. Саму презентацию он пока не собирает.</p>
 <p>Скопируйте запрос, вставьте его в поле чата проекта (на скрине — цифра 1) и замените в квадратных скобках: точное название вашего скелета и название урока. Отправьте стрелкой (цифра 5).</p>
@@ -409,7 +465,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 Затем составь план презентации «[название урока]» строго по этому скелету: столько слайдов и в том порядке, как в нём. Для каждого слайда напиши номер, заголовок и весь текст слайда. Где в скелете пусто или данных не хватает — не придумывай, напиши «[нужно дописать: …]». Презентацию пока не собирай — только план и текст.
 </code></pre>
 <hr />
-<h3>Шаг 25. Проверяем план сами</h3>
+<h3 id="k25">Шаг 25. Проверяем план сами</h3>
 <p>Это самый важный шаг. План и текст проверяете вы — автор урока. Kimi только помогает.</p>
 <p>Читаем план и проверяем:</p>
 <ol>
@@ -425,7 +481,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p><strong>Сборку начинаем только после того, как вы сами проверили и подтвердили план и текст каждого слайда.</strong></p>
 </blockquote>
 <hr />
-<h3>Шаг 26. Запрос 3. Сборка в дизайне</h3>
+<h3 id="k26">Шаг 26. Запрос 3. Сборка в дизайне</h3>
 <p>Третий запрос — сборка. Скопируйте его. Если правок больше нет, удалите строку в квадратных скобках. Если есть — допишите их туда.</p>
 <p>Слова «План подтверждаю» — это сигнал для Kimi из инструкции проекта: можно собирать.</p>
 <p>Обратите внимание на последнюю строку: «прикрепи в чат карточкой файла для скачивания». Её писать обязательно. Без неё Kimi иногда даёт ссылку, которая не открывается. Об этом — через два шага.</p>
@@ -434,7 +490,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 Собери презентацию по этому плану в дизайне из инструкций проекта. Проверь: число слайдов, обрезанный текст, наложения элементов. Готовый файл PPTX прикрепи в чат карточкой файла для скачивания.
 </code></pre>
 <hr />
-<h3>Шаг 27. Kimi собрал презентацию</h3>
+<h3 id="k27">Шаг 27. Kimi собрал презентацию</h3>
 <p><img alt="Kimi собрал презентацию" src="kimi-2/img/l2_05_rezultat.jpg" /></p>
 <p>Вот так выглядит готовый ответ Kimi после сборки.</p>
 <p>Цифра 4 — вверху видно, где идёт работа: название проекта и название чата.</p>
@@ -444,13 +500,13 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Внизу ответа — строка «Напоминание: это ответ ИИ, автор материала — вы».</p>
 <p>Так выглядит хороший результат: дизайн совпал с картинками-образцами, плашки одинаковые на всех слайдах, текст ровный и не вылезает за края. Она появилась из настроек сеанса, которые мы заполнили в первом уроке.</p>
 <hr />
-<h2>6. Получаем файл</h2>
-<h3>Шаг 28. Если ссылка не открывается</h3>
+<h2 id="s6">6. Получаем файл</h2>
+<h3 id="k28">Шаг 28. Если ссылка не открывается</h3>
 <p><img alt="Если ссылка не открывается" src="kimi-2/img/l2_06_oshibka.jpg" /></p>
 <p>Иногда при нажатии на ссылку «Скачать презентацию PPTX» появляется окно «Что-то пошло не так. Не удалось открыть приложение». Цифра 1 на экране.</p>
 <p>Это значит, что файл не скачался. На iPad и iPhone браузер пытается сразу открыть файл в приложении, а ссылка у Kimi на самом деле ведёт не в интернет. Нажмите «ОК» и посмотрите следующий шаг.</p>
 <hr />
-<h3>Шаг 29. Ссылка sandbox: просим карточку файла</h3>
+<h3 id="k29">Шаг 29. Ссылка sandbox: просим карточку файла</h3>
 <p><img alt="Ссылка sandbox: просим карточку файла" src="kimi-2/img/l2_07_sandbox.jpg" /></p>
 <p>Если нажать на ссылку и держать палец, появится меню. Вверху меню виден адрес ссылки.</p>
 <p>Цифра 1 — адрес начинается с «sandbox:/mnt/…». Это не адрес в интернете, а путь к файлу внутри рабочей папки Kimi. По такой ссылке файл не скачать ни на телефоне, ни на компьютере.</p>
@@ -461,7 +517,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <pre><code class="language-text">Ссылка ведёт на sandbox:/mnt/… и не открывается. Прикрепи готовый файл PPTX в чат карточкой для скачивания.
 </code></pre>
 <hr />
-<h3>Шаг 30. Карточка файла и предпросмотр</h3>
+<h3 id="k30">Шаг 30. Карточка файла и предпросмотр</h3>
 <p><img alt="Карточка файла и предпросмотр" src="kimi-2/img/l2_18_kartochka.jpg" /></p>
 <p>Когда Kimi прикрепляет файл правильно, внизу ответа появляется карточка файла.</p>
 <p>Цифра 1 — карточка: название файла и пометка PowerPoint.</p>
@@ -471,15 +527,15 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Перед скачиванием пролистайте все слайды. Если что-то не так — например, на слайдах осталась подпись с картинки-образца (цифра 5), — попросите Kimi исправить это сейчас, до скачивания.</p>
 <p>Цифра 6 — строка «Бесплатная квота исчерпана». Она значит, что на бесплатном тарифе запас закончился; скачать готовый файл при этом можно.</p>
 <hr />
-<h3>Шаг 31. Правки — в том же чате</h3>
+<h3 id="k31">Шаг 31. Правки — в том же чате</h3>
 <p>Презентация скачана, вы её посмотрели и нашли, что поправить. Мелкие правки текста удобнее сделать самим в Canva или PowerPoint. Если правок много или нужно переделать слайд, попросите Kimi.</p>
 <p>Правки пишем в том же чате, где собиралась презентация. Называем номер слайда и точный текст: что заменить и на что. И обязательно добавляем «Остальное не меняй» — иначе Kimi может заодно переписать соседние слайды.</p>
 <p>Образец запроса — ниже. После правки Kimi пришлёт новый файл PPTX. Скачивайте именно его, а старый удалите, чтобы не перепутать версии.</p>
 <pre><code class="language-text">На слайде [номер] замени «[старый текст]» на «[новый текст]». Остальное не меняй. Пришли обновлённый файл PPTX карточкой для скачивания.
 </code></pre>
 <hr />
-<h2>7. Открываем и правим PPTX</h2>
-<h3>Шаг 32. Скачиваем файл: куда сохранить</h3>
+<h2 id="s7">7. Открываем и правим PPTX</h2>
+<h3 id="k32">Шаг 32. Скачиваем файл: куда сохранить</h3>
 <p><img alt="Скачиваем файл: куда сохранить" src="kimi-2/img/l2_20_sohranit.jpg" /></p>
 <p><img alt="Скачиваем файл: куда сохранить" src="kimi-2/img/l2_21_otkryt_v.jpg" /></p>
 <p>Нажимаем стрелку «Скачать» вверху просмотра. Дальше на iPad всё идёт так.</p>
@@ -497,7 +553,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>На компьютере файл просто попадает в папку «Загрузки».</p>
 <p>Если вы скачали файл два раза, у второго в названии появится «(1)». Сразу переименуйте файл понятно, например «DF_01_Вводная_v1.pptx»: v1 — номер версии, после правок будет v2, v3.</p>
 <hr />
-<h3>Шаг 33. Открываем PPTX в Canva</h3>
+<h3 id="k33">Шаг 33. Открываем PPTX в Canva</h3>
 <p><img alt="Открываем PPTX в Canva" src="kimi-2/img/l2_24_canva_zagruzka.jpg" /></p>
 <p><img alt="Открываем PPTX в Canva" src="kimi-2/img/l2_25_canva_redaktor.jpg" /></p>
 <p>Canva открывает файлы PowerPoint и превращает каждый слайд в страницу, которую можно править. Для учениц это основной путь: Canva бесплатна.</p>
@@ -514,7 +570,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>На компьютере: откройте canva.com → «Создать дизайн» → «Импорт файла», или просто перетащите файл .pptx на главную страницу Canva.</p>
 <p>Важно: Canva не загружает из PowerPoint диаграммы, SmartArt и WordArt. Поэтому в инструкции проекта есть строка: «Не используй диаграммы, SmartArt и WordArt: схемы делай из обычных фигур и текста».</p>
 <hr />
-<h3>Шаг 34. Открываем PPTX в PowerPoint</h3>
+<h3 id="k34">Шаг 34. Открываем PPTX в PowerPoint</h3>
 <p><img alt="Открываем PPTX в PowerPoint" src="kimi-2/img/l2_23_powerpoint.jpg" /></p>
 <p>PowerPoint тоже открывает файл: в меню «Поделиться» выберите PowerPoint.</p>
 <p>Посмотрите на скрин. Цифра 2 — слайды открылись, дизайн сохранился.</p>
@@ -522,7 +578,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Поэтому на iPad правим презентацию в Canva. Если у вас есть подписка Microsoft 365 или PowerPoint на компьютере — можно править и там: на компьютере дважды нажмите на файл .pptx.</p>
 <p>Если PowerPoint на компьютере показывает «Защищённый просмотр», нажмите «Разрешить редактирование». Это обычная проверка файлов из интернета.</p>
 <hr />
-<h3>Шаг 35. Что проверить после открытия</h3>
+<h3 id="k35">Шаг 35. Что проверить после открытия</h3>
 <p>Открыли файл — не спешите сразу править. Сначала проверьте, что всё перенеслось правильно. Пройдитесь по шести пунктам:</p>
 <ol>
 <li>Число слайдов то же, что в плане.</li>
@@ -537,7 +593,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p><strong>Ошибки дизайна исправляет Kimi по вашему запросу. Вы руками правите только текст.</strong></p>
 </blockquote>
 <hr />
-<h3>Шаг 36. Правим текст и сохраняем</h3>
+<h3 id="k36">Шаг 36. Правим текст и сохраняем</h3>
 <p><img alt="Правим текст и сохраняем" src="kimi-2/img/l2_25_canva_redaktor.jpg" /></p>
 <p>Теперь правим текст. На скрине — редактор Canva. Нажимаем на текст на слайде (цифра 1), исправляем, нажимаем мимо — готово. Подпись с образца (цифра 2) выделяем и удаляем. Дизайн не трогаем: он уже готов.</p>
 <p>Если на слайде слишком много текста, не уменьшайте шрифт ниже 30 — лучше попросите Kimi сократить слайд. Образец запроса ниже.</p>
@@ -547,8 +603,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <pre><code class="language-text">Сократи текст на слайде [номер] до трёх коротких пунктов. Смысл не меняй, термины оставь как есть. Остальные слайды не трогай.
 </code></pre>
 <hr />
-<h2>8. Возможности Kimi для учителя</h2>
-<h3>Шаг 37. Карта инструментов Kimi</h3>
+<h2 id="s8">8. Возможности Kimi для учителя</h2>
+<h3 id="k37">Шаг 37. Карта инструментов Kimi</h3>
 <p><img alt="Карта инструментов Kimi" src="kimi-2/img/l2_08_instrumenty.jpg" /></p>
 <p>Мы научились собирать презентацию. Но Kimi умеет больше, и учителю таджвида многое из этого пригодится. Откройте боковую панель и нажмите «Ещё», чтобы увидеть все инструменты.</p>
 <p>Цифра 1 — «Плагины»: подключают к Kimi внешние сервисы.</p>
@@ -559,7 +615,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Цифра 6 — «Таблицы»: Excel-файлы — например, трекер домашних заданий.</p>
 <p>Дальше разберём каждый инструмент по шагам. Помните: каждый из них тратит кредиты, а самые «тяжёлые» — сборка приложения и глубокое исследование.</p>
 <hr />
-<h3>Шаг 38. Режим «Слайды»: второй способ</h3>
+<h3 id="k38">Шаг 38. Режим «Слайды»: второй способ</h3>
 <p><img alt="Режим «Слайды»: второй способ" src="kimi-2/img/l2_13_pod_polem.jpg" /></p>
 <p>В боковой панели есть отдельный режим «Слайды». Это специальное место для презентаций. В нём можно описать тему, загрузить документ, картинки или даже свой шаблон PowerPoint — Kimi будет следовать его макету, шрифтам и стилю. Готовые слайды можно править прямо внутри Kimi, а затем нажать «Скачать» справа вверху и выбрать формат PPTX.</p>
 <p>Режим включается кнопкой «Слайды» в боковой панели или быстрой кнопкой «Слайды» под полем чата (на скрине — цифра 4).</p>
@@ -567,7 +623,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Для дипломных презентаций основной способ — тот, что мы прошли: чат внутри проекта. Там Kimi видит инструкции проекта и все файлы, и все презентации одного этапа хранятся в одном месте. Режим «Слайды» — запасной путь, если в чате проекта что-то не получается.</p>
 <p>В режиме «Слайды» дизайн и порядок работы нужно каждый раз писать в самом запросе — инструкций проекта там нет. Можно просто вставить текст инструкции из шага 21 в начало запроса.</p>
 <hr />
-<h3>Шаг 39. Навыки и знак «/»</h3>
+<h3 id="k39">Шаг 39. Навыки и знак «/»</h3>
 <p><img alt="Навыки и знак «/»" src="kimi-2/img/l2_10_slash.jpg" /></p>
 <p>Навык — это сохранённый набор правил и шагов для определённой работы. Например: «Как оформлять мои презентации». Kimi применяет навык сам, когда видит подходящую задачу, или когда вы вызываете его вручную.</p>
 <p>Как вызвать навык или плагин: в поле чата введите косую черту «/». Появится список навыков и плагинов — выберите нужный. Все навыки собраны на странице «Плагины», во вкладке «Навыки» (шаг 13). В пустом поле чата Kimi так и подсказывает: «введите /, чтобы вызвать плагины и навыки».</p>
@@ -578,7 +634,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 [Вставьте сюда текст инструкции проекта из шага 21]
 </code></pre>
 <hr />
-<h3>Шаг 40. Плагины</h3>
+<h3 id="k40">Шаг 40. Плагины</h3>
 <p><img alt="Плагины" src="kimi-2/img/l2_15_plaginy.jpg" /></p>
 <p>Плагины подключают к Kimi внешние приложения и сервисы. После подключения Kimi может сам ими пользоваться во время работы: например, брать данные из сервиса или работать с офисными программами.</p>
 <p>Где найти: в боковой панели — «Плагины» (на скрине — страница плагинов), или кнопка «+» в поле чата, или косая черта «/».</p>
@@ -591,7 +647,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 </ol>
 <p>Для сборки дипломных презентаций плагины не нужны. Мы знакомимся с ними, чтобы вы знали, что это за кнопка и зачем она.</p>
 <hr />
-<h3>Шаг 41. Квизы и игры: «Создать приложение»</h3>
+<h3 id="k41">Шаг 41. Квизы и игры: «Создать приложение»</h3>
 <p><img alt="Квизы и игры: «Создать приложение»" src="kimi-2/img/l2_16_prilozhenie.jpg" /></p>
 <p><img alt="Квизы и игры: «Создать приложение»" src="kimi-2/img/l2_17_mobilnyi.jpg" /></p>
 <p>Да, Kimi умеет делать квизы, тренажёры и простые игры для учениц. Для этого есть раздел «Создать приложение» в боковой панели. Kimi собирает небольшую веб-страницу с кнопками, которую можно открыть в браузере на телефоне и пройти. По справке Kimi, этот инструмент подходит для простых страниц-инструментов и прототипов небольших игр.</p>
@@ -624,7 +680,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 [вставьте текст урока или правила]
 </code></pre>
 <hr />
-<h3>Шаг 42. Документы: карточка ДЗ и термины</h3>
+<h3 id="k42">Шаг 42. Документы: карточка ДЗ и термины</h3>
 <p>Кроме презентаций, Kimi делает документы Word. Для учителя это пособие к уроку, карточка домашнего задания, список терминов.</p>
 <p>Работаем в том же проекте, где лежит материал урока, — тогда Kimi возьмёт текст из файла проекта, а не придумает свой.</p>
 <p>Первый образец — карточка домашнего задания. В ней к каждому заданию сразу даётся материал и алгоритм выполнения, чтобы ученица не искала их в пособии и на слайдах.</p>
@@ -638,14 +694,14 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <pre><code class="language-text">По файлу «[точное название файла]» из файлов проекта составь список терминов урока «[тема урока]»: термин — определение одним предложением, так, как в файле. Ничего не добавляй от себя.
 </code></pre>
 <hr />
-<h3>Шаг 43. Таблицы: трекер домашних заданий</h3>
+<h3 id="k43">Шаг 43. Таблицы: трекер домашних заданий</h3>
 <p>Kimi делает и таблицы Excel. Учителю удобен, например, трекер домашних заданий: какое задание, к какому сроку, выполнено ли.</p>
 <p>Скопируйте образец запроса. Обратите внимание: имён учениц в запросе нет. Таблицу Kimi делает пустую, а имена вы впишете сами уже в скачанный файл — на своём компьютере, не в Kimi.</p>
 <p>Готовый файл Excel открывается в Excel, в Google Таблицах или в приложении «Numbers» на iPad.</p>
 <pre><code class="language-text">Создай таблицу-трекер домашних заданий для моего курса. Столбцы: № урока, тема урока, задание, срок сдачи, выполнено (да / нет), комментарий учителя. Строки для уроков 1–10, тему и задание оставь пустыми. Имён учениц не добавляй. Сохрани в формате Excel.
 </code></pre>
 <hr />
-<h3>Шаг 44. Глубокое исследование для диплома</h3>
+<h3 id="k44">Шаг 44. Глубокое исследование для диплома</h3>
 <p>«Глубокое исследование» — режим, в котором Kimi сам ищет много источников в интернете, читает их и пишет подробный отчёт. Для дипломной работы он полезен в теоретической части: найти статьи, книги и методические работы по вашей теме.</p>
 <p>Скопируйте запрос и впишите тему дипломной работы. Исследование идёт дольше обычного ответа — иногда 10–20 минут — и тратит больше кредитов.</p>
 <p>Главное правило: каждый источник проверяйте сами. Откройте ссылку, убедитесь, что статья существует, автор и год указаны верно, а содержание действительно такое, как пишет Kimi. Нейросеть может перепутать автора или придумать название. В список литературы диплома попадают только источники, которые вы открыли и прочитали сами.</p>
@@ -655,8 +711,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 Отдельно отметь, какие источники ты нашёл и открыл сам, а в каких не уверен.
 </code></pre>
 <hr />
-<h2>9. Ошибки и проверка</h2>
-<h3>Шаг 45. Частые ошибки и что делать</h3>
+<h2 id="s9">9. Ошибки и проверка</h2>
+<h3 id="k45">Шаг 45. Частые ошибки и что делать</h3>
 <p>Соберём в одном месте всё, что может пойти не так, и что делать в каждом случае. Сохраните этот шаг — к нему удобно возвращаться во время работы.</p>
 <ul>
 <li><strong>Окно «Слишком много людей сейчас общаются с Kimi»</strong> — Сервис перегружен, а у вас бесплатный тариф. Нажмите «Понятно», подождите 10–30 минут и повторите. На тарифе Plus окна нет.</li>
@@ -673,7 +729,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li><strong>Кредиты закончились</strong> — Над полем чата будет строка «Квота исчерпана. Сброс — [дата]». Дождитесь даты сброса или перейдите на платный тариф; на Plus — на тариф Pro.</li>
 </ul>
 <hr />
-<h3>Шаг 46. Чек-лист перед сдачей куратору</h3>
+<h3 id="k46">Шаг 46. Чек-лист перед сдачей куратору</h3>
 <p>Куратор проверяет готовые презентации с дизайном. Перед тем как сдать работу, пройдите по этому списку для каждой презентации. Отметьте каждый пункт.</p>
 <ul>
 <li>[ ] Презентация собрана в своём проекте, в отдельном чате</li>
@@ -688,8 +744,8 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>[ ] Файл в формате PPTX, в названии этап и номер версии</li>
 </ul>
 <hr />
-<h2>10. Закрепление</h2>
-<h3>Шаг 47. Практика</h3>
+<h2 id="s10">10. Закрепление</h2>
+<h3 id="k47">Шаг 47. Практика</h3>
 <p>Практика урока — полная сборка одной презентации, до готового PPTX. Работаем в проекте того урока, который вы собираете сейчас, со своим заполненным скелетом.</p>
 <ol>
 <li>Откройте проект своего урока.</li>
@@ -701,7 +757,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>Пройдите чек-лист перед сдачей из шага 46.</li>
 </ol>
 <hr />
-<h3>Шаг 48. Термины урока</h3>
+<h3 id="k48">Шаг 48. Термины урока</h3>
 <p>Тариф Plus — минимальный платный тариф Kimi, которого достаточно для дипломной работы.</p>
 <p>Кредиты (квота) — запас работы Kimi. Каждый запрос тратит часть кредитов. Дату обновления Kimi показывает в строке «Сброс — [дата]».</p>
 <p>Приоритетная очередь — на платном тарифе запросы обрабатываются первыми, без окна «Слишком много людей».</p>
@@ -715,7 +771,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p>Плагин — подключение внешнего сервиса, которым Kimi пользуется во время работы.</p>
 <p>Глубокое исследование — режим, в котором Kimi сам ищет и читает много источников и пишет отчёт.</p>
 <hr />
-<h3>Шаг 49. Домашнее задание</h3>
+<h3 id="k49">Шаг 49. Домашнее задание</h3>
 <ol>
 <li>Оформите тариф Plus. Перед оплатой проверьте актуальную цену на странице тарифов.</li>
 <li>Закончите практику урока: готовый PPTX вашего урока, собранный по скелету и проверенный по чек-листу.</li>
@@ -724,7 +780,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>По желанию: сделайте в «Создать приложение» квиз из 5 вопросов по одному правилу вашего курса и пройдите его сами.</li>
 </ol>
 <hr />
-<h3>Шаг 50. Рефлексия</h3>
+<h3 id="k50">Шаг 50. Рефлексия</h3>
 <p>Ответьте себе на вопросы:</p>
 <ol>
 <li>Что я теперь кладу в «Файлы» проекта, а что пишу в «Инструкции»?</li>
@@ -735,7 +791,7 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <li>Что в этом уроке было самым трудным и о чём я хочу спросить на занятии?</li>
 </ol>
 <hr />
-<h3>Шаг 51. Что дальше</h3>
+<h3 id="k51">Шаг 51. Что дальше</h3>
 <p>Готовый PPTX — результат проекта. Дальше вы открываете проект следующего урока и проходите тот же путь со своим скелетом: файлы, инструкция, три запроса, Canva, чек-лист.</p>
 <p>Пошаговая сборка всех пяти презентаций — на странице «Сборка диплома в Kimi: DF_01–DF_05». Этот урок можно открывать как инструкцию на любом шаге.</p>
 <p>Помните: Kimi собирает, автор курса — вы. Каждое слово на слайдах проверяете вы.</p>
@@ -743,4 +799,13 @@ h4{font-weight:500;font-size:15px;margin:14px 0 4px}ol,ul{padding-left:20px;marg
 <p><em>Джазакумуллаху хайран. Kimi собирает — автор курса вы.</em></p>
 <p><sub>Rem · Разработка авторских методик · tajweedjazari4@cloud.com</sub></p></div>
 <div class="bs" style="margin-top:16px"><a class="b" href="index.html#z13">← К программе обучения</a><a class="b2" href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank">Сдать домашнее задание</a></div>
-<div class="ft">Разработка авторских методик · Rem · tajweedjazari4@cloud.com</div><div class="remft"><img src="img/rem_graphite.png" alt="Rem"><span>· tajweedjazari4@cloud.com</span></div></div></body></html>
+<div class="ft">Разработка авторских методик · Rem · tajweedjazari4@cloud.com</div><div class="remft"><img src="img/rem_graphite.png" alt="Rem"><span>· tajweedjazari4@cloud.com</span></div></div><script>(function(){var N=51,G=[].slice.call(document.querySelectorAll('.kgrp')),L=[].slice.call(document.querySelectorAll('.kst a')),H=[].slice.call(document.querySelectorAll('.kmain h3[id^=k]'));
+G.forEach(function(g){g.querySelector('.kgh').onclick=function(){var o=g.classList.contains('open');g.classList.toggle('open',!o);if(!o){document.getElementById('s'+g.dataset.g).scrollIntoView({block:'start'})}}});
+L.forEach(function(a){a.addEventListener('click',function(){document.body.classList.remove('knav')})});
+document.getElementById('kb').onclick=function(){document.body.classList.add('knav')};document.getElementById('ksh').onclick=function(){document.body.classList.remove('knav')};
+var last=0;function spy(){var k=1;for(var i=0;i<H.length;i++){if(H[i].getBoundingClientRect().top<140)k=i+1;else break}if(k==last)return;last=k;
+ L.forEach(function(a){a.classList.toggle('on',+a.dataset.k==k)});var on=document.querySelector('.kst a.on');
+ G.forEach(function(g){var has=g.contains(on);g.classList.toggle('on',has);if(has)g.classList.add('open')});
+ if(on&&window.innerWidth>900){var r=on.getBoundingClientRect(),sb=document.getElementById('ks');if(r.top<100||r.bottom>window.innerHeight-20)on.scrollIntoView({block:'center'})}
+ document.getElementById('kpt').textContent='Шаг '+k+' из '+N;document.getElementById('kbar').style.width=(k/N*100)+'%'}
+window.addEventListener('scroll',spy,{passive:true});spy();})();</script></body></html>
