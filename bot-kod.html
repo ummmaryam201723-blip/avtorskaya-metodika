@@ -1,0 +1,379 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Код бота</title>
+<style>body{margin:0;padding:20px;background:#F7F6F1;color:#1F2321;font-family:-apple-system,Arial,sans-serif}
+button{display:block;width:100%;padding:22px;font-size:22px;font-weight:700;border:0;border-radius:22px;background:#596748;color:#fff;margin-bottom:14px}
+#ok{font-size:20px;font-weight:700;min-height:28px;margin-bottom:10px}
+textarea{width:100%;height:60vh;font:13px/1.4 monospace;border:1px solid #ccc;border-radius:14px;padding:10px;box-sizing:border-box}</style></head><body>
+<button id="b">Скопировать весь код</button><div id="ok"></div>
+<textarea id="t" readonly>/**
+ * DF Институт · Бот домашних заданий
+ * Работает из Google-таблицы (Расширения → Apps Script).
+ * Ученица пишет боту → работа попадает в её тему в группе «ДЗ · Проверка»
+ * → куратор нажимает «Принято» / «На доработку» → ответ уходит ученице,
+ * статус записывается в лист «Статусы».
+ */
+
+// Уроки, по которым сдаются домашние задания
+var LESSONS = [
+  [1, &#x27;Замысел курса и аудитория&#x27;],
+  [2, &#x27;Проблема и результат обучения&#x27;],
+  [3, &#x27;Анализ материалов и авторский вклад&#x27;],
+  [4, &#x27;Разработка программы, модулей и уроков&#x27;],
+  [5, &#x27;Вводный урок&#x27;],
+  [6, &#x27;Первый содержательный урок&#x27;],
+  [7, &#x27;Продолжение изучения темы&#x27;],
+  [8, &#x27;Итоговый урок и проверка знаний&#x27;],
+  [9, &#x27;Банк учебных материалов и приёмов&#x27;],
+  [10, &#x27;Проверка структуры четырёх уроков&#x27;],
+  [11, &#x27;Разработка единого дизайна&#x27;],
+  [12, &#x27;Начало работы с Kimi&#x27;],
+  [13, &#x27;Создание презентаций с помощью Kimi&#x27;],
+  [14, &#x27;Презентация вводного урока&#x27;],
+  [15, &#x27;Презентация первого содержательного урока&#x27;],
+  [16, &#x27;Презентация продолжающегося урока&#x27;],
+  [17, &#x27;Презентация завершающего урока&#x27;],
+  [18, &#x27;Представление и продвижение курса&#x27;],
+  [19, &#x27;Пояснительная записка и защитная презентация&#x27;]
+];
+var SITE = &#x27;https://ummmaryam201723-blip.github.io/avtorskaya-metodika/&#x27;;
+var ST_SENT = &#x27;Отправлено&#x27;, ST_OK = &#x27;Принято&#x27;, ST_RE = &#x27;На доработку&#x27;;
+
+/* ---------- ЗАПУСК ----------
+ * 1) Вставьте токен от @BotFather между кавычками ниже.
+ *    Если код открыт не из таблицы, а на script.google.com — вставьте ниже и ссылку на таблицу.
+ * 2) Вверху выберите функцию START и нажмите «Выполнить». Разрешите доступ.
+ * 3) В группе «ДЗ · Проверка» напишите /setgroup.
+ */
+var TOKEN_INPUT = &#x27;&#x27;;
+// Ссылка на вашу таблицу (скопируйте адрес таблицы из браузера целиком):
+var SHEET_URL = &#x27;&#x27;;
+
+function START() {
+  if (TOKEN_INPUT) P().setProperty(&#x27;TOKEN&#x27;, TOKEN_INPUT.trim());
+  if (!P().getProperty(&#x27;TOKEN&#x27;)) throw new Error(&#x27;Вставьте токен в строку TOKEN_INPUT и снова нажмите «Выполнить».&#x27;);
+  var me = api_(&#x27;getMe&#x27;, {});
+  if (!me || !me.ok) throw new Error(&#x27;Токен не подходит. Скопируйте его целиком из сообщения BotFather.&#x27;);
+  setupSheets_();
+  api_(&#x27;deleteWebhook&#x27;, { drop_pending_updates: false });
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === &#x27;poll&#x27;) ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger(&#x27;poll&#x27;).timeBased().everyMinutes(1).create();
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === &#x27;REMIND_&#x27;) ScriptApp.deleteTrigger(t); });
+  ScriptApp.newTrigger(&#x27;REMIND_&#x27;).timeBased().everyDays(1).atHour(12).inTimezone(&#x27;Europe/Moscow&#x27;).create();
+  Logger.log(&#x27;✅ Бот @&#x27; + me.result.username + &#x27; запущен. Теперь напишите /setgroup в группе «ДЗ · Проверка».&#x27;);
+}
+function STOP() {
+  ScriptApp.getProjectTriggers().forEach(function (t) { if (t.getHandlerFunction() === &#x27;poll&#x27; || t.getHandlerFunction() === &#x27;REMIND_&#x27;) ScriptApp.deleteTrigger(t); });
+  Logger.log(&#x27;Бот остановлен.&#x27;);
+}
+function onOpen() {
+  try { SpreadsheetApp.getUi().createMenu(&#x27;🤖 Бот ДЗ&#x27;).addItem(&#x27;Проверить бота&#x27;, &#x27;checkBot&#x27;).addItem(&#x27;Остановить бота&#x27;, &#x27;STOP&#x27;).addToUi(); } catch (e) {}
+}
+function checkBot() {
+  var me = api_(&#x27;getMe&#x27;, {}), g = P().getProperty(&#x27;GROUP_ID&#x27;);
+  var on = ScriptApp.getProjectTriggers().some(function (t) { return t.getHandlerFunction() === &#x27;poll&#x27;; });
+  SpreadsheetApp.getUi().alert(&#x27;Бот: &#x27; + (me &amp;&amp; me.ok ? &#x27;@&#x27; + me.result.username + &#x27; ✅&#x27; : &#x27;токен не задан&#x27;) +
+    &#x27;\nРаботает: &#x27; + (on ? &#x27;да ✅ (проверяет сообщения каждую минуту)&#x27; : &#x27;нет — запустите START&#x27;) +
+    &#x27;\nГруппа проверки: &#x27; + (g ? &#x27;привязана ✅&#x27; : &#x27;напишите /setgroup в группе&#x27;));
+}
+/* Каждую минуту забирает новые сообщения */
+function poll() {
+  var lock = LockService.getScriptLock(); if (!lock.tryLock(1000)) return;
+  try {
+    var off = +(P().getProperty(&#x27;OFFSET&#x27;) || 0);
+    var r = api_(&#x27;getUpdates&#x27;, { offset: off, timeout: 0, allowed_updates: [&#x27;message&#x27;, &#x27;callback_query&#x27;] });
+    if (!r || !r.ok) return;
+    r.result.forEach(function (u) {
+      P().setProperty(&#x27;OFFSET&#x27;, String(u.update_id + 1));
+      try { if (u.callback_query) onCallback_(u.callback_query); else if (u.message) onMessage_(u.message); }
+      catch (err) { log_(&#x27;ОШИБКА&#x27;, String(err &amp;&amp; err.stack || err)); }
+    });
+  } finally { lock.releaseLock(); }
+}
+
+function onMessage_(m) {
+  var chat = m.chat, text = (m.text || &#x27;&#x27;).trim();
+  var G = P().getProperty(&#x27;GROUP_ID&#x27;), ADMIN = P().getProperty(&#x27;ADMIN_ID&#x27;);
+
+  // --- сообщения в группах ---
+  if (chat.type === &#x27;group&#x27; || chat.type === &#x27;supergroup&#x27;) {
+    if (/^\/setgroup(@\w+)?$/.test(text)) {
+      if (ADMIN &amp;&amp; String(m.from.id) !== ADMIN) return;
+      if (!chat.is_forum) { send_(chat.id, &#x27;Сначала включите «Темы» в настройках группы, потом снова /setgroup.&#x27;); return; }
+      P().setProperty(&#x27;GROUP_ID&#x27;, String(chat.id));
+      P().setProperty(&#x27;ADMIN_ID&#x27;, String(m.from.id));
+      send_(chat.id, &#x27;✅ Группа привязана. Здесь будут темы учениц.\n\nКоманды:\n/svodka — кто что сдал\n/otkryt 5 — открыть урок 5: бот будет сам напоминать не сдавшим каждый день в 12:00 (МСК) в течение 7 дней\n/zakryt 5 — прекратить напоминания по уроку\n/otkryto — какие уроки открыты\n/napomnit 5 — напомнить прямо сейчас&#x27;, { message_thread_id: m.message_thread_id });
+      return;
+    }
+    if (String(chat.id) !== G || String(m.from.id) !== ADMIN || m.from.is_bot) return;
+    var thread = m.message_thread_id;
+    if (/^\/svodka/.test(text)) { send_(G, svodka_(), { message_thread_id: thread }); return; }
+    var om = text.match(/^\/(otkryt|zakryt)(?:@\w+)?\s+([\d\s,]+)/);
+    if (om) { send_(G, openLessons_(om[1] === &#x27;otkryt&#x27;, om[2].match(/\d+/g).map(Number)), { message_thread_id: thread }); return; }
+    if (/^\/otkryto/.test(text)) { send_(G, openList_(), { message_thread_id: thread }); return; }
+    if (/^\/proverka_napominanij/.test(text)) { REMIND_(); return; }
+    var nm = text.match(/^\/napomnit(?:@\w+)?\s+(\d+)/);
+    if (nm) { send_(G, napomnit_(+nm[1]), { message_thread_id: thread }); return; }
+    if (text.charAt(0) === &#x27;/&#x27;) return;
+    // сообщение куратора внутри темы ученицы → ученице
+    var st = studentByTopic_(thread);
+    if (!st) return;
+    var pend = P().getProperty(&#x27;PEND_&#x27; + thread);
+    if (pend) {
+      P().deleteProperty(&#x27;PEND_&#x27; + thread);
+      var p = pend.split(&#x27;|&#x27;);
+      send_(st.uid, &#x27;🔁 Урок &#x27; + pad_(p[0]) + &#x27; — нужна доработка:&#x27;);
+    }
+    api_(&#x27;copyMessage&#x27;, { chat_id: st.uid, from_chat_id: G, message_id: m.message_id });
+    return;
+  }
+
+  // --- личные сообщения ученицы ---
+  if (chat.type !== &#x27;private&#x27;) return;
+  var uid = String(m.from.id);
+  if (ADMIN &amp;&amp; uid === ADMIN &amp;&amp; /^\/start/.test(text) &amp;&amp; !findStudent_(uid)) {
+    send_(uid, &#x27;Это вы — куратор 🙂 Работы учениц приходят в группу «ДЗ · Проверка».&#x27;); return;
+  }
+  var stu = findStudent_(uid);
+  var state = P().getProperty(&#x27;S_&#x27; + uid) || &#x27;&#x27;;
+
+  var startArg = (text.match(/^\/start(?:\s+l(\d+))?/) || [])[1];
+  if (/^\/start/.test(text)) {
+    if (startArg) P().setProperty(&#x27;WANT_&#x27; + uid, startArg);
+    if (!stu) { P().setProperty(&#x27;S_&#x27; + uid, &#x27;name&#x27;); send_(uid, &#x27;Ас-саляму алейкум! Это бот домашних заданий DF Институт Учителей.\n\nНапишите, пожалуйста, ваше имя и номер группы, например: Аиша, группа 1. Так куратор будет видеть, чья работа.&#x27;); return; }
+    var want = P().getProperty(&#x27;WANT_&#x27; + uid);
+    if (want) { P().deleteProperty(&#x27;WANT_&#x27; + uid); beginLesson_(uid, +want); return; }
+    menu_(uid); return;
+  }
+
+  if (state === &#x27;name&#x27;) {
+    if (text.length &lt; 3) { send_(uid, &#x27;Напишите имя и номер группы, например: Аиша, группа 1.&#x27;); return; }
+    if (!G) { send_(uid, &#x27;Бот ещё настраивается. Попробуйте чуть позже.&#x27;); return; }
+    stu = register_(m.from, text);
+    P().deleteProperty(&#x27;S_&#x27; + uid);
+    send_(uid, &#x27;Спасибо, &#x27; + text + &#x27;! Вы зарегистрированы ✅&#x27;);
+    var w = P().getProperty(&#x27;WANT_&#x27; + uid);
+    if (w) { P().deleteProperty(&#x27;WANT_&#x27; + uid); beginLesson_(uid, +w); } else menu_(uid);
+    return;
+  }
+  if (!stu) { P().setProperty(&#x27;S_&#x27; + uid, &#x27;name&#x27;); send_(uid, &#x27;Напишите, пожалуйста, ваше имя и номер группы, например: Аиша, группа 1.&#x27;); return; }
+
+  if (text === &#x27;📤 Сдать задание&#x27;) { chooseLesson_(uid); return; }
+  if (text === &#x27;📊 Мои статусы&#x27;) { send_(uid, myStatus_(stu)); return; }
+  if (text === &#x27;✅ Готово&#x27; || text === &#x27;/done&#x27;) { finish_(stu); return; }
+
+  var cur = P().getProperty(&#x27;L_&#x27; + uid);
+  if (!cur) { send_(uid, &#x27;Чтобы сдать работу, нажмите «📤 Сдать задание» и выберите урок.&#x27;, kb_()); return; }
+  // пересылаем работу в тему ученицы
+  var res = api_(&#x27;copyMessage&#x27;, { chat_id: G, from_chat_id: uid, message_id: m.message_id, message_thread_id: stu.topic });
+  if (!res || !res.ok) { send_(uid, &#x27;Не получилось передать сообщение. Попробуйте ещё раз.&#x27;); log_(&#x27;copy fail&#x27;, JSON.stringify(res)); return; }
+  P().setProperty(&#x27;N_&#x27; + uid, String(+(P().getProperty(&#x27;N_&#x27; + uid) || 0) + 1));
+  if (+P().getProperty(&#x27;N_&#x27; + uid) === 1) send_(uid, &#x27;Принято в работу 👍 Можно добавить ещё текст, файлы или фото.\nКогда всё отправите — нажмите «✅ Готово».&#x27;, doneKb_());
+}
+
+function onCallback_(q) {
+  var d = q.data || &#x27;&#x27;, uid = String(q.from.id);
+  var G = P().getProperty(&#x27;GROUP_ID&#x27;), ADMIN = P().getProperty(&#x27;ADMIN_ID&#x27;);
+  var mL = d.match(/^L(\d+)$/);
+  if (mL) { api_(&#x27;answerCallbackQuery&#x27;, { callback_query_id: q.id }); beginLesson_(uid, +mL[1]); return; }
+  var mV = d.match(/^(OK|RE)\|(\d+)\|(\d+)$/);
+  if (mV) {
+    if (uid !== ADMIN) { api_(&#x27;answerCallbackQuery&#x27;, { callback_query_id: q.id, text: &#x27;Только для куратора&#x27; }); return; }
+    var stu = findStudent_(mV[2]), les = +mV[3];
+    if (!stu) return;
+    var who = stu.name + &#x27; · Урок &#x27; + pad_(les);
+    if (mV[1] === &#x27;OK&#x27;) {
+      setStatus_(stu, les, ST_OK);
+      send_(stu.uid, &#x27;✅ Урок &#x27; + pad_(les) + &#x27; принят. Спасибо за работу!\nОтметьте на сайте статус «Принято».&#x27;);
+      api_(&#x27;editMessageText&#x27;, { chat_id: G, message_id: q.message.message_id, text: &#x27;✅ ПРИНЯТО · &#x27; + who });
+      api_(&#x27;answerCallbackQuery&#x27;, { callback_query_id: q.id, text: &#x27;Принято, ученице отправлено&#x27; });
+    } else {
+      setStatus_(stu, les, ST_RE);
+      P().setProperty(&#x27;PEND_&#x27; + stu.topic, les + &#x27;|&#x27; + Date.now());
+      api_(&#x27;editMessageText&#x27;, { chat_id: G, message_id: q.message.message_id, text: &#x27;🔁 НА ДОРАБОТКУ · &#x27; + who + &#x27;\nНапишите в этой теме, что исправить — сообщение уйдёт ученице.&#x27; });
+      api_(&#x27;answerCallbackQuery&#x27;, { callback_query_id: q.id, text: &#x27;Напишите комментарий в теме&#x27; });
+    }
+  }
+}
+
+/* ---------- сценарии ученицы ---------- */
+function menu_(uid) {
+  send_(uid, &#x27;Что сделать?\n\n📤 Сдать задание — выбрать урок и отправить работу.\n📊 Мои статусы — что принято, что на доработке.\n\n🌐 Сайт программы: &#x27; + SITE, kb_());
+}
+function chooseLesson_(uid) {
+  var rows = [], row = [];
+  LESSONS.forEach(function (l) { row.push({ text: &#x27;Урок &#x27; + pad_(l[0]), callback_data: &#x27;L&#x27; + l[0] }); if (row.length === 3) { rows.push(row); row = []; } });
+  if (row.length) rows.push(row);
+  send_(uid, &#x27;Выберите урок:&#x27;, { reply_markup: { inline_keyboard: rows } });
+}
+function beginLesson_(uid, les) {
+  var l = LESSONS.filter(function (x) { return x[0] === les; })[0];
+  if (!l) { send_(uid, &#x27;По этому уроку задание не сдаётся. Выберите другой.&#x27;); chooseLesson_(uid); return; }
+  P().setProperty(&#x27;L_&#x27; + uid, String(les)); P().setProperty(&#x27;N_&#x27; + uid, &#x27;0&#x27;);
+  send_(uid, &#x27;📘 Урок &#x27; + pad_(les) + &#x27; · &#x27; + l[1] + &#x27;\n\n&#x27; + (les === 12 || les === 13 ? &#x27;Пришлите 1–2 скриншота того, что у вас получилось в Kimi.&#x27; : &#x27;Отправьте работу: вставьте текст из «Моего проекта курса», можно добавить файлы (PDF, PPTX) и фото.&#x27;) + &#x27;\nКогда всё отправите — нажмите «✅ Готово».&#x27;, doneKb_());
+}
+function finish_(stu) {
+  var uid = stu.uid, les = +(P().getProperty(&#x27;L_&#x27; + uid) || 0), n = +(P().getProperty(&#x27;N_&#x27; + uid) || 0);
+  if (!les) { menu_(uid); return; }
+  if (!n) { send_(uid, &#x27;Вы ещё ничего не отправили. Вставьте текст или прикрепите файл.&#x27;); return; }
+  P().deleteProperty(&#x27;L_&#x27; + uid); P().deleteProperty(&#x27;N_&#x27; + uid);
+  var prev = getStatus_(stu, les);
+  setStatus_(stu, les, ST_SENT);
+  var G = P().getProperty(&#x27;GROUP_ID&#x27;);
+  send_(G, &#x27;📥 &#x27; + stu.name + &#x27; · Урок &#x27; + pad_(les) + (prev === ST_RE ? &#x27; · после доработки&#x27; : &#x27;&#x27;) + &#x27;\n&#x27; + Utilities.formatDate(new Date(), &#x27;Europe/Moscow&#x27;, &#x27;dd.MM HH:mm&#x27;), {
+    message_thread_id: stu.topic,
+    reply_markup: { inline_keyboard: [[{ text: &#x27;✅ Принято&#x27;, callback_data: &#x27;OK|&#x27; + uid + &#x27;|&#x27; + les }, { text: &#x27;🔁 На доработку&#x27;, callback_data: &#x27;RE|&#x27; + uid + &#x27;|&#x27; + les }]] }
+  });
+  send_(uid, &#x27;📨 Урок &#x27; + pad_(les) + &#x27; отправлен куратору. Ответ придёт сюда.\nОтметьте на сайте статус «Отправлено».&#x27;, kb_());
+}
+function myStatus_(stu) {
+  var row = statusRow_(stu), out = [&#x27;📊 Ваши статусы:&#x27;];
+  LESSONS.forEach(function (l, i) { var v = row[i] || &#x27;—&#x27;; out.push((v === ST_OK ? &#x27;✅&#x27; : v === ST_RE ? &#x27;🔁&#x27; : v === ST_SENT ? &#x27;📨&#x27; : &#x27;▫️&#x27;) + &#x27; Урок &#x27; + pad_(l[0]) + &#x27;: &#x27; + v); });
+  out.push(&#x27;&#x27;, &#x27;🌐 Сайт: &#x27; + SITE);
+  return out.join(&#x27;\n&#x27;);
+}
+
+/* ---------- сводка и напоминания (для куратора) ---------- */
+function svodka_() {
+  var sh = sheet_(&#x27;Статусы&#x27;), v = sh.getDataRange().getValues(), out = [&#x27;📊 Сводка&#x27;];
+  LESSONS.forEach(function (l, j) {
+    var not = [], re = [], wait = [];
+    for (var i = 1; i &lt; v.length; i++) { var s = v[i][j + 2]; if (!s) not.push(v[i][0]); else if (s === ST_RE) re.push(v[i][0]); else if (s === ST_SENT) wait.push(v[i][0]); }
+    if (wait.length || re.length) out.push(&#x27;Урок &#x27; + pad_(l[0]) + &#x27;: &#x27; + [wait.length ? &#x27;ждут проверки — &#x27; + wait.join(&#x27;, &#x27;) : &#x27;&#x27;, re.length ? &#x27;на доработке — &#x27; + re.join(&#x27;, &#x27;) : &#x27;&#x27;].filter(String).join(&#x27;; &#x27;));
+  });
+  if (out.length === 1) out.push(&#x27;Непроверенных работ нет 👍&#x27;);
+  return out.join(&#x27;\n&#x27;);
+}
+function napomnit_(les) {
+  var j = indexOfLesson_(les); if (j &lt; 0) return &#x27;Нет такого урока с заданием.&#x27;;
+  var sh = sheet_(&#x27;Статусы&#x27;), v = sh.getDataRange().getValues(), names = [];
+  for (var i = 1; i &lt; v.length; i++) {
+    if (!v[i][j + 2]) { send_(String(v[i][1]), &#x27;⏰ Напоминание: задание урока &#x27; + pad_(les) + &#x27; нужно сдать до следующего урока. Нажмите «📤 Сдать задание».&#x27;, kb_()); names.push(v[i][0]); }
+  }
+  return names.length ? &#x27;Напомнила: &#x27; + names.join(&#x27;, &#x27;) : &#x27;Все сдали урок &#x27; + pad_(les) + &#x27; 👍&#x27;;
+}
+
+/* ---------- автоматические напоминания: каждый день в 12:00 МСК, 7 дней после открытия урока ---------- */
+var REMIND_DAYS = 7;
+function today_() { return Utilities.formatDate(new Date(), &#x27;Europe/Moscow&#x27;, &#x27;yyyy-MM-dd&#x27;); }
+function daysSince_(d) { return Math.round((Date.parse(today_()) - Date.parse(d)) / 86400000); }
+function getOpen_() { try { return JSON.parse(P().getProperty(&#x27;OPEN&#x27;) || &#x27;{}&#x27;); } catch (e) { return {}; } }
+function openLessons_(on, list) {
+  var o = getOpen_(), done = [], bad = [];
+  list.forEach(function (n) {
+    if (indexOfLesson_(n) &lt; 0) { bad.push(n); return; }
+    if (on) o[n] = today_(); else delete o[n];
+    done.push(pad_(n));
+  });
+  P().setProperty(&#x27;OPEN&#x27;, JSON.stringify(o));
+  return (done.length ? (on ? &#x27;✅ Открыт&#x27; : &#x27;⏹ Закрыт&#x27;) + (done.length &gt; 1 ? &#x27;ы уроки &#x27; : &#x27; урок &#x27;) + done.join(&#x27;, &#x27;) + (on ? &#x27;. Напоминания: каждый день в 12:00 по Москве, &#x27; + REMIND_DAYS + &#x27; дней, только тем, кто не сдал.&#x27; : &#x27;. Напоминаний по нему больше не будет.&#x27;) : &#x27;&#x27;) + (bad.length ? &#x27;\nНет такого урока с заданием: &#x27; + bad.join(&#x27;, &#x27;) : &#x27;&#x27;);
+}
+function openList_() {
+  var o = getOpen_(), k = Object.keys(o).map(Number).sort(function (a, b) { return a - b; });
+  if (!k.length) return &#x27;Сейчас нет открытых уроков. Откройте: /otkryt 1&#x27;;
+  return &#x27;Открыты (напоминания идут):\n&#x27; + k.map(function (n) { var d = daysSince_(o[n]); return &#x27;Урок &#x27; + pad_(n) + &#x27; · открыт &#x27; + o[n] + (d &gt;= REMIND_DAYS ? &#x27; · срок напоминаний вышел&#x27; : &#x27; · день &#x27; + d + &#x27; из &#x27; + REMIND_DAYS); }).join(&#x27;\n&#x27;);
+}
+function REMIND_() {
+  var o = getOpen_(), active = [], changed = false;
+  Object.keys(o).forEach(function (k) {
+    var d = daysSince_(o[k]);
+    if (d &gt; REMIND_DAYS) { delete o[k]; changed = true; } else if (d &gt;= 1) active.push(+k);
+  });
+  if (changed) P().setProperty(&#x27;OPEN&#x27;, JSON.stringify(o));
+  active.sort(function (a, b) { return a - b; });
+  if (!active.length) return;
+  var v = sheet_(&#x27;Статусы&#x27;).getDataRange().getValues(), report = [], sent = 0;
+  for (var i = 1; i &lt; v.length; i++) {
+    var miss = active.filter(function (n) { return !v[i][indexOfLesson_(n) + 2]; });
+    if (!miss.length) continue;
+    var r = send_(String(v[i][1]), &#x27;⏰ Ждём ваши домашние задания 🤍\nНе сданы: &#x27; + (miss.length &gt; 1 ? &#x27;уроки &#x27; : &#x27;урок &#x27;) + miss.map(pad_).join(&#x27;, &#x27;) + &#x27;.\n\nЗадания связаны между собой: каждое готовит вас к следующему. На него нужно около 3 минут.\nНажмите «📤 Сдать задание» и отправьте работу сюда, в бот.&#x27;, kb_());
+    if (r &amp;&amp; r.ok) sent++; else log_(&#x27;Напоминание не доставлено&#x27;, v[i][0]);
+    report.push(v[i][0] + &#x27; — &#x27; + miss.map(pad_).join(&#x27;, &#x27;));
+  }
+  var adm = P().getProperty(&#x27;ADMIN_ID&#x27;);
+  if (adm) send_(adm, report.length ? &#x27;⏰ Напомнила (&#x27; + sent + &#x27; из &#x27; + report.length + &#x27;). Не сдали:\n&#x27; + report.join(&#x27;\n&#x27;) : &#x27;👍 Сегодня напоминать некому: по открытым урокам (&#x27; + active.map(pad_).join(&#x27;, &#x27;) + &#x27;) все сдали.&#x27;);
+}
+
+/* ---------- таблица ---------- */
+function setupSheets_() {
+  var ss = SS_();
+  var s1 = ss.getSheetByName(&#x27;Ученицы&#x27;) || ss.insertSheet(&#x27;Ученицы&#x27;);
+  if (!s1.getLastRow()) { s1.appendRow([&#x27;Имя&#x27;, &#x27;Telegram ID&#x27;, &#x27;Ник&#x27;, &#x27;Тема&#x27;, &#x27;Дата регистрации&#x27;]); s1.setFrozenRows(1); }
+  var s2 = ss.getSheetByName(&#x27;Статусы&#x27;) || ss.insertSheet(&#x27;Статусы&#x27;);
+  var head = [&#x27;Имя&#x27;, &#x27;Telegram ID&#x27;].concat(LESSONS.map(function (l) { return &#x27;Урок &#x27; + pad_(l[0]); }));
+  if (!s2.getLastRow()) { s2.appendRow(head); s2.setFrozenRows(1); s2.setFrozenColumns(1); s2.hideColumns(2); }
+  else if (s2.getLastRow() === 1 &amp;&amp; s2.getRange(1, 1, 1, s2.getLastColumn()).getValues()[0].join(&#x27;|&#x27;) !== head.join(&#x27;|&#x27;)) {
+    s2.clear(); s2.getRange(1, 1, 1, head.length).setValues([head]);
+  }
+  var s3 = ss.getSheetByName(&#x27;Журнал&#x27;) || ss.insertSheet(&#x27;Журнал&#x27;);
+  if (!s3.getLastRow()) { s3.appendRow([&#x27;Дата&#x27;, &#x27;Событие&#x27;, &#x27;Подробности&#x27;]); s3.setFrozenRows(1); }
+  var rules = [[ST_OK, &#x27;#DDE8CF&#x27;], [ST_RE, &#x27;#F6E3C4&#x27;], [ST_SENT, &#x27;#DCE7E9&#x27;]].map(function (c) {
+    return SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo(c[0]).setBackground(c[1]).setRanges([s2.getRange(&#x27;C2:Z200&#x27;)]).build();
+  });
+  s2.setConditionalFormatRules(rules);
+}
+function sheet_(n) { var s = SS_().getSheetByName(n); if (!s) { setupSheets_(); s = SS_().getSheetByName(n); } return s; }
+function findStudent_(uid) {
+  var v = sheet_(&#x27;Ученицы&#x27;).getDataRange().getValues();
+  for (var i = 1; i &lt; v.length; i++) if (String(v[i][1]) === String(uid)) return { name: v[i][0], uid: String(v[i][1]), topic: v[i][3], row: i + 1 };
+  return null;
+}
+function studentByTopic_(topic) {
+  if (!topic) return null;
+  var v = sheet_(&#x27;Ученицы&#x27;).getDataRange().getValues();
+  for (var i = 1; i &lt; v.length; i++) if (String(v[i][3]) === String(topic)) return { name: v[i][0], uid: String(v[i][1]), topic: v[i][3] };
+  return null;
+}
+function register_(from, name) {
+  var G = P().getProperty(&#x27;GROUP_ID&#x27;);
+  var t = api_(&#x27;createForumTopic&#x27;, { chat_id: G, name: &#x27;ДЗ · &#x27; + name.slice(0, 100), icon_color: 7322096 });
+  var topic = t &amp;&amp; t.ok ? t.result.message_thread_id : &#x27;&#x27;;
+  if (!topic) log_(&#x27;Тема не создана&#x27;, JSON.stringify(t));
+  sheet_(&#x27;Ученицы&#x27;).appendRow([name, String(from.id), from.username ? &#x27;@&#x27; + from.username : &#x27;&#x27;, topic, new Date()]);
+  sheet_(&#x27;Статусы&#x27;).appendRow([name, String(from.id)]);
+  if (topic) send_(G, &#x27;👋 Новая ученица: &#x27; + name + (from.username ? &#x27; (@&#x27; + from.username + &#x27;)&#x27; : &#x27;&#x27;) + &#x27;\nВсе её работы будут в этой теме. Любое ваше сообщение здесь уйдёт ей.&#x27;, { message_thread_id: topic });
+  return { name: name, uid: String(from.id), topic: topic };
+}
+function indexOfLesson_(les) { for (var j = 0; j &lt; LESSONS.length; j++) if (LESSONS[j][0] === les) return j; return -1; }
+function statusRow_(stu) {
+  var v = sheet_(&#x27;Статусы&#x27;).getDataRange().getValues();
+  for (var i = 1; i &lt; v.length; i++) if (String(v[i][1]) === stu.uid) return v[i].slice(2);
+  return [];
+}
+function getStatus_(stu, les) { return statusRow_(stu)[indexOfLesson_(les)] || &#x27;&#x27;; }
+function setStatus_(stu, les, val) {
+  var sh = sheet_(&#x27;Статусы&#x27;), v = sh.getDataRange().getValues(), j = indexOfLesson_(les);
+  if (j &lt; 0) return;
+  for (var i = 1; i &lt; v.length; i++) if (String(v[i][1]) === stu.uid) { sh.getRange(i + 1, j + 3).setValue(val); break; }
+  log_(val, stu.name + &#x27; · Урок &#x27; + pad_(les));
+}
+function log_(a, b) { try { sheet_(&#x27;Журнал&#x27;).appendRow([new Date(), a, b]); } catch (e) {} }
+
+/* ---------- Telegram ---------- */
+function kb_() { return { reply_markup: { keyboard: [[{ text: &#x27;📤 Сдать задание&#x27; }, { text: &#x27;📊 Мои статусы&#x27; }]], resize_keyboard: true } }; }
+function doneKb_() { return { reply_markup: { keyboard: [[{ text: &#x27;✅ Готово&#x27; }]], resize_keyboard: true } }; }
+function send_(chat, text, extra) {
+  var p = { chat_id: chat, text: text };
+  if (extra) for (var k in extra) p[k] = extra[k];
+  return api_(&#x27;sendMessage&#x27;, p);
+}
+function api_(method, payload) {
+  var t = P().getProperty(&#x27;TOKEN&#x27;); if (!t) return null;
+  var r = UrlFetchApp.fetch(&#x27;https://api.telegram.org/bot&#x27; + t + &#x27;/&#x27; + method, {
+    method: &#x27;post&#x27;, contentType: &#x27;application/json&#x27;, payload: JSON.stringify(payload), muteHttpExceptions: true });
+  try { return JSON.parse(r.getContentText()); } catch (e) { return null; }
+}
+function SS_() {
+  if (SHEET_URL) P().setProperty(&#x27;SHEET_URL&#x27;, SHEET_URL.trim());
+  var u = P().getProperty(&#x27;SHEET_URL&#x27;);
+  return u ? SpreadsheetApp.openByUrl(u) : SpreadsheetApp.getActive();
+}
+function P() { return PropertiesService.getScriptProperties(); }
+function pad_(n) { n = +n; return (n &lt; 10 ? &#x27;0&#x27; : &#x27;&#x27;) + n; }
+</textarea>
+<script>
+var t=document.getElementById('t'),ok=document.getElementById('ok');
+document.getElementById('b').onclick=function(){
+ function done(){ok.textContent='✅ Скопировано. Теперь вставьте в Apps Script.'}
+ function old(){t.focus();t.select();t.setSelectionRange(0,t.value.length);try{document.execCommand('copy');done()}catch(e){ok.textContent='Не вышло, выделите текст ниже вручную'}}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t.value).then(done,old)}else old();
+};
+</script></body></html>
