@@ -36,6 +36,8 @@ button.l{background:#FBF8F2;color:#4C5B3F;border-color:#B9C2A8}
 .kit b{font-size:15px;font-weight:500}
 .ok{font-family:Arial;font-size:12px;color:#4C5B3F;min-height:16px;margin-top:4px}
 .crit li{font-family:Arial;font-size:13px;line-height:1.5}
+
+.where{font-size:13px;color:#596748;background:#EEF1E6;border-radius:10px;padding:5px 10px;margin:4px 0 6px;display:inline-block}
 </style><link rel="stylesheet" href="img/theme.css"><link rel="icon" href="img/girl_soft_b.png"><meta name="robots" content="noindex,nofollow"><style>:root{
  --base:#EFEDE6;--panel:#F7F6F1;--card:#FCFBF8;
  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
@@ -63,7 +65,11 @@ textarea,input,select{border-radius:18px!important;border:0!important;background
 </div>
 <div id="lessons"></div>
 <div class="blk">МАТЕРИАЛЫ ДЛЯ KIMI</div>
-<div class="cd" id="kits"><p>Для каждой презентации: 1) откройте «Промпты для Kimi» и заполните поля в квадратных скобках; 2) нажмите «Скачать материалы для Kimi». В папке по порядку: как работать, инструкция проекта, три запроса и комплект со всеми вашими ответами и дизайном. В Kimi приложите ещё выбранный пробный слайд.</p></div>
+<div class="cd" id="kits"><h2>Сборка в Kimi: 5 проектов</h2>
+<p>Одна презентация — один проект в Kimi: <b>Проект 1</b> · вводный урок (DF_01), <b>Проект 2</b> · первый содержательный (DF_02), <b>Проект 3</b> · продолжающийся (DF_03), <b>Проект 4</b> · завершающий (DF_04), <b>Проект 5</b> · защитная презентация (DF_05).</p>
+<p><b>Как файлы</b> в проект загружаются только два: <b>06_Комплект</b> и картинка вашего пробного слайда. <b>Инструкция и промпты — текстом:</b> инструкцию вставьте в поле «Инструкции» проекта, промпты 1–4 — по одному в поле сообщения в чате проекта. Каждый раз дождитесь ответа Kimi.</p>
+<p>Kimi сам файлы не открывает — поэтому в каждом промпте уже написано точное название файла. Назовите картинку пробного слайда так, как указано ниже, или впишите её название:</p>
+<p><label><b>Название файла пробного слайда</b><br><input id="dfile" placeholder="Дизайн_выбранный.jpg" style="width:100%"></label></p></div>
 <div class="cd"><h2>Резервная копия</h2><p>Сохраните копию, чтобы не потерять ответы при смене телефона или браузера.</p>
 <div class="bs"><button class="l" id="bk">Скачать копию</button><button class="l" id="rs">Загрузить копию</button><input type="file" id="rsf" accept=".json" style="display:none"></div><div class="ok" id="okb"></div></div>
 </div>
@@ -178,19 +184,25 @@ var K=[[1,'Презентация 1 · вводная','DF_01',5],[2,'Презе
 var LN={1:'вводного урока',2:'первого содержательного урока',3:'продолжающегося урока',4:'завершающего урока',5:'защитной презентации'};
 var EX={1:'приветствие «Назови свою любимую букву» — в начале',2:'«Выбор и объяснение» — после образца',3:'опрос по карточкам — в повторении',4:'круг ответов — в проверке',5:'самопрезентация — на слайдах 1–2'};
 var FIX={1:'слайд 3 — сократить программу до четырёх строк',2:'слайд 9 — добавить пример со словом «щука»',3:'слайд 6 — добавить связку с прошлым уроком',4:'слайд 10 — уточнить критерий: не больше двух ошибок',5:'слайд 1 — оставить крючок одной фразой'};
-function PT(i){var k=K[i-1],df=k[2],m=function(x){return '<mark>['+x+']</mark>'};
- var files=i<5?'05_Комплект_'+df+'.txt, Дизайн_выбранный.jpg':'05_Комплект_'+df+'.txt, Дизайн_выбранный.jpg, четыре презентации PDF, кадры записи урока';
+function DF(){var e=document.getElementById('dfile');return (e&&e.value.trim())||ST.get('dfile')||'Дизайн_выбранный.jpg'}
+var PN={1:'Проект 1 · Вводный урок',2:'Проект 2 · Первый содержательный урок',3:'Проект 3 · Продолжающийся урок',4:'Проект 4 · Завершающий урок',5:'Проект 5 · Защитная презентация'};
+function KF(i){return '06_Комплект_'+K[i-1][2]+'.txt'}
+function PT(i){var k=K[i-1],df=k[2],kf=KF(i),dz=DF(),m=function(x){return '<mark>['+x+']</mark>'};
+ var flist='1) «'+kf+'»\n2) «'+dz+'»'+(i==5?'\n3) '+m('Презентация_1.pdf, Презентация_2.pdf, Презентация_3.pdf, Презентация_4.pdf')+'\n4) '+m('Кадр_урока.jpg'):'');
+ var design='Курс «'+ph('cname','название')+'». Формат 16:9. Шрифт '+ph('font','шрифт')+'. Фон '+ph('bg','фон')+', текст '+ph('tx','текст')+', акцент '+ph('ac','акцент')+', карточки '+ph('cd','карточки')+'. Основной текст 30–32 pt, межстрочный интервал не меньше 1,2. Обращение к ученицам на «вы».';
  return [
- ['Инструкция проекта (вставьте в настройки проекта '+df+')','Ты помогаешь мне собрать презентацию для моего курса «'+m('Русский алфавит с нуля')+'» для '+m('детей 6–7 лет')+'. Используй только файлы этого проекта. Не придумывай факты, отзывы, цифры и арабский текст. Неизвестное обозначай [УТОЧНИТЬ У АВТОРА]. Обращайся ко мне на «вы». Работай по шагам и жди моего ответа после каждого шага.'],
- ['Запрос 1 · Проверка файлов','Прочитай все файлы проекта: '+m(files)+'. Перечисли, что ты прочитал. Сообщи, если файл не читается или в материалах есть противоречия. Пока ничего не составляй.'],
- ['Запрос 2 · План и полный текст слайдов','Составь план '+LN[i]+' по слайдам шаблона из моего комплекта. Для каждого слайда: номер, заголовок, полный текст. Не больше '+m(i<5?'20':'9')+' слайдов. Приёмы ставь туда, где они указаны в комплекте: '+m(EX[i])+'. Если в комплекте есть «Дополнения автора», поставь каждое строго на указанное место и перенумеруй слайды. PPTX пока не собирай, жди моей проверки.'],
- ['Запрос 3 · Сборка в дизайне','План утверждаю с правками: '+m(FIX[i])+'. Собери PPTX строго в дизайне выбранного слайда. Шрифт '+m('Arial')+', основной текст 30–32 pt. Где нужна картинка, оставь рамку «Место для картинки».']]}
-var KH='';K.forEach(function(k){var i=k[0];KH+='<div class="kit"><b>'+k[1]+'</b><p>Проект в Kimi: '+k[2]+'</p><details style="background:#fff8e6;border-color:#E3D2A6"><summary style="font-size:14px">Промпты для Kimi · заполните поля в [скобках]</summary><div class="body">';
- PT(i).forEach(function(q,j){KH+='<div class="ph">'+(j+1)+'. '+q[0]+'</div><div class="pe" contenteditable="true" id="pe'+i+'_'+j+'"></div><div class="bs"><button class="l" data-pc="'+i+'_'+j+'">Скопировать</button></div>'});
+ ['Инструкция проекта','куда: поле «Инструкции» проекта','Ты помогаешь мне собрать презентацию для моего курса «'+m('Русский алфавит с нуля')+'» для '+m('детей 6–7 лет')+'. Используй только файлы этого проекта. Файлы сам не открывай: открывай только те, которые я называю в сообщении, по точному названию. Не придумывай факты, отзывы, цифры и арабский текст. Неизвестное обозначай [УТОЧНИТЬ У АВТОРА]. Обращайся ко мне на «вы». Работай по шагам и жди моего ответа после каждого шага.'],
+ ['Промпт 1 · Проверка файлов','куда: поле сообщения в чате проекта','Открой и прочитай файлы этого проекта:\n'+flist+'\nДля каждого файла напиши его название и 2–3 строки: что в нём. Если какой-то файл не видишь — так и напиши. Пока ничего не составляй.'],
+ ['Промпт 2 · План и текст слайдов','куда: поле сообщения в чате проекта','Открой файл «'+kf+'». Составь план '+LN[i]+' по слайдам шаблона из этого файла. Для каждого слайда: номер, заголовок, полный текст. Не больше '+(i<5?'20':'9')+' слайдов. Приёмы ставь туда, где они указаны в комплекте: '+m(EX[i])+'. Если в комплекте есть «Дополнения автора», поставь каждое строго на указанное место и перенумеруй слайды. PPTX пока не собирай — жди моей проверки.'],
+ ['Промпт 3 · Дизайн','куда: поле сообщения в чате проекта','Открой картинку «'+dz+'» — это дизайн, который я выбрала.\nТребования к дизайну: '+design+'\nОпиши, как ты понял дизайн: фон, цвета, плашки, шрифт. PPTX пока не собирай.'],
+ ['Промпт 4 · Сборка PPTX','куда: поле сообщения в чате проекта','План утверждаю с правками: '+m(FIX[i])+'. Открой файлы «'+kf+'» и «'+dz+'». Собери PPTX строго в этом дизайне. Основной текст 30–32 pt; при большом объёме уменьши размер, но не сокращай текст. Где нужна картинка — оставь рамку «Место для картинки».']]}
+var KH='';K.forEach(function(k){var i=k[0];KH+='<div class="kit"><b>'+k[1]+'</b><p>Проект в Kimi: <b>'+PN[i]+'</b> · пакет '+k[2]+'</p><details style="background:#fff8e6;border-color:#E3D2A6"><summary style="font-size:14px">Инструкция и 4 промпта для Kimi · по порядку</summary><div class="body">';
+ PT(i).forEach(function(q,j){KH+='<div class="ph">'+q[0]+'</div><div class="where">📍 '+q[1]+(j===0?' · вставить текстом':' · вставить текстом, не файлом')+'</div><div class="pe" contenteditable="true" id="pe'+i+'_'+j+'"></div><div class="bs"><button class="l" data-pc="'+i+'_'+j+'">Скопировать</button></div>'});
  KH+='<div class="bs"><button class="l" data-reset="'+i+'">Вернуть образец</button></div></div></details><div class="bs"><button class="l" data-kit="'+i+'">Скопировать комплект</button><button data-dl="'+i+'">Скачать материалы для Kimi</button></div><div class="ok" id="okk'+i+'"></div></div>'});
 document.getElementById('kits').innerHTML+=KH;
-function loadPE(i){PT(i).forEach(function(q,j){var e=document.getElementById('pe'+i+'_'+j),sv=ST.get('pe'+i+'_'+j);e.innerHTML=sv!==null?sv:q[1]})}
-K.forEach(function(k){loadPE(k[0]);PT(k[0]).forEach(function(q,j){var e=document.getElementById('pe'+k[0]+'_'+j);e.addEventListener('input',function(){ST.set('pe'+k[0]+'_'+j,e.innerHTML)})})});
+function loadPE(i){PT(i).forEach(function(q,j){var e=document.getElementById('pe'+i+'_'+j),sv=ST.get('q'+i+'_'+j);e.innerHTML=sv!==null?sv:q[2]})}
+(function(){var e=document.getElementById('dfile');if(e){e.value=ST.get('dfile')||'';e.addEventListener('input',function(){ST.set('dfile',e.value);K.forEach(function(k){loadPE(k[0])})})}})();
+K.forEach(function(k){loadPE(k[0]);PT(k[0]).forEach(function(q,j){var e=document.getElementById('pe'+k[0]+'_'+j);e.addEventListener('input',function(){ST.set('q'+k[0]+'_'+j,e.innerHTML)})})});
 function peText(i){return PT(i).map(function(q,j){return '--- '+q[0]+' ---\n'+document.getElementById('pe'+i+'_'+j).textContent.trim()}).join('\n\n')}
 
 function ph(id,d){return v(11,id)||'['+d+']'}
@@ -226,9 +238,10 @@ function makeZip(files){var enc=new TextEncoder(),parts=[],cen=[],off=0;
  parts.push(new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(cs),u32(off),u16(0))));
  return new Blob(parts,{type:'application/zip'})}
 function folder(i){var k=K[i-1],pt=PT(i),nm=(who.value||'').trim().replace(/\s+/g,'_');
- var f=[['00_Как_работать.txt','ПАПКА ДЛЯ KIMI · '+k[1]+'\nПроект: '+k[2]+'\n\n1. Создайте в Kimi проект '+k[2]+'.\n2. Текст из файла 01 вставьте в инструкцию проекта.\n3. Загрузите в проект файл 05_Комплект и выбранный пробный слайд дизайна'+(i==5?', четыре презентации PDF и кадры записи урока':'')+'. Фрагменты пособия — по желанию.\n4. Отправляйте запросы 02, 03, 04 по одному. После каждого проверяйте ответ Kimi.\n5. Готовую презентацию откройте в Canva, проверьте и сохраните PDF.']];
- pt.forEach(function(q,j){f.push([['01_Инструкция_проекта.txt','02_Запрос_1_Проверка_файлов.txt','03_Запрос_2_План_и_текст.txt','04_Запрос_3_Сборка.txt'][j],document.getElementById('pe'+i+'_'+j).textContent.trim()])});
- f.push(['05_Комплект_'+k[2]+'.txt',kit(i)]);
+ var nm2=['01_Инструкция_проекта.txt','02_Промпт_1_Проверка_файлов.txt','03_Промпт_2_План_и_текст.txt','04_Промпт_3_Дизайн.txt','05_Промпт_4_Сборка.txt'];
+ var f=[['00_Как_работать.txt','ПАПКА ДЛЯ KIMI · '+PN[i]+' (пакет '+k[2]+')'+'\n\nВАЖНО: в проект как ФАЙЛЫ загружаются только два файла:\n  • '+KF(i)+'\n  • ваш пробный слайд дизайна: '+DF()+(i==5?'\n  • а также четыре презентации PDF и кадр урока':'')+'\nФайлы 01–05 НЕ загружайте: откройте каждый, скопируйте текст и вставьте.\n\nПОРЯДОК\n1. Создайте в Kimi проект и назовите его: '+PN[i]+'.\n2. Откройте файл 01, скопируйте текст и вставьте в поле «Инструкции» проекта. Сохраните.\n3. Загрузите в проект файлы: '+KF(i)+' и '+DF()+'.\n4. Откройте новый чат внутри проекта.\n5. Откройте файл 02, скопируйте текст, вставьте в поле сообщения и отправьте. Дождитесь ответа Kimi.\n6. Так же по очереди: 03 (проверьте и исправьте текст слайдов), 04 (дизайн), 05 (сборка PPTX).\n7. Откройте PPTX в Canva, проверьте, сохраните PDF и сдайте через бота.\n\nЕсли Kimi пишет, что не видит файл: напишите «Перечисли файлы, которые ты видишь в проекте» и повторите промпт с точным названием файла.']];
+ pt.forEach(function(q,j){f.push([nm2[j],document.getElementById('pe'+i+'_'+j).textContent.trim()])});
+ f.push([KF(i),kit(i)]);
  makeZip(f);return [f,k[2]+(nm?'_'+nm:'')+'.zip']}
 function copy(t,ok){function done(){document.getElementById(ok).textContent='Скопировано'}
  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fb(t);done()})}else{fb(t);done()}}
@@ -242,7 +255,7 @@ document.addEventListener('click',function(e){var b=e.target;
  if(b.dataset.addnew){var n=b.dataset.addnew,a=getAdds(n);a.push({w:'',p:''});ST.set('adds'+n,JSON.stringify(a));drawAdds(n)}
  if(b.dataset.adel){var q=b.dataset.adel.split('_'),a=getAdds(q[0]);a.splice(+q[1],1);ST.set('adds'+q[0],JSON.stringify(a));drawAdds(q[0])}
  if(b.dataset.pc){var q=b.dataset.pc;copy(document.getElementById('pe'+q).textContent.trim(),'okk'+q.split('_')[0])}
- if(b.dataset.reset){var r=b.dataset.reset;PT(+r).forEach(function(q,j){try{localStorage.removeItem('dfk_pe'+r+'_'+j)}catch(e){}});loadPE(+r);document.getElementById('okk'+r).textContent='Образец возвращён'}
+ if(b.dataset.reset){var r=b.dataset.reset;PT(+r).forEach(function(q,j){try{localStorage.removeItem('dfk_q'+r+'_'+j)}catch(e){}});loadPE(+r);document.getElementById('okk'+r).textContent='Образец возвращён'}
  if(b.dataset.kit)copy(kit(+b.dataset.kit),'okk'+b.dataset.kit);
  if(b.dataset.dl){var r=folder(+b.dataset.dl),z=makeZip(r[0]),a=document.createElement('a');a.href=URL.createObjectURL(z);a.download=r[1];document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);document.getElementById('okk'+b.dataset.dl).textContent='Папка скачана: распакуйте архив'}
 });
