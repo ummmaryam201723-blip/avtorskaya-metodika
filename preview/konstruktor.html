@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мой проект курса · Авторская методика</title>
+<style>
+body{margin:0;background:#F3EEE4;font-family:Georgia,serif;color:#2F3A2C}
+.pg{max-width:640px;margin:0 auto;padding:14px}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tab{flex:1;font-family:Arial;font-size:13px;padding:9px;border-radius:9px;border:1px solid #B9C2A8;background:#FBF8F2;color:#4C5B3F;text-align:center;cursor:pointer}
+.tab.on{background:#6B7A5E;color:#fff;border-color:#6B7A5E}
+.cd{background:#FBF8F2;border:1px solid #DDD5C6;border-radius:14px;padding:16px;margin-bottom:12px}
+h1{font-size:22px;font-weight:500;margin:0 0 4px}h2{font-size:16px;font-weight:500;margin:14px 0 6px}
+.tag{font-family:Arial;font-size:11px;letter-spacing:.1em;color:#6B7A5E}
+p,.hint{font-family:Arial;font-size:13px;line-height:1.5;margin:4px 0}.hint{color:#5E5A4E}
+label{display:block;font-family:Arial;font-size:13px;font-weight:bold;margin:12px 0 2px}
+input,textarea,select{width:100%;box-sizing:border-box;font-family:Arial;font-size:14px;padding:9px;border:1px solid #DDD5C6;border-radius:8px;background:#fff;color:#2F3A2C}
+textarea{min-height:64px;resize:vertical}
+::placeholder{color:#1D5FD1;font-style:italic;opacity:1}
+mark{background:#FFE36A;color:#2F3A2C;border-radius:3px;padding:0 2px}
+.pe{font-family:Arial;font-size:13px;line-height:1.5;background:#fff;border:1px solid #DDD5C6;border-radius:8px;padding:9px;white-space:pre-wrap;outline:none}
+.pe:focus{border-color:#6B7A5E}
+.ph{font-family:Arial;font-size:12.5px;font-weight:bold;margin:10px 0 3px}
+details{background:#FBF8F2;border:1px solid #DDD5C6;border-radius:12px;margin-bottom:8px}
+summary{list-style:none;cursor:pointer;padding:11px 13px;display:flex;align-items:center;gap:10px;font-size:15px}
+summary::-webkit-details-marker{display:none}
+.nm{background:#D7DDCB;color:#3E4A36;border-radius:6px;font-family:Arial;font-size:11px;padding:3px 7px}
+.st{margin-left:auto;font-family:Arial;font-size:11px;color:#5E5A4E;white-space:nowrap}
+.st.full{color:#4C6B35}
+.body{padding:0 13px 13px}
+.blk{font-family:Arial;font-size:11px;letter-spacing:.1em;color:#6B7A5E;margin:16px 2px 6px}
+.out{white-space:pre-wrap;font-family:Arial;font-size:12.5px;background:#F6F1E7;border:1px solid #E2DACB;border-radius:9px;padding:10px;margin-top:6px;max-height:220px;overflow:auto}
+.bs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 2px}
+button{font-family:Arial;font-size:13px;border-radius:8px;padding:9px 12px;border:1px solid #6B7A5E;background:#6B7A5E;color:#fff;cursor:pointer}
+button.l{background:#FBF8F2;color:#4C5B3F;border-color:#B9C2A8}
+.note{background:#E6EAD9;border-radius:10px;padding:10px 12px;font-family:Arial;font-size:12.5px;line-height:1.45;margin:8px 0}
+.kit{border:1px solid #E3D2A6;background:#F8F0DA;border-radius:12px;padding:12px;margin-bottom:8px}
+.kit b{font-size:15px;font-weight:500}
+.ok{font-family:Arial;font-size:12px;color:#4C5B3F;min-height:16px;margin-top:4px}
+.crit li{font-family:Arial;font-size:13px;line-height:1.5}
+</style><link rel="stylesheet" href="../img/theme.css"><link rel="icon" href="../img/girl_soft_b.png"><meta name="robots" content="noindex,nofollow"><style>:root{
+ --base:#EFEDE6;--panel:#F7F6F1;--card:#FCFBF8;
+ --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+ --stone:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .26 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='.35'/%3E%3C/svg%3E");
+ --lift:0 1.5px 0 rgba(255,255,255,.95) inset,0 -1px 0 rgba(120,115,95,.06) inset,0 3px 0 #E4E1D6,0 14px 30px -6px rgba(84,80,62,.16),0 4px 10px rgba(84,80,62,.06);
+ --liftS:0 1px 0 rgba(255,255,255,.95) inset,0 2px 0 #E6E3D9,0 8px 18px -4px rgba(84,80,62,.14);
+ --clay:inset 0 2px 1px rgba(255,255,255,.42),inset 0 -1px 2px rgba(48,54,49,.06),0 8px 18px -4px rgba(89,103,72,.38),0 2px 4px rgba(89,103,72,.18);
+ --clayL:inset 0 2px 1px rgba(255,255,255,1),inset 0 -1px 2px rgba(120,115,95,.06),0 8px 18px -5px rgba(84,80,62,.2),0 2px 4px rgba(84,80,62,.08);
+}
+body{background-color:#EFEDE6!important;background-image:var(--grain)!important;background-attachment:fixed}
+.pg,.board{background:#F7F6F1!important;background-image:var(--grain)!important;border-radius:40px!important;box-shadow:var(--lift)!important}
+.b,button,.tab.on{border-radius:999px!important;background:linear-gradient(180deg,#8D9C74,#7F8E67 60%,#76855F)!important;box-shadow:var(--clay)!important;min-height:46px}
+.b2,button.l,.tab{border-radius:999px!important;background:linear-gradient(180deg,#FFFFFF,#F2F1EB)!important;color:#596748!important;box-shadow:var(--clayL)!important;min-height:46px}
+textarea,input,select{border-radius:18px!important;border:0!important;background:#FCFBF8!important;box-shadow:inset 0 1px 3px rgba(84,80,62,.12),0 1px 0 #fff!important}
+</style></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html" class=on>Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
+
+<div class="tabs"><div class="tab on" data-t="st">Ученица</div><div class="tab" data-t="cu">Проверка куратора</div></div>
+
+<div id="st">
+<div class="cd">
+<h1>Мой проект курса</h1>
+<p>Здесь вы выполняете задания, сохраняете свои решения и готовите материалы для создания курса.</p>
+<label>Ваше имя</label><input id="who" placeholder="Имя Фамилия">
+<div class="note">После каждого занятия откройте его здесь и заполните поля. <span style="color:#1D5FD1;font-style:italic">Синий текст</span> — пример на курсе «Русский алфавит с нуля». Начните писать — он исчезнет сам. В промптах для Kimi поля в <mark>[квадратных скобках]</mark> замените своим. Всё сохраняется в этом браузере. Внизу — комплекты для Kimi: в них соберётся всё, что вы заполнили.</div>
+</div>
+<div id="lessons"></div>
+<div class="blk">МАТЕРИАЛЫ ДЛЯ KIMI</div>
+<div class="cd" id="kits"><p>Для каждой презентации: 1) откройте «Промпты для Kimi» и заполните поля в квадратных скобках; 2) нажмите «Скачать материалы для Kimi». В папке по порядку: как работать, инструкция проекта, три запроса и комплект со всеми вашими ответами и дизайном. В Kimi приложите ещё выбранный пробный слайд.</p></div>
+<div class="cd"><h2>Резервная копия</h2><p>Сохраните копию, чтобы не потерять ответы при смене телефона или браузера.</p>
+<div class="bs"><button class="l" id="bk">Скачать копию</button><button class="l" id="rs">Загрузить копию</button><input type="file" id="rsf" accept=".json" style="display:none"></div><div class="ok" id="okb"></div></div>
+</div>
+
+<div id="cu" style="display:none"><div class="cd">
+<div class="tag">ДЛЯ КУРАТОРА</div><h1>Проверка с помощником</h1>
+<p>Выберите занятие, вставьте ответ ученицы и скопируйте промпт в ИИ. Он даст черновик ответа: вы перечитываете, правите и отправляете сами.</p>
+<label>Занятие</label><select id="c_l"></select>
+<label>Что проверяем</label><ul class="crit" id="c_cr"></ul>
+<label>Ответ ученицы</label><textarea id="c_a" placeholder="Вставьте сюда текст из Telegram"></textarea>
+<div class="bs"><button id="c_go">Скопировать промпт для проверки</button></div><div class="ok" id="okc"></div>
+</div></div>
+
+<div class="remft"><img src="../img/rem_graphite.png" alt="Rem"><span>· tajweedjazari4@cloud.com</span></div></div>
+<script>
+var TG='https://t.me/+zDj6L_XIXr84NDM0'; // группа домашних заданий
+var L=[
+{n:1,t:'Замысел курса и аудитория',f:[
+ ['who_t','Кто я как преподаватель','Учу детей 6–7 лет читать 4 года, онлайн, в группах до 5 человек'],
+ ['goal','Цель курса','Ребёнок узнаёт все 33 буквы русского алфавита и читает слоги и короткие слова'],
+ ['aud','Аудитория','Дети 6–7 лет перед школой, начинают с нуля, занимаются с родителем'],
+ ['sys','Система: как вы учите','Сначала слушаем звук, затем находим букву, затем пишем её и проверяем по образцу'],
+ ['res','Результат: точка А → точка Б','А: путает Ш и Щ, И и Й. Б: узнаёт все буквы и читает слова вроде «шар», «щука»'],
+ ['qs','5–10 повторяющихся вопросов или трудностей учениц и откуда они','«Почему Ш и Щ похожи?», «Зачем у Й хвостик сверху?», «Сколько заниматься в день?» — из чата родителей прошлой группы']]},
+{n:2,t:'Проблема и результат обучения',f:[
+ ['dir','Направление','Обучение детей русскому алфавиту с нуля'],
+ ['pain','Основная боль аудитории','Ребёнок знает буквы по картинкам, а в слове похожие буквы путает'],
+ ['cause','Причины и как проверить каждую','1. Похожие буквы учили в разные дни — проверю, спросив родителя, по какой азбуке учили. 2. Мало чтения слов — проверю коротким чтением на первом уроке'],
+ ['mres','Измеримый результат: действие, материал, критерий, проверка','Ребёнок находит заданную букву в 10 словах, ошибок не больше одной; проверка на завершающем уроке'],
+ ['prod','Продукт, который создаёте','Курс «Русский алфавит с нуля»: 12 онлайн-уроков с рабочей тетрадью'],
+ ['ex','Один подтверждающий пример или наблюдение','В прошлой группе почти все дети путали Ш и Щ в словах']]},
+{n:3,t:'Анализ материалов и авторский вклад',f:[
+ ['hyp','Гипотеза продукта','Для детей 6–7 лет создаю курс по алфавиту, чтобы они узнавали буквы и читали короткие слова за 12 уроков'],
+ ['src','Источники (1–3)','Название азбуки, автор, год издания'],
+ ['part','Выбранный раздел пособия','Раздел «Буквы Ш и Щ»'],
+ ['map8','Карта сборки: 8 вопросов','1. Что в разделе: буквы по одной. 2. Чего не хватает: сравнения похожих букв. 3. Что добавляю: таблицу сравнения и поиск в словах… (ответьте на все 8)'],
+ ['edge','Граница: что в источнике / что беру / моё решение','В источнике: порядок букв и картинки. Беру: картинки. Моё решение: учу похожие буквы вместе и добавляю поиск в словах']]},
+{n:4,t:'Разработка программы, модулей и уроков',f:[
+ ['cgoal','Цель курса и исходный уровень аудитории','Цель: узнавать все буквы и читать короткие слова. Уровень: с нуля'],
+ ['mods','Модули и последовательность уроков','Модуль 1: гласные. Модуль 2: согласные. Модуль 3: похожие буквы. Модуль 4: слоги и слова'],
+ ['matrix','Матрица уроков: цель, теория и материалы, практика, критерии','Урок 7 · цель: различать Ш и Щ · таблица сравнения · поиск в словах · не больше одной ошибки на 10 слов'],
+ ['dtopic','Тема и образец, которые раскрываются в дипломе','Тема: похожие буквы. Образец: урок о буквах Ш и Щ'],
+ ['trans','Переходы: на что опирается следующий урок','Урок 8 опирается на таблицу сравнения из урока 7']]},
+{n:5,t:'Вводный урок · шаблон 1',sk:1,add:1,f:[['s01','Слайд 1 · Титульный','Русский алфавит с нуля · учимся узнавать буквы и читать первые слова · [имя] · онлайн, поток 1'],['s02','Слайд 2 · Открытие на выбор автора','Загадка: «Какая буква прячется в слове „мама“ дважды?»'],['s03','Слайд 3 · Образовательный центр и автор','[Название центра]. Я — [имя], 4 года учу детей читать'],['s04','Слайд 4 · Для кого этот курс','Для детей 6–7 лет, которые ещё не знают букв'],['s05','Слайд 5 · Чему научитесь','Узнавать все 33 буквы, различать похожие, читать слоги и короткие слова'],['s06','Слайд 6 · Программа: разделы','Гласные · Согласные · Похожие буквы · Слоги и слова'],['s07','Слайд 7 · Сроки курса','6 недель, 12 уроков по 40 минут'],['s08','Слайд 8 · Путь по неделям (таблица)','Неделя 1–2: гласные · 3: согласные · 4: похожие буквы · 5–6: слоги и слова'],['s09','Слайд 9 · Как проходят занятия','Онлайн, камера включена, рядом родитель, работа с карточками на экране'],['s10','Слайд 10 · Правила и организация','Приходим вовремя, тетрадь рядом, задание сдаём в группу до следующего урока'],['s11','Слайд 11 · Первые шаги','Распечатать тетрадь, вступить в группу родителей'],['s12','Слайд 12 · Вопросы и рефлексия','«Что вам интересно узнать на курсе?»']]},
+{n:6,t:'Первый содержательный урок · шаблон 2',sk:2,add:1,f:[['s01','Слайд 1 · Титульный','Урок 7 · Буквы Ш и Щ'],['s02','Слайд 2 · Дуа, афоризм или мотивация','Мотивация: «Сегодня научимся различать двух сестёр-букв»'],['s03','Слайд 3 · Цели урока','Различать Ш и Щ, находить их в словах'],['s04','Слайд 4 · План урока','Знакомство · правило · поиск в словах · игра · итог'],['s05','Слайд 5 · Введение в тему','В русском алфавите есть буквы-близнецы: они похожи, но звучат по-разному'],['s06','Слайд 6 · Карта темы','Похожие буквы: Ш–Щ, И–Й, Е–Ё'],['s07','Слайд 7 · С чего начинаем сегодня','Сегодня — Ш и Щ'],['s08','Слайд 8 · Определение и правило','Щ — это Ш с хвостиком внизу справа'],['s09','Слайд 9 · Образец и демонстрация','Таблица: Ш · Щ, слова «шар» и «щука»'],['s10','Слайд 10 · Упражнение на слушание и узнавание','Называю слово — ребёнок показывает карточку Ш или Щ'],['s11','Слайд 11 · Упражнение на чтение или выполнение','Прочитать 6 слогов: ша, ща, шу, щу, ши, щи'],['s12','Слайд 12 · Сравнение','Где Ш, а где Щ: шётка или щётка?'],['s13','Слайд 13 · Типичные ошибки','Пропускают хвостик у Щ при письме'],['s14','Слайд 14 · Обратная связь','Что получилось, что повторить, один шаг'],['s15','Слайд 15 · Проверка понимания','Найти Щ в 5 словах'],['s16','Слайд 16 · Термины урока','Буква, звук, похожие буквы'],['s17','Слайд 17 · Рефлексия','«Как я теперь отличаю Ш и Щ?»'],['s18','Слайд 18 · Домашнее задание','Обвести Щ в 10 словах в тетради, с. 12'],['s19','Слайд 19 · Следующий урок','Буквы И и Й']]},
+{n:7,t:'Продолжение изучения темы · шаблон 3',sk:3,add:1,f:[['s01','Слайд 1 · Титульный','Урок 8 · Буквы И и Й'],['s02','Слайд 2 · Дуа, афоризм, мотивация или короткая лекция','Мотивация: «У одной буквы есть шапочка — найдём её»'],['s03','Слайд 3 · Цели или план урока','Различать И и Й, читать слова с ними'],['s04','Слайд 4 · Повторение прошлой темы: опрос','Показываю Ш или Щ — дети называют'],['s05','Слайд 5 · Повторение: практика','Прочитать 4 слова с Ш и Щ'],['s06','Слайд 6 · Переход к новой теме','«Какие ещё буквы отличаются одной чёрточкой?»'],['s07','Слайд 7 · Рассказ о новом элементе','Й — это И с шапочкой сверху'],['s08','Слайд 8 · Практика','Подчеркнуть И и Й в 8 словах'],['s09','Слайд 9 · Сравнение','Сравнить: Ш–Щ и И–Й, что общего'],['s10','Слайд 10 · Приём из сингапурской системы','«Выбор и объяснение»: выбери карточку и объясни выбор'],['s11','Слайд 11 · Обратная связь','Что получилось, что повторить, один шаг'],['s12','Слайд 12 · Рефлексия','«Что было самым трудным?»'],['s13','Слайд 13 · Домашнее задание','Найти И и Й в 10 словах, тетрадь с. 14'],['s14','Слайд 14 · Термины урока','Похожие буквы, шапочка, хвостик'],['s15','Слайд 15 · Следующий урок','Чтение слов с похожими буквами']]},
+{n:8,t:'Итоговый урок и проверка знаний · шаблон 4',sk:4,add:1,f:[['s01','Слайд 1 · Титульный','Зачёт модуля 3 · Похожие буквы'],['s02','Слайд 2 · Открытие по выбору автора','Загадка про букву с хвостиком'],['s03','Слайд 3 · Что и зачем проверяем','Различаем Ш–Щ и И–Й, чтобы читать без ошибок'],['s04','Слайд 4 · Формат и правила','Отвечаем по очереди, время 30 минут'],['s05','Слайд 5 · Критерии оценки','Зачтено: не больше двух ошибок'],['s06','Слайд 6 · План зачёта','Разминка · вопросы · практика · итог'],['s07','Слайд 7 · Настрой и вопросы','«Какая буква вам больше нравится и почему?»'],['s08','Слайд 8 · Входная диагностика','Назвать 4 буквы по карточкам'],['s09','Слайд 9 · Круг ответов на время','Каждый называет букву за 10 секунд'],['s10','Слайд 10 · Проверка знаний: верно или нет','«У Й хвостик внизу» — верно или нет?'],['s11','Слайд 11 · Вопросы на понимание','«Как отличить Ш от Щ?»'],['s12','Слайд 12 · Практическая часть','Найти буквы в 10 словах'],['s13','Слайд 13 · Разбор ошибок','Разбираем одну ошибку вместе'],['s14','Слайд 14 · Возврат к входной диагностике','Снова 4 карточки: что изменилось'],['s15','Слайд 15 · Результаты и оценка','Зачтено / повторить'],['s16','Слайд 16 · Рефлексия и благодарность','«Что стало легче?» Спасибо за работу']]},
+{n:9,t:'Банк учебных материалов и приёмов',note:'Банк методиста лежит в Telegram-группе домашних заданий, в папках PDF. Откройте его, сохраните нужное в свою папку курса и впишите ниже, какие приёмы и где вы берёте.',f:[
+ ['p1','Приёмы для вводной презентации: название и где стоит','Приветствие: «Назови свою любимую букву» — в начале. Рефлексия: «Что было интересно» — в конце'],
+ ['p2','Приёмы для первого урока: название и где стоит','«Выбор и объяснение» — после образца. «Карта понятия» — на закреплении'],
+ ['p3','Приёмы для продолжающегося урока','Опрос по карточкам — в повторении. Поиск в словах — в практике'],
+ ['p4','Приёмы для завершающего урока','Круг ответов — в проверке. «Что стало легче» — в рефлексии'],
+ ['psrc','Источники материалов','Азбука [название, автор]; карточки букв — мои; таблица сравнения — моя']]},
+{n:10,t:'Проверка структуры четырёх уроков',f:[
+ ['fix','Что исправила после согласования','В карте продолжающегося урока добавила повторение; в карте зачёта уточнила критерий: не больше двух ошибок'],
+ ['prot','Протокол: какие карты утверждены, какие на доработке','Вводная — утверждена. Первый урок — утверждена. Продолжающийся — доработка: нет связки. Завершающий — утверждена']]},
+{n:11,t:'Разработка единого дизайна',design:1,f:[
+ ['cname','Название курса','Русский алфавит с нуля'],['font','Шрифт','Arial'],['bg','Цвет фона','кремово-белый'],
+ ['tx','Цвет текста','тёмно-зелёный'],['ac','Цвет акцента','оливковый'],['cd','Цвет карточек','песочно-бежевый'],
+ ['n','Сколько картинок-образцов прикладываете (1, 2 или 3)','3']]},
+{n:18,t:'Представление и продвижение курса',f:[
+ ['offer','Предложение курса','Для детей 6–7 лет, которые начинают читать, создан курс «Русский алфавит с нуля». Ребёнок будет учиться узнавать буквы через сравнение и поиск в словах. Результат проверяем на зачёте: найти буквы в 10 словах.'],
+ ['self','Самопрезентация на 2–3 минуты','Выберите схему ниже и нажмите «Взять эту схему» — шаблон появится здесь'],
+ ['ad','Объявление о наборе','Приглашаю детей 6–7 лет на курс «Русский алфавит с нуля». Будем учиться узнавать буквы через сравнение и поиск. Занятия: онлайн, 2 раза в неделю, 6 недель. Запись: [ссылка]'],
+ ['frag','Фрагмент, который подтверждает устройство курса','Слайд с таблицей Ш и Щ и заданием на поиск из первого урока']]},
+{n:19,t:'Пояснительная записка и защитная презентация · 9 слайдов',sk:5,add:1,f:[
+ ['z1','Записка · Автор и работа','[Имя], курс «Русский алфавит с нуля», тема диплома: похожие буквы; аудитория: дети 6–7 лет с нуля'],
+ ['z2','Записка · Проблема и цель','Дети знают буквы по картинкам, но путают похожие в словах. Цель: узнавать все буквы и читать короткие слова'],
+ ['z3','Записка · Архитектура и четыре работы','4 модуля, 12 уроков. Четыре презентации: вводная, урок о Ш и Щ, продолжение об И и Й, зачёт модуля'],
+ ['z4','Записка · Решения и источники','Учу похожие буквы вместе, а не по порядку алфавита, потому что дети путают именно их. Источник: азбука [название, автор]'],
+ ['z5','Записка · Проверка и комплект','Проверка — поиск букв в словах, не больше двух ошибок. Создано: 4 презентации и тетрадь. Проведён один урок, запись есть'],
+ ['s1','Слайд 1 · Кто я: крючок, имя, фраза-якорь','Крючок: «Он знал все буквы — и прочитал „шука“ вместо „щука“». Имя. Якорь: «Похожие буквы учим вместе»'],
+ ['s2','Слайд 2 · Что я создала','Курс «Русский алфавит с нуля»: узнавать буквы и читать короткие слова. Покажу: для кого, как устроен, как проверяю'],
+ ['s3','Слайд 3 · Для кого курс','Дети 6–7 лет. Трудность: «Ш и Щ одинаковые». Точка А: путают похожие буквы'],
+ ['s4','Слайд 4 · Как устроен курс','4 модуля, 12 уроков, 6 недель. Тема диплома: похожие буквы'],
+ ['s5','Слайд 5 · Что даёт результат','Точка Б: узнаёт все буквы и читает слова. Проверка: зачёт, 10 слов. Четыре презентации'],
+ ['s6','Слайд 6 · Первый урок вживую','Кадр: ребёнок находит Щ в словах. Видно: приём «Выбор и объяснение». Результат: ребёнок нашёл букву'],
+ ['s7','Слайд 7 · Продолжающийся урок вживую','Фрагмент: повторение по карточкам. Что исправила: добавила связку с прошлым уроком'],
+ ['s8','Слайд 8 · Маркетинг','Для детей 6–7 лет: алфавит и первые слова за 6 недель. Онлайн, 2 раза в неделю. Запись: [ссылка]'],
+ ['s9','Слайд 9 · Вывод и ответы на вопросы','«Похожие буквы учим вместе». Создан курс и проведён один урок. Готовые ответы: чему учит, для кого, чем отличается, как проверить']]}
+];
+var SCH=[
+['Зачем – как – что','Начните с того, во что верите, потом — как учите, потом — что создали.','Я верю, что [во что вы верите]. Поэтому на моих уроках [как вы учите]. Так появился курс «[название]»: за [срок] ученица [результат]. Меня зовут [имя], я [кто вы как преподаватель].','Я верю, что читать начинают не с алфавита, а с интереса. Поэтому на моих уроках ребёнок сначала играет с буквой, а потом её пишет. Так появился курс «Русский алфавит с нуля»…'],
+['Сцена из практики','Короткая история с ученицей, что вы поняли, что из этого выросло.','[Короткая сцена: что сделала или сказала ученица]. Тогда я поняла: [ваш вывод]. Я стала [что изменили]. Меня зовут [имя]. Так появился курс «[название]».','Мальчик знал все буквы по картинкам, но «щука» прочитал как «шука». Тогда я поняла: похожие буквы надо учить вместе…'],
+['Вопрос к слушателям','Начните с вопроса, ответ на который удивит. Затем ваше наблюдение и решение.','Как вы думаете, [вопрос]? В моей практике я заметила: [наблюдение]. Поэтому в курсе «[название]» ученица [что делает]. Меня зовут [имя].','Как вы думаете, сколько раз ребёнку нужно увидеть букву, чтобы не путать её с похожей? В моей практике я заметила…'],
+['До и после','Покажите ученицу в точке А и в точке Б, а между ними — ваш курс.','До курса ученица [какой была: трудность её словами]. После курса она [что умеет]. Между этими точками — [число] уроков курса «[название]». Меня зовут [имя], и я расскажу, как устроен этот путь.','До курса Маша говорила: «Ш и Щ одинаковые». После курса она читает «щука» и смеётся над своей ошибкой…'],
+['Мой путь','Расскажите, как вы сами пришли к теме и что поняли по дороге.','Когда я [как вы начинали], я столкнулась с [трудность]. Я искала [что искали] и поняла: [вывод]. Сегодня я [кто вы], и курс «[название]» — это то, чего не хватало мне самой.','Когда я сама учила сына читать, мы застряли на похожих буквах. Я искала азбуку, где они стоят рядом, и не нашла…'],
+['Одна ошибка','Назовите типичную ошибку учениц, объясните, откуда она, и как вы её решаете.','Самая частая ошибка моих учениц — [ошибка]. Она появляется, потому что [причина]. В курсе «[название]» я решаю это так: [ваше решение]. Меня зовут [имя].','Самая частая ошибка детей — путать буквы, которые отличаются одной чёрточкой. Она появляется, потому что их учат в разные дни…']];
+function schHTML(){return '<div class="blk">ВЫБЕРИТЕ СВОЮ СХЕМУ</div><p class="hint">Шесть разных схем, чтобы на защите все звучали по-разному. Выберите одну, нажмите «Взять эту схему» и замените [скобки] своим.</p>'+SCH.map(function(x,i){return '<div class="kit" style="background:#fff"><b>'+(i+1)+'. '+x[0]+'</b><p>'+x[1]+'</p><p class="hint" style="color:#1D5FD1;font-style:italic">Пример: '+x[3]+'</p><div class="bs"><button class="l" data-sch="'+i+'">Взять эту схему</button></div></div>'}).join('')}
+var ST={get:function(k){try{return localStorage.getItem('dfk_'+k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem('dfk_'+k,v)}catch(e){}},all:function(){var o={};try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(k.indexOf('dfk_')==0)o[k]=localStorage.getItem(k)}}catch(e){}return o}};
+function key(n,id){return 'l'+n+'_'+id}
+function v(n,id){return (ST.get(key(n,id))||'').trim()}
+function getAdds(n){try{return JSON.parse(ST.get('adds'+n)||'[]')}catch(e){return []}}
+function addsText(n){var a=getAdds(n).filter(function(x){return x.w||x.p});return a.length?'\nДОПОЛНЕНИЯ АВТОРА (поставить строго на указанные места, затем перенумеровать слайды):\n'+a.map(function(x,i){return (i+1)+') '+(x.w||'—')+' → куда: '+(x.p||'—')}).join('\n'):''}
+function lessonText(n){var l=L.filter(function(x){return x.n==n})[0];return l.f.map(function(f){return f[1]+': '+(v(n,f[0])||'—')}).join('\n')+(l.add?addsText(n):'')}
+function drawAdds(n){var box=document.getElementById('adds'+n);if(!box)return;var a=getAdds(n);box.innerHTML=a.map(function(x,i){return '<div class="kit" style="background:#fff"><label>Что добавить</label><textarea data-an="'+n+'" data-ai="'+i+'" data-ak="w" placeholder="Приветствие: «Ассаляму алейкум! Как настроение?» / Дуа перед уроком / Приём «Выбор и объяснение»">'+(x.w||'').replace(/</g,'&lt;')+'</textarea><label>Куда поставить</label><input data-an="'+n+'" data-ai="'+i+'" data-ak="p" placeholder="после слайда 1" value="'+(x.p||'').replace(/"/g,'&quot;')+'"><div class="bs"><button class="l" data-adel="'+n+'_'+i+'">Удалить</button></div></div>'}).join('')}
+document.addEventListener('input',function(e){var t=e.target;if(t.dataset&&t.dataset.an){var a=getAdds(t.dataset.an);a[+t.dataset.ai][t.dataset.ak]=t.value;ST.set('adds'+t.dataset.an,JSON.stringify(a))}});
+function esc(s){return s.replace(/"/g,'&quot;')}
+var H='';
+L.forEach(function(l){
+ H+='<details id="d'+l.n+'"><summary><span class="nm">'+(l.n<10?'0':'')+l.n+'</span>'+l.t+'<span class="st" id="s'+l.n+'"></span></summary><div class="body">';
+ if(l.note)H+='<div class="note">'+l.note+(l.n==9?' <a href="'+TG+'" target="_blank" style="color:#4C5B3F">Открыть группу</a>':'')+'</div>';
+ l.f.forEach(function(f){H+='<label>'+f[1]+'</label><textarea data-n="'+l.n+'" data-id="'+f[0]+'" placeholder="'+esc(f[2]||'')+'"></textarea>';if(f[0]=='self')H+=schHTML()});
+ if(l.add) H+='<div class="blk">ДОПОЛНЕНИЯ</div><p class="hint">Хотите добавить свой слайд: приветствие, дуа, приём, игру? Нажмите кнопку и напишите, куда его поставить. Kimi расставит по местам.</p><div id="adds'+l.n+'"></div><div class="bs"><button class="l" data-addnew="'+l.n+'">+ Добавить слайд или приём</button></div>';
+ if(l.design) H+='<h2>Промпт 1 · Три пробных дизайна</h2><div class="out" id="dp1"></div><div class="bs"><button data-cp="dp1">Скопировать</button></div><h2>Промпт 2 · Дизайн для сборки</h2><div class="out" id="dp2"></div><div class="bs"><button data-cp="dp2">Скопировать</button></div>';
+ if(l.n==19) H+='<h2>Промпт · Черновик записки</h2><div class="out" id="zp"></div><div class="bs"><button data-cp="zp">Скопировать</button></div>';
+ H+='<div class="bs"><button data-send="'+l.n+'">Скопировать и отправить в Telegram</button><button class="l" data-print="'+l.n+'">Распечатать</button></div><div class="ok" id="ok'+l.n+'"></div></div></details>';
+});
+document.getElementById('lessons').innerHTML=H;
+L.forEach(function(l){if(l.add)drawAdds(l.n)});
+var K=[[1,'Презентация 1 · вводная','DF_01',5],[2,'Презентация 2 · первый урок','DF_02',6],[3,'Презентация 3 · продолжающийся урок','DF_03',7],[4,'Презентация 4 · завершающий урок','DF_04',8],[5,'Защитная презентация','DF_05',19]];
+var LN={1:'вводного урока',2:'первого содержательного урока',3:'продолжающегося урока',4:'завершающего урока',5:'защитной презентации'};
+var EX={1:'приветствие «Назови свою любимую букву» — в начале',2:'«Выбор и объяснение» — после образца',3:'опрос по карточкам — в повторении',4:'круг ответов — в проверке',5:'самопрезентация — на слайдах 1–2'};
+var FIX={1:'слайд 3 — сократить программу до четырёх строк',2:'слайд 9 — добавить пример со словом «щука»',3:'слайд 6 — добавить связку с прошлым уроком',4:'слайд 10 — уточнить критерий: не больше двух ошибок',5:'слайд 1 — оставить крючок одной фразой'};
+function PT(i){var k=K[i-1],df=k[2],m=function(x){return '<mark>['+x+']</mark>'};
+ var files=i<5?'05_Комплект_'+df+'.txt, Дизайн_выбранный.jpg':'05_Комплект_'+df+'.txt, Дизайн_выбранный.jpg, четыре презентации PDF, кадры записи урока';
+ return [
+ ['Инструкция проекта (вставьте в настройки проекта '+df+')','Ты помогаешь мне собрать презентацию для моего курса «'+m('Русский алфавит с нуля')+'» для '+m('детей 6–7 лет')+'. Используй только файлы этого проекта. Не придумывай факты, отзывы, цифры и арабский текст. Неизвестное обозначай [УТОЧНИТЬ У АВТОРА]. Обращайся ко мне на «вы». Работай по шагам и жди моего ответа после каждого шага.'],
+ ['Запрос 1 · Проверка файлов','Прочитай все файлы проекта: '+m(files)+'. Перечисли, что ты прочитал. Сообщи, если файл не читается или в материалах есть противоречия. Пока ничего не составляй.'],
+ ['Запрос 2 · План и полный текст слайдов','Составь план '+LN[i]+' по слайдам шаблона из моего комплекта. Для каждого слайда: номер, заголовок, полный текст. Не больше '+m(i<5?'20':'9')+' слайдов. Приёмы ставь туда, где они указаны в комплекте: '+m(EX[i])+'. Если в комплекте есть «Дополнения автора», поставь каждое строго на указанное место и перенумеруй слайды. PPTX пока не собирай, жди моей проверки.'],
+ ['Запрос 3 · Сборка в дизайне','План утверждаю с правками: '+m(FIX[i])+'. Собери PPTX строго в дизайне выбранного слайда. Шрифт '+m('Arial')+', основной текст 30–32 pt. Где нужна картинка, оставь рамку «Место для картинки».']]}
+var KH='';K.forEach(function(k){var i=k[0];KH+='<div class="kit"><b>'+k[1]+'</b><p>Проект в Kimi: '+k[2]+'</p><details style="background:#fff8e6;border-color:#E3D2A6"><summary style="font-size:14px">Промпты для Kimi · заполните поля в [скобках]</summary><div class="body">';
+ PT(i).forEach(function(q,j){KH+='<div class="ph">'+(j+1)+'. '+q[0]+'</div><div class="pe" contenteditable="true" id="pe'+i+'_'+j+'"></div><div class="bs"><button class="l" data-pc="'+i+'_'+j+'">Скопировать</button></div>'});
+ KH+='<div class="bs"><button class="l" data-reset="'+i+'">Вернуть образец</button></div></div></details><div class="bs"><button class="l" data-kit="'+i+'">Скопировать комплект</button><button data-dl="'+i+'">Скачать материалы для Kimi</button></div><div class="ok" id="okk'+i+'"></div></div>'});
+document.getElementById('kits').innerHTML+=KH;
+function loadPE(i){PT(i).forEach(function(q,j){var e=document.getElementById('pe'+i+'_'+j),sv=ST.get('pe'+i+'_'+j);e.innerHTML=sv!==null?sv:q[1]})}
+K.forEach(function(k){loadPE(k[0]);PT(k[0]).forEach(function(q,j){var e=document.getElementById('pe'+k[0]+'_'+j);e.addEventListener('input',function(){ST.set('pe'+k[0]+'_'+j,e.innerHTML)})})});
+function peText(i){return PT(i).map(function(q,j){return '--- '+q[0]+' ---\n'+document.getElementById('pe'+i+'_'+j).textContent.trim()}).join('\n\n')}
+
+function ph(id,d){return v(11,id)||'['+d+']'}
+function designPrompts(){
+ var p1='Я прикладываю '+(v(11,'n')||'[1–3]')+' картинки-образца. Это стиль, который мне нравится.\nСделай 3 коротких слайда, по одному на каждый вариант дизайна. Больше ничего не делай.\nНа каждом слайде: название варианта (Вариант 1, 2, 3); заголовок, подзаголовок и 3 строки: «Тема урока», «Цель», «Задание»; плашка с заданием и нижняя плашка.\nВарианты отличаются цветом фона, формой плашек и расположением блоков. Все три опираются на мои образцы.\nШрифт: '+ph('font','шрифт')+'. Формат 16:9, текст читаемый, без мелких деталей.\nНикакого лишнего текста и пояснений. Верни только три слайда.';
+ var p2='Собери презентацию курса «'+ph('cname','название')+'». Формат 16:9. Шрифт '+ph('font','шрифт')+'. Основной текст 30–32 pt. При большом объёме уменьши размер, но не сокращай текст.\nРаботай строго в дизайне слайда, который я прикладываю: я выбрала его из трёх пробных.\nФон '+ph('bg','фон')+', текст '+ph('tx','текст')+', акцент '+ph('ac','акцент')+', карточки '+ph('cd','карточки')+'.\nОбращайся на «вы». Межстрочный интервал не меньше 1,2.';
+ return [p1,p2]}
+function noteprompt(){return 'СОСТАВЬ ПОЯСНИТЕЛЬНУЮ ЗАПИСКУ К МОЕМУ ДИПЛОМУ\nТы — редактор и методический помощник. На основании моих файлов и ответов ниже подготовь связный черновик пояснительной записки примерно на один лист A4. Это сопровождение диплома, не речь и не рекламный текст.\nАвтор: '+(document.getElementById('who').value||'[имя]')+'. Курс: '+(v(11,'cname')||'[название]')+'.\nПрикладываю четыре учебные презентации и защитную презентацию.\nСначала перечисли прочитанные файлы. Неизвестное обозначь [УТОЧНИТЬ У АВТОРА].\nПять подзаголовков: автор и работа; проблема и цель; архитектура и четыре работы; решения и источники; проверка и комплект.\nРазличай цель и доказанный результат, готовое и планируемое, содержание источника и мои решения. Не придумывай квалификацию, отзывы, факты практики, цитаты и арабский текст.\n\nМои ответы:\n'+['z1','z2','z3','z4','z5'].map(function(id,i){return ['Автор и работа','Проблема и цель','Архитектура и четыре работы','Решения и источники','Проверка и комплект'][i]+': '+(v(19,id)||'—')}).join('\n')}
+function refresh(){var d=designPrompts();document.getElementById('dp1').textContent=d[0];document.getElementById('dp2').textContent=d[1];document.getElementById('zp').textContent=noteprompt();
+ L.forEach(function(l){var c=l.f.filter(function(f){return v(l.n,f[0])}).length,s=document.getElementById('s'+l.n);s.textContent=c?c+' из '+l.f.length:'';s.className='st'+(c==l.f.length?' full':'')})}
+document.querySelectorAll('textarea[data-n]').forEach(function(t){t.value=ST.get(key(t.dataset.n,t.dataset.id))||'';t.addEventListener('input',function(){ST.set(key(t.dataset.n,t.dataset.id),t.value);refresh()})});
+var who=document.getElementById('who');who.value=ST.get('who')||'';who.addEventListener('input',function(){ST.set('who',who.value);refresh()});
+refresh();
+
+function kit(i){var k=K[i-1],name=who.value||'[имя]',t;
+ var head='КОМПЛЕКТ ДЛЯ KIMI · '+k[1].toUpperCase()+'\nПроект: '+k[2]+'\nАвтор: '+name+'\n\nВместе с этим файлом загрузите в Kimi выбранный пробный слайд дизайна. Фрагменты пособия — по желанию.\n';
+ var instr='\n\n=== ПРОМПТЫ ДЛЯ KIMI (по порядку) ===\n'+peText(i)+'\n\n=== ДИЗАЙН (добавьте к запросу 3) ===\n'+designPrompts()[1];
+ var base='\n\n=== ПАСПОРТ И ЗАМЫСЕЛ (занятия 1–3) ===\n'+lessonText(1)+'\n'+lessonText(2)+'\n'+lessonText(3)+'\n\n=== ПРОГРАММА КУРСА (занятие 4) ===\n'+lessonText(4);
+ if(i<5){t=head+instr+base+'\n\n=== КАРТА ЭТОЙ ПРЕЗЕНТАЦИИ (занятие '+k[3]+') ===\n'+lessonText(k[3])+'\n\n=== ПРИЁМЫ И МАТЕРИАЛЫ (занятие 9) ===\n'+(v(9,'p'+i)||'—')+'\nИсточники: '+(v(9,'psrc')||'—')+'\n\n=== ИСПРАВЛЕНИЯ ПОСЛЕ СОГЛАСОВАНИЯ (занятие 10) ===\n'+lessonText(10)}
+ else{t=head+'Приложите также четыре учебные презентации и фрагменты записи урока.'+instr+base+'\n\n=== МАРКЕТИНГ (занятие 18) ===\n'+lessonText(18)+'\n\n=== ШАБЛОН ЗАЩИТНОЙ ПРЕЗЕНТАЦИИ: ДЕВЯТЬ СЛАЙДОВ (занятие 19) ===\n'+L[L.length-1].f.filter(function(f){return f[0][0]=='s'}).map(function(f){return f[1]+': '+(v(19,f[0])||'—')}).join('\n')+addsText(19)}
+ return t}
+
+var CRCT=(function(){var t=[],c;for(var n=0;n<256;n++){c=n;for(var k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+function crc32(b){var c=0xFFFFFFFF;for(var i=0;i<b.length;i++)c=CRCT[(c^b[i])&0xFF]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+function makeZip(files){var enc=new TextEncoder(),parts=[],cen=[],off=0;
+ function u16(v){return [v&255,(v>>8)&255]}function u32(v){return [v&255,(v>>8)&255,(v>>16)&255,(v>>>24)&255]}
+ files.forEach(function(f){var name=enc.encode(f[0]),data=enc.encode(f[1]),crc=crc32(data);
+  var lh=[].concat(u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0));
+  parts.push(new Uint8Array(lh),name,data);
+  cen.push([].concat(u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(0),u16(0),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(off)),name);
+  off+=lh.length+name.length+data.length});
+ var cs=0;cen.forEach(function(x){var a=x instanceof Uint8Array?x:new Uint8Array(x);parts.push(a);cs+=a.length});
+ parts.push(new Uint8Array([].concat(u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(cs),u32(off),u16(0))));
+ return new Blob(parts,{type:'application/zip'})}
+function folder(i){var k=K[i-1],pt=PT(i),nm=(who.value||'').trim().replace(/\s+/g,'_');
+ var f=[['00_Как_работать.txt','ПАПКА ДЛЯ KIMI · '+k[1]+'\nПроект: '+k[2]+'\n\n1. Создайте в Kimi проект '+k[2]+'.\n2. Текст из файла 01 вставьте в инструкцию проекта.\n3. Загрузите в проект файл 05_Комплект и выбранный пробный слайд дизайна'+(i==5?', четыре презентации PDF и кадры записи урока':'')+'. Фрагменты пособия — по желанию.\n4. Отправляйте запросы 02, 03, 04 по одному. После каждого проверяйте ответ Kimi.\n5. Готовую презентацию откройте в Canva, проверьте и сохраните PDF.']];
+ pt.forEach(function(q,j){f.push([['01_Инструкция_проекта.txt','02_Запрос_1_Проверка_файлов.txt','03_Запрос_2_План_и_текст.txt','04_Запрос_3_Сборка.txt'][j],document.getElementById('pe'+i+'_'+j).textContent.trim()])});
+ f.push(['05_Комплект_'+k[2]+'.txt',kit(i)]);
+ makeZip(f);return [f,k[2]+(nm?'_'+nm:'')+'.zip']}
+function copy(t,ok){function done(){document.getElementById(ok).textContent='Скопировано'}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){fb(t);done()})}else{fb(t);done()}}
+function fb(t){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(a)}
+function dl(name,text,type){var b=new Blob([text],{type:type||'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}
+document.addEventListener('click',function(e){var b=e.target;
+ if(b.dataset.cp)copy(document.getElementById(b.dataset.cp).textContent,'ok'+b.closest('details').id.slice(1));
+ if(b.dataset.send){var n=b.dataset.send,l=L.filter(function(x){return x.n==n})[0];copy('Занятие '+n+' · '+l.t+'\n'+(who.value||'')+'\n\n'+lessonText(n),'ok'+n);setTimeout(function(){window.open(TG,'_blank')},400)}
+ if(b.dataset.print){var n=b.dataset.print,l=L.filter(function(x){return x.n==n})[0],w=window.open('');if(w){w.document.write('<pre style="font:14px Arial;white-space:pre-wrap">Занятие '+n+' · '+l.t+'\n'+(who.value||'')+'\n\n'+lessonText(n).replace(/</g,'&lt;')+'</pre>');w.print()}}
+ if(b.dataset.sch){var t=document.querySelector('textarea[data-n="18"][data-id="self"]');if(!t.value.trim()||confirm('Заменить текст в поле самопрезентации на эту схему?')){t.value=SCH[+b.dataset.sch][2];ST.set(key(18,'self'),t.value);refresh();t.scrollIntoView({block:'center'});t.focus()}}
+ if(b.dataset.addnew){var n=b.dataset.addnew,a=getAdds(n);a.push({w:'',p:''});ST.set('adds'+n,JSON.stringify(a));drawAdds(n)}
+ if(b.dataset.adel){var q=b.dataset.adel.split('_'),a=getAdds(q[0]);a.splice(+q[1],1);ST.set('adds'+q[0],JSON.stringify(a));drawAdds(q[0])}
+ if(b.dataset.pc){var q=b.dataset.pc;copy(document.getElementById('pe'+q).textContent.trim(),'okk'+q.split('_')[0])}
+ if(b.dataset.reset){var r=b.dataset.reset;PT(+r).forEach(function(q,j){try{localStorage.removeItem('dfk_pe'+r+'_'+j)}catch(e){}});loadPE(+r);document.getElementById('okk'+r).textContent='Образец возвращён'}
+ if(b.dataset.kit)copy(kit(+b.dataset.kit),'okk'+b.dataset.kit);
+ if(b.dataset.dl){var r=folder(+b.dataset.dl),z=makeZip(r[0]),a=document.createElement('a');a.href=URL.createObjectURL(z);a.download=r[1];document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500);document.getElementById('okk'+b.dataset.dl).textContent='Папка скачана: распакуйте архив'}
+});
+document.getElementById('bk').onclick=function(){dl('konstruktor_kopiya.json',JSON.stringify(ST.all()),'application/json');document.getElementById('okb').textContent='Копия скачана'};
+document.getElementById('rs').onclick=function(){document.getElementById('rsf').click()};
+document.getElementById('rsf').onchange=function(e){var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);for(var k in o)if(k.indexOf('dfk_')==0)localStorage.setItem(k,o[k]);location.reload()}catch(x){document.getElementById('okb').textContent='Не удалось загрузить файл'}};r.readAsText(e.target.files[0])};
+// куратор
+var CR={1:['Есть ответы на пять блоков замысла','Точки А и Б сформулированы','Собраны 5–10 вопросов учениц с источником'],
+2:['Выбраны направление и аудитория','Боль и причины описаны, у каждой причины есть способ проверки','Результат измерим: действие, материал, критерий, проверка','Назван продукт и есть пример'],
+3:['Гипотеза по шаблону','1–3 реальных источника','Карта сборки заполнена','Граница: источник / беру / моё решение'],
+4:['Цель и исходный уровень','Модули и порядок уроков','Матрица уроков заполнена','Тема и образец диплома','Переходы между уроками'],
+5:['Заполнены все 12 слайдов скелета 1','Нет новой темы и домашнего задания','Дополнения, если есть, указаны с местом'],
+6:['Заполнены все 19 слайдов скелета 2','Есть правило, образец, практика и проверка','Дополнения, если есть, указаны с местом'],
+7:['Заполнены все 15 слайдов скелета 3','Есть повторение и связка с прошлым уроком','Дополнения, если есть, указаны с местом'],
+8:['Заполнены все 16 слайдов скелета 4','Критерии оценки понятны и проверяемы','Дополнения, если есть, указаны с местом'],
+9:['Для каждой из четырёх презентаций выбраны приёмы и указано, где они стоят','Указаны источники материалов'],
+10:['Перечислены исправления','Есть протокол по каждой карте'],
+11:['Выбран шрифт и четыре цвета','Приложено 1–3 картинки-образца','Получены три пробных слайда, выбран один'],
+18:['Предложение курса по заготовке','Самопрезентация 2–3 минуты по одной из шести схем, своими словами','Объявление с одним следующим шагом','Нет выдуманных отзывов и обещаний'],
+19:['Записка: пять блоков заполнены','Девять слайдов скелета 5 заполнены','Названия и цель совпадают с презентациями']};
+var cl=document.getElementById('c_l');L.forEach(function(l){var o=document.createElement('option');o.value=l.n;o.textContent=l.n+' · '+l.t;cl.appendChild(o)});
+function crit(){document.getElementById('c_cr').innerHTML=CR[cl.value].map(function(x){return '<li>'+x+'</li>'}).join('')}crit();cl.onchange=crit;
+document.getElementById('c_go').onclick=function(){var t='Ты помогаешь куратору проверить домашнее задание.\nЗанятие: '+cl.options[cl.selectedIndex].text+'.\nЧто проверяем:\n- '+CR[cl.value].join('\n- ')+'\n\nОтвет ученицы:\n'+document.getElementById('c_a').value+'\n\nНапиши черновик ответа ученице на «вы», коротко и доброжелательно:\n1. Что получилось (конкретно, по пунктам проверки).\n2. Что доработать (не больше двух пунктов).\n3. Один следующий шаг.\nВ конце предложи статус: принято или доработка.\nНичего не придумывай и не добавляй требований, которых нет в пунктах проверки. Это черновик: куратор проверит и исправит его.';copy(t,'okc')};
+document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});t.classList.add('on');document.getElementById('st').style.display=t.dataset.t=='st'?'':'none';document.getElementById('cu').style.display=t.dataset.t=='cu'?'':'none'}});
+
+function goHash(){var h=location.hash;if(/^#l\d+$/.test(h)){var d=document.getElementById('d'+h.slice(2));if(d){d.open=true;d.scrollIntoView()}}else if(h=='#kits'){document.getElementById('kits').scrollIntoView()}}goHash();window.addEventListener('hashchange',goHash);
+</script></body></html>
