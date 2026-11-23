@@ -1,0 +1,15 @@
+.inst{display:flex;align-items:center;gap:14px;padding:16px 18px;margin:0 0 18px;border-radius:26px;background:rgba(255,255,255,.7);border:1px solid #fff;box-shadow:0 12px 26px -16px rgba(70,84,50,.4),inset 0 1px 0 #fff}
+.inst img{width:52px;height:52px;border-radius:14px;box-shadow:0 6px 12px -6px rgba(60,72,44,.6)}
+.inst b{display:block;font-size:16px}.inst small{color:#6b7358;font-size:13px}
+.inst button{margin-left:auto;flex:none;border:1px solid rgba(255,255,255,.6);border-radius:999px;padding:12px 18px;font:600 14px "DM Sans",Arial,sans-serif;color:#fff;cursor:pointer;background:linear-gradient(160deg,rgba(168,184,128,.95),rgba(100,118,68,.92));box-shadow:0 8px 16px -8px rgba(80,98,52,.6),inset 0 1px 0 rgba(255,255,255,.6)}
+.imod{position:fixed;inset:0;z-index:200;display:none;place-items:center;background:rgba(40,46,30,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:14px}
+.imod.on{display:grid;animation:pgin .3s both}
+.imc{width:min(760px,100%);max-height:94vh;overflow:auto;border-radius:30px;padding:18px;background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(238,232,214,.9));border:1px solid #fff;box-shadow:0 30px 60px -20px rgba(30,40,20,.6)}
+.imc h3{margin:2px 44px 10px 4px;font-size:20px}
+.imc video{width:100%;border-radius:18px;background:#000;display:block}
+.imc ol{margin:14px 4px 4px;padding-left:20px;color:#3d4430;line-height:1.55;font-size:14.5px}
+.imx{position:absolute;right:22px;top:22px;width:40px;height:40px;border-radius:50%;border:1px solid #fff;cursor:pointer;display:grid;place-items:center;background:linear-gradient(160deg,#fff,#E2D0AA);box-shadow:0 6px 12px -6px rgba(110,90,40,.6)}
+.imx svg{width:18px;height:18px;stroke:#5a4a26;fill:none;stroke-width:2.4;stroke-linecap:round}
+.imw{position:relative;width:min(760px,100%)}
+.imc .tabs{display:flex;gap:8px;margin:0 4px 12px}.imc .tabs button{border:1px solid #fff;border-radius:999px;padding:8px 14px;font:600 13px Arial;cursor:pointer;background:rgba(255,255,255,.7);color:#4A4A30}.imc .tabs button.on{background:linear-gradient(160deg,rgba(168,184,128,.95),rgba(100,118,68,.92));color:#fff}
+.imn{margin:10px 4px 2px;padding:10px 12px;border-radius:14px;background:rgba(94,127,150,.12);color:#2f4a5a;font-size:13px;line-height:1.45}
