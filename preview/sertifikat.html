@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Сертификат · DF Институт Учителей</title>
+<style>
+@page{size:A4 landscape;margin:0}
+*{box-sizing:border-box}body{margin:0;background:#EAE6D8;font-family:"DM Sans",Arial,sans-serif;color:#2c3320}
+.bar{padding:14px;text-align:center}.bar button,.bar a{font:600 15px Arial;padding:12px 22px;border-radius:999px;border:1px solid #fff;background:linear-gradient(160deg,#a8b880,#6e804a);color:#fff;cursor:pointer;text-decoration:none;margin:0 4px}
+.cert{width:297mm;height:210mm;margin:0 auto 20px;position:relative;background:radial-gradient(70% 60% at 0% 0%,rgba(170,186,130,.35),transparent 70%),radial-gradient(60% 50% at 100% 100%,rgba(232,214,176,.6),transparent 70%),#FBF8EF;padding:16mm 20mm;text-align:center;overflow:hidden}
+.cert:before{content:"";position:absolute;inset:8mm;border:1.2px solid #8E9B6A;border-radius:10mm}
+.cert:after{content:"";position:absolute;inset:10.5mm;border:.5px solid #C9BE9A;border-radius:8mm}
+.in{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:8mm 0 4mm}
+.k{letter-spacing:.3em;font-size:11pt;color:#6E7D4E}.t{font-size:34pt;font-weight:700;margin:6mm 0 2mm;color:#3a4526}
+.s{font-size:13pt;color:#6b7358}.n{font-family:"Brush Script MT","Segoe Script",cursive;font-size:38pt;color:#2c3320;border-bottom:1px solid #B8B08C;padding:0 12mm 1mm;margin:6mm 0 4mm;min-width:120mm}
+.d{font-size:13pt;max-width:200mm;line-height:1.5}
+.ft{display:flex;justify-content:space-between;align-items:flex-end;width:100%;padding:0 6mm}
+.sg{font-family:"Brush Script MT",cursive;font-size:22pt;color:#3a3f2c;text-align:left}.sg small{display:block;font:10pt Arial;color:#6b7358}
+.qr{text-align:center;font-size:8.5pt;color:#6b7358}.qr svg{width:26mm;height:26mm;display:block;margin:0 auto 1mm}
+@media print{body{background:none}.bar{display:none}.cert{margin:0}}
+</style></head><body>
+<div class="bar"><button onclick="print()">Сохранить в PDF / Печать</button></div>
+<div class="cert"><div class="in">
+<div><div class="k">DF ИНСТИТУТ УЧИТЕЛЕЙ</div><div class="t">Сертификат</div><div class="s">о прохождении дипломной программы<br>«Авторская методика: от идеи до диплома»</div></div>
+<div><div class="s">Настоящий сертификат подтверждает, что</div><div class="n" id="nm">Имя Фамилия</div>
+<div class="d">прошла программу из 20 уроков в 6 модулях, разработала авторский курс из четырёх уроков, провела урок и представила курс на защите.</div></div>
+<div class="ft"><div class="sg">Умм Харун<small>Автор программы</small></div><div class="s" id="dt">Дата</div>
+<div class="qr"><div id="qr"></div>Проверка подлинности<br><span id="cd"></span></div></div>
+</div></div>
+<script src="qrcode.js"></script>
+<script>
+var q=new URLSearchParams(location.search),name=q.get('name')||'Имя Фамилия',date=q.get('date')||'23 ноября 2026',code=q.get('c')||'DF-2027-0001';
+document.getElementById('nm').textContent=name;document.getElementById('dt').textContent=date;document.getElementById('cd').textContent=code;
+var url=location.origin+location.pathname.replace(/[^\/]*$/,'')+'proverka.html?c='+encodeURIComponent(code);
+var o=qrcode(0,'M');o.addData(url);o.make();document.getElementById('qr').innerHTML=o.createSvgTag({cellSize:4,margin:0});
+</script></body></html>
