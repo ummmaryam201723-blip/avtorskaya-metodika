@@ -363,17 +363,24 @@ main{margin-left:290px;padding-top:104px}
 .msec.lock .mst{color:var(--cap)}
 .endlock{display:none!important}.msec:not(.done) .endm .olb{opacity:1;pointer-events:auto}
 /* просмотр презентации */
-.vwr{position:fixed;inset:0;z-index:100;background:#262A26;display:flex;flex-direction:column}
+.vwr{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(247,246,241,.62);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 .vwr[hidden]{display:none}
-.vtop{display:flex;align-items:center;gap:14px;padding:12px 16px;color:#fff}
-.vtop b{flex:1;font:600 16px Manrope,Inter,sans-serif}.vtop span{font-size:14px;opacity:.8}
-#vx{border:0;width:44px;height:44px;border-radius:14px;font-size:18px;color:var(--ink);background:linear-gradient(180deg,#fff,#ECECE4);cursor:pointer;box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(0,0,0,.25)}
-.vstage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:0 64px 10px;min-height:0}
-#vimg{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.4);background:#fff}
-.vnav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border:0;border-radius:50%;font-size:30px;line-height:1;color:var(--dolive);cursor:pointer;background:linear-gradient(180deg,#fff,#ECECE4);box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(0,0,0,.3)}
-.vp{left:8px}.vn{right:8px}
-.vhint{text-align:center;color:#fff;opacity:.55;font-size:12.5px;padding:0 0 12px}
-@media(max-width:700px){.vstage{padding:0 8px 10px}.vnav{width:42px;height:42px;font-size:24px;top:auto;bottom:-6px;transform:none}.vstage{padding-bottom:56px}}
+.vcard{position:relative;width:min(1040px,100%);max-height:100%;display:flex;flex-direction:column;overflow:hidden;border-radius:30px;color:var(--ink);background:radial-gradient(120% 90% at 50% 0,#FFFFFF 0,#F4F3EC 55%,#E9EDDF 100%);box-shadow:0 1.5px 0 #fff inset,0 3px 0 #E1DED2,0 30px 70px -20px rgba(48,54,49,.38),0 8px 20px rgba(48,54,49,.10);animation:vin .42s cubic-bezier(.2,.8,.2,1)}
+@keyframes vin{from{opacity:0;transform:translateY(14px) scale(.965)}to{opacity:1;transform:none}}
+.vtop{display:flex;align-items:center;gap:14px;padding:16px 18px 6px 24px}
+.vtop b{flex:1;font:700 17px/1.25 Manrope,Inter,sans-serif;color:#1F2321}.vtop span{font:600 14px Manrope,Inter,sans-serif;color:#596748;background:#E7EBDD;padding:6px 12px;border-radius:12px}
+#vx{border:0;width:44px;height:44px;border-radius:15px;font-size:18px;color:var(--ink);background:linear-gradient(180deg,#fff,#ECECE4);cursor:pointer;box-shadow:inset 0 1px 0 #fff,0 4px 10px rgba(48,54,49,.18)}
+.vstage{position:relative;height:clamp(250px,46vh,420px);margin:4px 0 0}
+.vst{position:absolute;inset:0;perspective:1500px;touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+.vst:active{cursor:grabbing}
+.vsl{position:absolute;left:50%;top:50%;width:min(62%,700px);aspect-ratio:16/9;object-fit:cover;border-radius:18px;background:#fff;box-shadow:0 22px 44px -14px rgba(48,54,49,.42),0 4px 10px rgba(48,54,49,.12);transform:translate(-50%,-50%) translateX(calc(var(--d)*60%)) rotateY(calc(var(--d)*-18deg)) scale(calc(1 - var(--d)*var(--d)*.12));transition:transform .55s cubic-bezier(.22,.8,.24,1),opacity .45s,filter .45s;will-change:transform}
+.vsl.s{cursor:pointer}
+.vnav{position:absolute;top:50%;transform:translateY(-50%);z-index:30;width:50px;height:50px;border:0;border-radius:50%;font-size:30px;line-height:1;color:var(--dolive);cursor:pointer;background:linear-gradient(180deg,#fff,#ECECE4);box-shadow:inset 0 1px 0 #fff,0 6px 16px rgba(48,54,49,.24)}
+.vnav:disabled{opacity:.35;cursor:default}
+.vp{left:14px}.vn{right:14px}
+.vbar{height:5px;margin:14px 28px 0;border-radius:3px;background:#DFE3D4;overflow:hidden}.vbar i{display:block;height:100%;width:0;border-radius:3px;background:linear-gradient(90deg,#7F8E67,#596748);transition:width .5s cubic-bezier(.22,.8,.24,1)}
+.vhint{text-align:center;color:#4A5149;font-size:13.5px;padding:10px 0 16px}
+@media(max-width:700px){.vstage{height:56vw;min-height:200px}.vwr{padding:10px}.vcard{border-radius:24px}.vsl{width:78%;transform:translate(-50%,-50%) translateX(calc(var(--d)*64%)) rotateY(calc(var(--d)*-14deg)) scale(calc(1 - var(--d)*var(--d)*.12))}.vnav{width:42px;height:42px;font-size:24px}.vp{left:6px}.vn{right:6px}.vtop{padding:12px 12px 4px 16px}.vtop b{font-size:15px}}
 /* v9: тактильный 3D-макет — claymorphism + мягкий неоморфизм */
 :root{
  --base:#EFEDE6;--panel:#F7F6F1;--card:#FCFBF8;
@@ -677,8 +684,7 @@ body:before{content:"";position:fixed;top:0;left:0;right:0;height:14px;backgroun
 <p class="ar">Если я дома — со мной моё знание,<br>а если на рынке — знание со мной и там.</p>
 <p class="src">Имам аш-Шафии</p><p class="wish2">Пусть знания, которые вы собрали в этой программе, будут с вами везде: на уроке, дома, в каждом новом курсе. Пусть ваш курс станет для учениц началом пути.</p></div></div>
 <footer><img src="../img/rem_graphite.png" alt="Rem"><span>· tajweedjazari4@cloud.com</span></footer>
-</div></main><div class="vwr" id="vwr" hidden><div class="vtop"><b id="vtt"></b><span id="vcnt"></span><button id="vx" type="button" aria-label="Закрыть">✕</button></div><div class="vstage"><button class="vnav vp" id="vp" type="button" aria-label="Назад">‹</button><img id="vimg" alt=""><button class="vnav vn" id="vn" type="button" aria-label="Вперёд">›</button></div><div class="vhint">Листайте стрелками или свайпом</div></div>
-<script>window.SLP="../";
+</div></main><div class="vwr" id="vwr" hidden><div class="vcard"><div class="vtop"><b id="vtt"></b><span id="vcnt"></span><button id="vx" type="button" aria-label="Закрыть">✕</button></div><div class="vstage"><div class="vst" id="vst"></div><button class="vnav vp" id="vp" type="button" aria-label="Назад">‹</button><button class="vnav vn" id="vn" type="button" aria-label="Вперёд">›</button></div><div class="vbar"><i id="vbi"></i></div><div class="vhint">Листайте вправо или нажмите на соседний слайд</div></div></div><script>window.SLP="../";
 (function(){
 var S={get:function(k){try{return localStorage.getItem('dfk_'+k)}catch(e){return null}},set:function(k,v){try{localStorage.setItem('dfk_'+k,v)}catch(e){}}};
 var DONE=['Отправлено','На проверке','Требуется доработка','Принято'];
@@ -716,16 +722,26 @@ function route(){var h=location.hash.replace('#','')||'home',target=null;
 window.addEventListener('hashchange',route);route();
 function slst(){document.querySelectorAll('.sl').forEach(function(x){var a=document.getElementById('z'+x.dataset.n);x.classList.remove('done','cur','lock');['done','cur','lock'].forEach(function(c){if(a.classList.contains(c))x.classList.add(c)})})}
 slst();document.querySelectorAll('.sts').forEach(function(s){s.addEventListener('change',slst)});
-var V=document.getElementById('vwr'),VI=document.getElementById('vimg'),vn='',vk=0,vi=1;
-function vshow(){VI.src=(window.SLP||'')+'slides/'+vn+'/p-'+pad(vi)+'.jpg';document.getElementById('vcnt').textContent=vi+' / '+vk;
- [vi-1,vi+1].forEach(function(j){if(j>0&&j<=vk){var im=new Image();im.src=(window.SLP||'')+'slides/'+vn+'/p-'+pad(j)+'.jpg'}})}
+var V=document.getElementById('vwr'),ST=document.getElementById('vst'),vn='',vk=0,vi=1,imgs=[];
+function vbuild(){ST.innerHTML='';imgs=[];for(var j=1;j<=vk;j++){var im=document.createElement('img');im.className='vsl';im.alt='Слайд '+j;im.draggable=false;(function(j){im.addEventListener('click',function(){if(!moved&&vi!==j){vi=j;vshow()}})})(j);ST.appendChild(im);imgs.push(im)}}
+function vshow(){imgs.forEach(function(im,k){var j=k+1,d=j-vi,a=Math.abs(d);
+ if(a<=3&&!im.dataset.l){im.src=(window.SLP||'')+'slides/'+vn+'/p-'+pad(j)+'.jpg';im.dataset.l=1}
+ im.style.setProperty('--d',d);im.style.zIndex=10-a;im.style.opacity=a==0?1:a==1?.85:a==2?.4:0;im.style.pointerEvents=a<=2?'auto':'none';
+ im.style.filter=a==0?'none':'brightness(.93) saturate(.92)';im.classList.toggle('s',a!==0)});
+ document.getElementById('vcnt').textContent=vi+' / '+vk;document.getElementById('vbi').style.width=(vi/vk*100)+'%';
+ document.getElementById('vp').disabled=vi<=1;document.getElementById('vn').disabled=vi>=vk}
 function vgo(d){vi=Math.min(vk,Math.max(1,vi+d));vshow()}
+var moved=false;
 document.addEventListener('click',function(e){var a=e.target.closest('[data-view]');if(!a)return;e.preventDefault();vn=a.dataset.view;vk=+a.dataset.pages;vi=1;
- var l=a.closest('.les');document.getElementById('vtt').textContent=(l?'Урок '+pad(+l.dataset.n)+' · ':'')+a.textContent.replace(/\s*\(PDF\)/,'');V.hidden=false;document.body.style.overflow='hidden';vshow()});
+ var l=a.closest('.les');document.getElementById('vtt').textContent=(l?'Урок '+pad(+l.dataset.n)+' · ':'')+a.textContent.replace(/\s*\(PDF\)/,'');vbuild();V.hidden=false;document.body.style.overflow='hidden';vshow()});
 function vclose(){V.hidden=true;document.body.style.overflow=''}
-document.getElementById('vx').onclick=vclose;document.getElementById('vp').onclick=function(){vgo(-1)};document.getElementById('vn').onclick=function(){vgo(1)};
+document.getElementById('vx').onclick=vclose;V.addEventListener('click',function(e){if(e.target===V)vclose()});
+document.getElementById('vp').onclick=function(){vgo(-1)};document.getElementById('vn').onclick=function(){vgo(1)};
 document.addEventListener('keydown',function(e){if(V.hidden)return;if(e.key=='Escape')vclose();if(e.key=='ArrowRight')vgo(1);if(e.key=='ArrowLeft')vgo(-1)});
-var tx=0;V.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});V.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>40)vgo(d<0?1:-1)});
+var px=null;ST.addEventListener('pointerdown',function(e){px=e.clientX;moved=false});
+ST.addEventListener('pointermove',function(e){if(px!==null&&Math.abs(e.clientX-px)>8)moved=true});
+function pend(e){if(px===null)return;var d=e.clientX-px;px=null;if(Math.abs(d)>45)vgo(d<0?1:-1);setTimeout(function(){moved=false},0)}
+ST.addEventListener('pointerup',pend);ST.addEventListener('pointercancel',function(){px=null});
 document.getElementById('burger').onclick=function(){document.body.classList.add('navon')};
 document.getElementById('shade').onclick=function(){document.body.classList.remove('navon')};
 })();
