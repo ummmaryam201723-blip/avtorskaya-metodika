@@ -1,0 +1,43 @@
+/* PREVIEW: стеклянный дизайн 2027 */
+:root{--g-olive:rgba(126,140,90,.42);--g-blue:rgba(140,178,200,.42);--g-beige:rgba(226,208,170,.5);--g-line:rgba(255,255,255,.7)}
+body{background:
+ radial-gradient(60vw 50vh at 8% 0%,rgba(170,186,130,.38),transparent 70%),
+ radial-gradient(55vw 45vh at 100% 12%,rgba(150,190,212,.34),transparent 70%),
+ radial-gradient(60vw 50vh at 50% 100%,rgba(232,214,176,.5),transparent 70%),#F1EDE2!important;background-attachment:fixed!important}
+/* карточки и плашки — матовое стекло */
+.les,.card,.box,.mcard,.nums div,.hero2,.hero,details,.more,.kcard,.stat,.fcard{
+ background:rgba(255,255,255,.55)!important;-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
+ border:1px solid var(--g-line)!important;box-shadow:0 10px 30px -12px rgba(70,84,50,.28),inset 0 1px 0 rgba(255,255,255,.9)!important;border-radius:26px}
+.mast,.sidebar{background:rgba(250,248,241,.62)!important;-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5)}
+/* кнопки — тонированное стекло */
+.btn3d,.olb,.ch.main,.p.on,.mat,.les.open .mat,.sgo,#hgo{
+ background:linear-gradient(160deg,rgba(150,165,110,.78),rgba(96,112,66,.78))!important;color:#fff!important;
+ -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.55)!important;
+ box-shadow:0 10px 22px -8px rgba(80,98,52,.55),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -8px 14px rgba(60,76,40,.18)!important;text-shadow:0 1px 1px rgba(40,50,25,.25)}
+.btn3d.alt,.ch,.p,.olb.alt{background:linear-gradient(160deg,rgba(255,255,255,.75),var(--g-beige))!important;color:#4A4A30!important;text-shadow:none;
+ -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--g-line)!important;
+ box-shadow:0 8px 18px -8px rgba(150,125,70,.4),inset 0 1px 0 #fff!important}
+.ch.pres{background:linear-gradient(160deg,rgba(255,255,255,.75),var(--g-blue))!important;color:#2F4A5A!important}
+.ch.skl,.ch.add{background:linear-gradient(160deg,rgba(255,255,255,.75),var(--g-beige))!important}
+.btn3d,.olb,.ch,.p,.mat{transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+.btn3d:hover,.olb:hover,.ch:hover,.p:hover{transform:translateY(-2px) scale(1.02)}
+.btn3d:active,.olb:active,.ch:active{transform:scale(.97)}
+/* современные стрелки вместо ›  и → */
+.ar{display:inline-block;width:1em;height:1em;vertical-align:-.14em;margin-left:.3em;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+summary:after,.more summary:after{content:""!important;width:.62em;height:.62em;border-right:2.2px solid currentColor;border-bottom:2.2px solid currentColor;transform:rotate(-45deg);border-radius:1px;margin-left:auto;display:inline-block;opacity:.7;font-size:inherit}
+details[open] summary:after,.more[open] summary:after{transform:rotate(45deg)}
+/* плавающая стеклянная панель */
+.gdock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;display:flex;gap:8px;padding:8px;border-radius:999px;
+ background:rgba(255,255,255,.38);-webkit-backdrop-filter:blur(22px) saturate(1.6);backdrop-filter:blur(22px) saturate(1.6);
+ border:1px solid rgba(255,255,255,.75);box-shadow:0 18px 40px -12px rgba(60,72,44,.45),inset 0 1px 0 rgba(255,255,255,.9)}
+.gb{display:flex;align-items:center;gap:7px;height:46px;min-width:46px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.7);cursor:pointer;text-decoration:none;
+ font:600 13px/1 "DM Sans",Arial,sans-serif;color:#33401f;box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 6px 14px -6px rgba(60,72,44,.4);transition:transform .2s}
+.gb svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.gb:active{transform:scale(.93)}
+.gb.o{background:linear-gradient(160deg,rgba(168,184,128,.85),rgba(110,128,74,.8));color:#fff}
+.gb.b{background:linear-gradient(160deg,rgba(200,226,240,.9),rgba(140,178,200,.8));color:#27414f}
+.gb.e{background:linear-gradient(160deg,rgba(255,250,236,.95),rgba(226,208,170,.85));color:#5a4a26}
+@media(max-width:560px){.gb span{display:none}.gb{padding:0;width:46px;justify-content:center}.gdock{gap:6px}}
+body{padding-bottom:84px}
+.mat span{font-size:0!important;width:.55rem;height:.55rem;margin-left:.55rem;vertical-align:.1em;border-right:2.2px solid currentColor;border-bottom:2.2px solid currentColor;transform:rotate(-45deg)!important;border-radius:1px}
+.les.open .mat span{transform:rotate(45deg)!important}
