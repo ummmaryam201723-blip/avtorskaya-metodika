@@ -2,7 +2,7 @@
 var DONE=['Отправлено','На проверке','Требуется доработка','Принято'];
 function st(n){try{return localStorage.getItem('dfk_st'+n)||''}catch(e){return ''}}
 function ok(n){return DONE.indexOf(st(n))>=0}
-var I={star:'<path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/>',book:'<path d="M5 4h10a4 4 0 014 4v12H9a4 4 0 01-4-4zM9 8h6"/>',slides:'<rect x="3" y="5" width="18" height="12" rx="3"/><path d="M8 21h8M12 17v4"/>',doc:'<path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/>',flag:'<path d="M6 21V4M6 5h11l-2 4 2 4H6"/>',check:'<path d="M5 12l5 5 9-10"/>'};
+var I={star:'<path d="M12 4l2 4 4 .6-3 3 .8 4.4L12 14l-3.8 2 .8-4.4-3-3 4-.6z"/>',book:'<path d="M4 6c3-1.5 5-1.5 8 0 3-1.5 5-1.5 8 0v12c-3-1.5-5-1.5-8 0-3-1.5-5-1.5-8 0zM12 6v12"/>',slides:'<path d="M12 3l8 5v8l-8 5-8-5V8zM12 8v8M8.5 10l7 4"/>',doc:'<path d="M7 4h8l3 3v13H7zM10 10h5M10 14h5M10 17h3"/><path d="M15 4v3h3"/>',flag:'<path d="M12 3l2.4 4.3 4.8.9-3.4 3.5.6 4.9L12 14.2 7.6 16.6l.6-4.9L4.8 8.2l4.8-.9zM9 20h6"/>',check:'<path d="M5 12l5 5 9-10"/>'};
 var M=[
 ['Программа курса готова',4,'book',''],
 ['Вводный урок готов',5,'star',''],

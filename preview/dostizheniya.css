@@ -13,3 +13,12 @@
 .achb b{display:block;font-size:14px;line-height:1.25}.achb small{color:#7a806a;font-size:12px}
 .achc{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .achc span{color:#6b7358;font-size:13px}
+
+/* серебро */
+.achn i.on{color:#3F4756;background:linear-gradient(160deg,#FFFFFF,#D5D8DE 45%,#A9AEB9);border:1px solid #fff;box-shadow:0 6px 12px -6px rgba(60,70,90,.55),inset 0 1px 0 #fff,inset 0 -3px 5px rgba(80,90,110,.25)}
+.achn i.on svg{stroke:#3F4756}
+.achb.on,.achb.pr.on{background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(214,218,226,.6));border:1px solid rgba(255,255,255,.95);box-shadow:0 12px 22px -14px rgba(60,70,90,.6),inset 0 1px 0 #fff}
+.achb .ic,.achb.pr .ic{width:46px;height:46px;border-radius:0;clip-path:polygon(50% 0,62% 14%,80% 10%,86% 28%,100% 38%,90% 50%,100% 62%,86% 72%,80% 90%,62% 86%,50% 100%,38% 86%,20% 90%,14% 72%,0 62%,10% 50%,0 38%,14% 28%,20% 10%,38% 14%);
+ background:linear-gradient(150deg,#FFFFFF 0%,#D9DCE2 35%,#9FA5B1 70%,#E8EAEE 100%);box-shadow:none;color:#3F4756}
+.achb .ic svg,.achb.pr .ic svg{stroke:#3F4756;width:20px;height:20px;stroke-width:2}
+.achb:not(.on) .ic{background:linear-gradient(150deg,#F1F2F4,#D8DADF)}
