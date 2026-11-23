@@ -41,3 +41,37 @@ details[open] summary:after,.more[open] summary:after{transform:rotate(45deg)}
 body{padding-bottom:84px}
 .mat span{font-size:0!important;width:.55rem;height:.55rem;margin-left:.55rem;vertical-align:.1em;border-right:2.2px solid currentColor;border-bottom:2.2px solid currentColor;transform:rotate(-45deg)!important;border-radius:1px}
 .les.open .mat span{transform:rotate(45deg)!important}
+/* ===== Навигатор слева (общий для обоих вариантов) ===== */
+@media(min-width:900px){.sidebar{top:128px!important;left:14px;bottom:14px!important;width:282px!important;border-radius:28px!important;border:1px solid var(--g-line);
+ box-shadow:0 24px 50px -20px rgba(60,72,44,.4),inset 0 1px 0 rgba(255,255,255,.9)!important;padding:14px 12px 18px!important}}
+.sidebar::-webkit-scrollbar{width:0}
+.sidebar .label{font-size:10.5px;letter-spacing:.18em;color:#8A9672;margin:18px 10px 8px}
+.sidebar .nav{display:flex!important;align-items:center;gap:11px;padding:8px 10px!important;border-radius:16px!important;font-size:14.5px;font-weight:500;transition:background .2s,transform .2s}
+.sidebar .nav .ni{flex:none;width:32px;height:32px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(255,255,255,.9),var(--g-beige));box-shadow:inset 0 1px 0 #fff,0 4px 10px -5px rgba(110,90,40,.5);color:#5a4a26}
+.sidebar .nav:nth-of-type(2n) .ni{background:linear-gradient(160deg,rgba(255,255,255,.9),var(--g-blue));color:#2f4a5a}
+.sidebar .nav .ni svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sidebar .nav:hover{background:rgba(255,255,255,.6)!important;transform:translateX(2px)}
+.sidebar .nav.active{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(190,204,155,.55))!important;box-shadow:0 8px 18px -10px rgba(80,98,52,.6),inset 0 1px 0 #fff;font-weight:700}
+.sidebar .nav.active .ni{background:linear-gradient(160deg,rgba(150,165,110,.95),rgba(96,112,66,.9));color:#fff}
+.sidebar .sgo{display:flex!important;align-items:center;justify-content:center;gap:8px;margin:12px 4px 4px!important;padding:13px!important;border-radius:20px!important}
+.sidebar .modnav{border-radius:18px!important;padding:9px 10px!important;transition:background .2s}
+.sidebar .modnav:hover{background:rgba(255,255,255,.6)!important}
+.sidebar .modnav.active{background:rgba(255,255,255,.75)!important;box-shadow:0 8px 18px -12px rgba(80,98,52,.6),inset 0 1px 0 #fff}
+.sidebar .sls{position:relative;margin:2px 0 8px 22px;padding-left:12px;border-left:2px solid rgba(126,140,90,.28)}
+.sidebar .sl{position:relative;border-radius:12px!important;padding:6px 9px!important}
+.sidebar .sl:before{content:"";position:absolute;left:-18px;top:14px;width:8px;height:8px;border-radius:50%;background:#EDE8D8;border:2px solid #fff;box-shadow:0 0 0 1px rgba(126,140,90,.4)}
+.sidebar .sl.cur:before{background:#6F7D4E;box-shadow:0 0 0 4px rgba(111,125,78,.22)}
+.sidebar .sl.done:before{background:#9DB07A}
+.sidebar .sl.cur{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(190,204,155,.5))!important}
+/* ===== Вариант B: «жидкое стекло», вертикальная панель справа ===== */
+html.vb body{background:
+ radial-gradient(50vw 45vh at 0% 0%,rgba(120,150,95,.5),transparent 70%),
+ radial-gradient(55vw 50vh at 100% 20%,rgba(120,170,200,.5),transparent 70%),
+ radial-gradient(60vw 50vh at 40% 100%,rgba(235,205,150,.6),transparent 70%),#EEE9DC!important}
+html.vb .les,html.vb .card,html.vb .box,html.vb .mcard,html.vb .hero2,html.vb details,html.vb .more{background:rgba(255,255,255,.38)!important;-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);border:1px solid rgba(255,255,255,.85)!important;border-radius:32px}
+html.vb .sidebar{background:linear-gradient(170deg,rgba(255,255,255,.5),rgba(190,208,160,.38))!important;-webkit-backdrop-filter:blur(30px) saturate(1.8);backdrop-filter:blur(30px) saturate(1.8)}
+html.vb .mast{background:rgba(255,255,255,.4)!important}
+@media(min-width:900px){html.vb .gdock{left:auto;right:18px;bottom:auto;top:50%;transform:translateY(-50%);flex-direction:column;border-radius:34px;padding:8px}
+ html.vb .gb span{display:none}html.vb .gb{width:48px;height:48px;padding:0;justify-content:center}}
+html.vb .gb{position:relative}
+html.vb .gb span{}
