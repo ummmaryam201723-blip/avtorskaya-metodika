@@ -23,7 +23,7 @@ body{background:
 .btn3d:hover,.olb:hover,.ch:hover,.p:hover{transform:translateY(-2px) scale(1.02)}
 .btn3d:active,.olb:active,.ch:active{transform:scale(.97)}
 /* современные стрелки вместо ›  и → */
-.ar{display:inline-block;width:1em;height:1em;vertical-align:-.14em;margin-left:.3em;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.arw{display:inline-block;width:1em;height:1em;vertical-align:-.14em;margin-left:.3em;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 summary:after,.more summary:after{content:""!important;width:.62em;height:.62em;border-right:2.2px solid currentColor;border-bottom:2.2px solid currentColor;transform:rotate(-45deg);border-radius:1px;margin-left:auto;display:inline-block;opacity:.7;font-size:inherit}
 details[open] summary:after,.more[open] summary:after{transform:rotate(45deg)}
 /* плавающая стеклянная панель */
