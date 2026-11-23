@@ -81,7 +81,7 @@ html{scroll-behavior:auto!important}
 .page.active{animation:pgin .35s cubic-bezier(.22,.8,.24,1) both}
 @keyframes pgin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .btn3d,.olb,.ch,.p,.mat{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-.sidebar,.mast{will-change:transform;transform:translateZ(0)}
+.mast{will-change:transform;transform:translateZ(0)}
 /* ===== единые значки вместо старых символов ===== */
 .gic{display:inline-grid;place-items:center;width:1.45em;height:1.45em;border-radius:.5em;vertical-align:-.3em;margin:0 .12em;
  background:linear-gradient(160deg,rgba(255,255,255,.95),var(--g-beige));border:1px solid rgba(255,255,255,.9);color:#5a4a26;
@@ -96,3 +96,4 @@ html{scroll-behavior:auto!important}
 .modnav.cur i:after{color:#6F7D4E;--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6'/%3E%3C/svg%3E")}
 .modnav.lock i:after{color:#9A9684;--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='9' rx='3'/%3E%3Cpath d='M8 11V8a4 4 0 018 0v3'/%3E%3C/svg%3E")}
 @media(min-width:900px){html.vb body{padding-right:84px}}
+body.navon .gdock{opacity:0;pointer-events:none}
