@@ -8,8 +8,8 @@ var ic={home:'<path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/>',next:'<path d="M5
 function b(c,i,t,h,id){return '<a class="gb '+c+'" '+(id?'id="'+id+'" ':'')+'aria-label="'+t+'" href="'+h+'">'+'<svg viewBox="0 0 24 24">'+ic[i]+'</svg><span>'+t+'</span></a>'}
 var idx=/index\.html$|\/$/.test(location.pathname)||!/kimi|konstr/.test(location.pathname);
 var d=document.createElement('nav');d.className='gdock';d.setAttribute('aria-label','Быстрая навигация');
-d.innerHTML=idx?b('e','home','Главная','#home')+b('o','next','Мой шаг','#z1','gnext')+b('b','proj','Проект','konstruktor.html')+b('e','help','Помощь','#help')+'<a class="gb b" href="#" id="gup" aria-label="Наверх"><svg viewBox="0 0 24 24">'+ic.up+'</svg></a>'
- :b('o','back','К программе','index.html#home')+b('e','proj','Проект','konstruktor.html')+'<a class="gb b" href="#" id="gup" aria-label="Наверх"><svg viewBox="0 0 24 24">'+ic.up+'</svg></a>';
+d.innerHTML=idx?b('e','home','Главная','#home')+b('o','next','Мой шаг','#z1','gnext')+b('b','proj','Задания','konstruktor.html')+b('e','help','Помощь','#help')+'<a class="gb b" href="#" id="gup" aria-label="Наверх"><svg viewBox="0 0 24 24">'+ic.up+'</svg></a>'
+ :b('o','back','К программе','index.html#home')+b('e','proj','Задания','konstruktor.html')+'<a class="gb b" href="#" id="gup" aria-label="Наверх"><svg viewBox="0 0 24 24">'+ic.up+'</svg></a>';
 document.body.appendChild(d);
 document.getElementById('gup').onclick=function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'})};
 var s=document.getElementById('hgo'),g=document.getElementById('gnext');if(g&&s)g.onclick=function(e){e.preventDefault();s.click()};
