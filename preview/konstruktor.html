@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Мой проект курса · Авторская методика</title>
+<title>Домашние задания и сборка курса · Авторская методика</title>
 <style>
 body{margin:0;background:#F3EEE4;font-family:Georgia,serif;color:#2F3A2C}
 .pg{max-width:640px;margin:0 auto;padding:14px}
@@ -53,13 +53,13 @@ body{background-color:#EFEDE6!important;background-image:var(--grain)!important;
 .b,button,.tab.on{border-radius:999px!important;background:linear-gradient(180deg,#8D9C74,#7F8E67 60%,#76855F)!important;box-shadow:var(--clay)!important;min-height:46px}
 .b2,button.l,.tab{border-radius:999px!important;background:linear-gradient(180deg,#FFFFFF,#F2F1EB)!important;color:#596748!important;box-shadow:var(--clayL)!important;min-height:46px}
 textarea,input,select{border-radius:18px!important;border:0!important;background:#FCFBF8!important;box-shadow:inset 0 1px 3px rgba(84,80,62,.12),0 1px 0 #fff!important}
-</style><link rel="stylesheet" href="glass2027.css?v=9"></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html" class=on>Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
+</style><link rel="stylesheet" href="glass2027.css?v=9"></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html" class=on>Домашние задания и сборка курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
 
-<div class="tabs"><div class="tab on" data-t="st">Ученица</div><div class="tab" data-t="cu">Проверка куратора</div></div>
+<div class="tabs" id="tabs" style="display:none"><div class="tab on" data-t="st">Ученица</div><div class="tab" data-t="cu">Проверка куратора</div></div>
 
 <div id="st" role="main">
 <div class="cd">
-<h1>Мой проект курса</h1>
+<h1>Домашние задания и сборка курса</h1>
 <p>Здесь вы выполняете задания, сохраняете свои решения и готовите материалы для создания курса.</p>
 <label>Ваше имя</label><input id="who" placeholder="Имя Фамилия">
 <div class="note"><b>Как сдать домашнее задание</b><br>1. Зайдите в группу «Авторская методика» и откройте ссылку на сайт.<br>2. Откройте раздел «Домашние задания» и выберите урок.<br>3. Заполните все поля урока. <span style="color:#1D5FD1;font-style:italic">Синий текст</span> — пример: начните писать, и он исчезнет.<br>4. Нажмите «Скопировать и отправить боту»: откроется бот, вставьте текст и отправьте. Куратор получит ваше задание.<br>5. Если часть задания вы делали от руки или на печати, сфотографируйте или сделайте скриншот и отправьте боту в том же чате, следом за текстом.<br>Так — на каждом уроке. Следующее задание откроется, когда вы выполните предыдущее: заполните все поля или отправьте его боту. Всё, что вы написали, сохраняется в этом браузере. В промптах для Kimi поля в <mark>[квадратных скобках]</mark> замените своим; внизу — комплекты для Kimi, в них соберётся всё, что вы заполнили.</div>
@@ -183,6 +183,7 @@ L.forEach(function(l){
  if(l.n==19) H+='<h2>Промпт · Черновик записки</h2><div class="out" id="zp"></div><div class="bs"><button data-cp="zp">Скопировать</button></div>';
  H+='<div class="bs"><button data-send="'+l.n+'">Скопировать и отправить боту</button><button class="l" data-print="'+l.n+'">Распечатать</button></div><div class="ok" id="ok'+l.n+'"></div></div></details>';
 });
+(function(){var cur=/kurator|curator/i.test(location.hash+location.search);if(cur){document.getElementById('tabs').style.display='flex';var c=document.querySelector('.tab[data-t="cu"]');if(c)setTimeout(function(){c.click()},0)}})();
 document.getElementById('lessons').innerHTML=H;document.getElementById('lessons').addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('summary');if(s&&s.parentNode.classList.contains('lk')){e.preventDefault()}},true);
 L.forEach(function(l){if(l.add)drawAdds(l.n)});
 var K=[[1,'Презентация 1 · вводная','DF_01',5],[2,'Презентация 2 · первый урок','DF_02',6],[3,'Презентация 3 · продолжающийся урок','DF_03',7],[4,'Презентация 4 · завершающий урок','DF_04',8],[5,'Защитная презентация','DF_05',19]];
