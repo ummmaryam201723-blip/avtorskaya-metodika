@@ -25,6 +25,7 @@ summary::-webkit-details-marker{display:none}
 .nm{background:#D7DDCB;color:#3E4A36;border-radius:6px;font-family:Arial;font-size:11px;padding:3px 7px}
 .st{margin-left:auto;font-family:Arial;font-size:11px;color:#5E5A4E;white-space:nowrap}
 .st.full{color:#4C6B35}
+.tt{display:block;min-width:0}.tt b{display:block;font-weight:700}.tt small{display:block;font-size:12.5px;color:#6B6657;margin-top:1px}details.lk{opacity:.6}details.lk summary{cursor:not-allowed}
 .body{padding:0 13px 13px}
 .blk{font-family:Arial;font-size:11px;letter-spacing:.1em;color:#6B7A5E;margin:16px 2px 6px}
 .out{white-space:pre-wrap;font-family:Arial;font-size:12.5px;background:#F6F1E7;border:1px solid #E2DACB;border-radius:9px;padding:10px;margin-top:6px;max-height:220px;overflow:auto}
@@ -61,7 +62,7 @@ textarea,input,select{border-radius:18px!important;border:0!important;background
 <h1>Мой проект курса</h1>
 <p>Здесь вы выполняете задания, сохраняете свои решения и готовите материалы для создания курса.</p>
 <label>Ваше имя</label><input id="who" placeholder="Имя Фамилия">
-<div class="note"><b>Как сдать домашнее задание</b><br>1. Зайдите в группу «Авторская методика» и откройте ссылку на сайт.<br>2. Откройте раздел «Домашние задания» и выберите урок.<br>3. Заполните все поля урока. <span style="color:#1D5FD1;font-style:italic">Синий текст</span> — пример: начните писать, и он исчезнет.<br>4. Нажмите «Скопировать и отправить боту»: откроется бот, вставьте текст и отправьте. Куратор получит ваше задание.<br>5. Если часть задания вы делали от руки или на печати, сфотографируйте или сделайте скриншот и отправьте боту в том же чате, следом за текстом.<br>Так — на каждом уроке. Всё, что вы написали, сохраняется в этом браузере. В промптах для Kimi поля в <mark>[квадратных скобках]</mark> замените своим; внизу — комплекты для Kimi, в них соберётся всё, что вы заполнили.</div>
+<div class="note"><b>Как сдать домашнее задание</b><br>1. Зайдите в группу «Авторская методика» и откройте ссылку на сайт.<br>2. Откройте раздел «Домашние задания» и выберите урок.<br>3. Заполните все поля урока. <span style="color:#1D5FD1;font-style:italic">Синий текст</span> — пример: начните писать, и он исчезнет.<br>4. Нажмите «Скопировать и отправить боту»: откроется бот, вставьте текст и отправьте. Куратор получит ваше задание.<br>5. Если часть задания вы делали от руки или на печати, сфотографируйте или сделайте скриншот и отправьте боту в том же чате, следом за текстом.<br>Так — на каждом уроке. Следующее задание откроется, когда вы выполните предыдущее: заполните все поля или отправьте его боту. Всё, что вы написали, сохраняется в этом браузере. В промптах для Kimi поля в <mark>[квадратных скобках]</mark> замените своим; внизу — комплекты для Kimi, в них соберётся всё, что вы заполнили.</div>
 </div>
 <div id="lessons"></div>
 <div class="blk">МАТЕРИАЛЫ ДЛЯ KIMI</div>
@@ -174,7 +175,7 @@ document.addEventListener('input',function(e){var t=e.target;if(t.dataset&&t.dat
 function esc(s){return s.replace(/"/g,'&quot;')}
 var H='';
 L.forEach(function(l){
- H+='<details id="d'+l.n+'"><summary><span class="nm">'+(l.n<10?'0':'')+l.n+'</span>'+l.t+'<span class="st" id="s'+l.n+'"></span></summary><div class="body">';
+ H+='<details id="d'+l.n+'"><summary><span class="nm">'+(l.n<10?'0':'')+l.n+'</span><span class="tt"><b>Домашнее задание к уроку '+l.n+'</b><small>'+l.t+'</small></span><span class="st" id="s'+l.n+'"></span></summary><div class="body">';
  if(l.note)H+='<div class="note">'+l.note+(l.n==9?' <a href="'+TG+'" target="_blank" style="color:#4C5B3F">Открыть группу</a>':'')+'</div>';
  l.f.forEach(function(f){H+='<label>'+f[1]+'</label><textarea data-n="'+l.n+'" data-id="'+f[0]+'" placeholder="'+esc(f[2]||'')+'"></textarea>';if(f[0]=='self')H+=schHTML()});
  if(l.add) H+='<div class="blk">ДОПОЛНЕНИЯ</div><p class="hint">Хотите добавить свой слайд: приветствие, дуа, приём, игру? Нажмите кнопку и напишите, куда его поставить. Kimi расставит по местам.</p><div id="adds'+l.n+'"></div><div class="bs"><button class="l" data-addnew="'+l.n+'">+ Добавить слайд или приём</button></div>';
@@ -182,7 +183,7 @@ L.forEach(function(l){
  if(l.n==19) H+='<h2>Промпт · Черновик записки</h2><div class="out" id="zp"></div><div class="bs"><button data-cp="zp">Скопировать</button></div>';
  H+='<div class="bs"><button data-send="'+l.n+'">Скопировать и отправить боту</button><button class="l" data-print="'+l.n+'">Распечатать</button></div><div class="ok" id="ok'+l.n+'"></div></div></details>';
 });
-document.getElementById('lessons').innerHTML=H;
+document.getElementById('lessons').innerHTML=H;document.getElementById('lessons').addEventListener('click',function(e){var s=e.target.closest&&e.target.closest('summary');if(s&&s.parentNode.classList.contains('lk')){e.preventDefault()}},true);
 L.forEach(function(l){if(l.add)drawAdds(l.n)});
 var K=[[1,'Презентация 1 · вводная','DF_01',5],[2,'Презентация 2 · первый урок','DF_02',6],[3,'Презентация 3 · продолжающийся урок','DF_03',7],[4,'Презентация 4 · завершающий урок','DF_04',8],[5,'Защитная презентация','DF_05',19]];
 var LN={1:'вводного урока',2:'первого содержательного урока',3:'продолжающегося урока',4:'завершающего урока',5:'защитной презентации'};
@@ -215,8 +216,10 @@ function designPrompts(){
  var p2='Собери презентацию курса «'+ph('cname','название')+'». Формат 16:9. Шрифт '+ph('font','шрифт')+'. Основной текст 30–32 pt. При большом объёме уменьши размер, но не сокращай текст.\nРаботай строго в дизайне слайда, который я прикладываю: я выбрала его из трёх пробных.\nФон '+ph('bg','фон')+', текст '+ph('tx','текст')+', акцент '+ph('ac','акцент')+', карточки '+ph('cd','карточки')+'.\nОбращайся на «вы». Межстрочный интервал не меньше 1,2.';
  return [p1,p2]}
 function noteprompt(){return 'СОСТАВЬ ПОЯСНИТЕЛЬНУЮ ЗАПИСКУ К МОЕМУ ДИПЛОМУ\nТы — редактор и методический помощник. На основании моих файлов и ответов ниже подготовь связный черновик пояснительной записки примерно на один лист A4. Это сопровождение диплома, не речь и не рекламный текст.\nАвтор: '+(document.getElementById('who').value||'[имя]')+'. Курс: '+(v(11,'cname')||'[название]')+'.\nПрикладываю четыре учебные презентации и защитную презентацию.\nСначала перечисли прочитанные файлы. Неизвестное обозначь [УТОЧНИТЬ У АВТОРА].\nПять подзаголовков: автор и работа; проблема и цель; архитектура и четыре работы; решения и источники; проверка и комплект.\nРазличай цель и доказанный результат, готовое и планируемое, содержание источника и мои решения. Не придумывай квалификацию, отзывы, факты практики, цитаты и арабский текст.\n\nМои ответы:\n'+['z1','z2','z3','z4','z5'].map(function(id,i){return ['Автор и работа','Проблема и цель','Архитектура и четыре работы','Решения и источники','Проверка и комплект'][i]+': '+(v(19,id)||'—')}).join('\n')}
+function isDone(l){return ST.get('sent'+l.n)=='1'||l.f.every(function(f){return v(l.n,f[0])})}
+function lockAll(){L.forEach(function(l,i){var d=document.getElementById('d'+l.n),s=document.getElementById('s'+l.n);if(!d||i==0)return;var p=L[i-1],ok=isDone(p);d.classList.toggle('lk',!ok);if(!ok){d.open=false;s.textContent='🔒 откроется после задания к уроку '+p.n;s.className='st'}})}
 function refresh(){var d=designPrompts();document.getElementById('dp1').textContent=d[0];document.getElementById('dp2').textContent=d[1];document.getElementById('zp').textContent=noteprompt();
- L.forEach(function(l){var c=l.f.filter(function(f){return v(l.n,f[0])}).length,s=document.getElementById('s'+l.n);s.textContent=c?c+' из '+l.f.length:'';s.className='st'+(c==l.f.length?' full':'')})}
+ L.forEach(function(l){var c=l.f.filter(function(f){return v(l.n,f[0])}).length,s=document.getElementById('s'+l.n);s.textContent=c?c+' из '+l.f.length:'';s.className='st'+(c==l.f.length?' full':'')});lockAll()}
 document.querySelectorAll('textarea[data-n]').forEach(function(t){t.value=ST.get(key(t.dataset.n,t.dataset.id))||'';t.addEventListener('input',function(){ST.set(key(t.dataset.n,t.dataset.id),t.value);refresh()})});
 var who=document.getElementById('who');who.value=ST.get('who')||'';who.addEventListener('input',function(){ST.set('who',who.value);refresh()});
 refresh();
@@ -253,7 +256,7 @@ function fb(t){var a=document.createElement('textarea');a.value=t;document.body.
 function dl(name,text,type){var b=new Blob([text],{type:type||'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}
 document.addEventListener('click',function(e){var b=e.target;
  if(b.dataset.cp)copy(document.getElementById(b.dataset.cp).textContent,'ok'+b.closest('details').id.slice(1));
- if(b.dataset.send){var n=b.dataset.send,l=L.filter(function(x){return x.n==n})[0];copy('Занятие '+n+' · '+l.t+'\n'+(who.value||'')+'\n\n'+lessonText(n),'ok'+n);setTimeout(function(){window.open(BOT+'?start=l'+n,'_blank')},400)}
+ if(b.dataset.send){var n=b.dataset.send,l=L.filter(function(x){return x.n==n})[0];ST.set('sent'+n,'1');refresh();copy('Занятие '+n+' · '+l.t+'\n'+(who.value||'')+'\n\n'+lessonText(n),'ok'+n);setTimeout(function(){window.open(BOT+'?start=l'+n,'_blank')},400)}
  if(b.dataset.print){var n=b.dataset.print,l=L.filter(function(x){return x.n==n})[0],w=window.open('');if(w){w.document.write('<pre style="font:14px Arial;white-space:pre-wrap">Занятие '+n+' · '+l.t+'\n'+(who.value||'')+'\n\n'+lessonText(n).replace(/</g,'&lt;')+'</pre>');w.print()}}
  if(b.dataset.sch){var t=document.querySelector('textarea[data-n="18"][data-id="self"]');if(!t.value.trim()||confirm('Заменить текст в поле самопрезентации на эту схему?')){t.value=SCH[+b.dataset.sch][2];ST.set(key(18,'self'),t.value);refresh();t.scrollIntoView({block:'center'});t.focus()}}
  if(b.dataset.addnew){var n=b.dataset.addnew,a=getAdds(n);a.push({w:'',p:''});ST.set('adds'+n,JSON.stringify(a));drawAdds(n)}
