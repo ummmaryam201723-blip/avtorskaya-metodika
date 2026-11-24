@@ -97,3 +97,16 @@ html{scroll-behavior:auto!important}
 .modnav.lock i:after{color:#9A9684;--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='5' y='11' width='14' height='9' rx='3'/%3E%3Cpath d='M8 11V8a4 4 0 018 0v3'/%3E%3C/svg%3E")}
 @media(min-width:900px){html.vb body{padding-right:84px}}
 body.navon .gdock{opacity:0;pointer-events:none}
+
+/* df-perf-a11y: контраст подписей, лёгкое стекло на телефонах, строка про хранение */
+.kmain .bs a.b,.topnav a.on,.topnav a.active{background:#667445!important;color:#fff!important}
+.stor{font-size:13px;line-height:1.5;color:#4A4F3E;background:rgba(190,208,160,.22);border:1px solid rgba(120,140,90,.28);border-radius:12px;padding:9px 12px;margin:8px 0 10px}
+@media(max-width:820px){
+ .mast,.sidebar,html.vb .sidebar{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+ .mast{background:rgba(250,248,241,.93)!important}
+ .sidebar,html.vb .sidebar{background:linear-gradient(170deg,rgba(252,251,246,.99),rgba(226,234,208,.98))!important}
+ .gdock{-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background:rgba(255,255,255,.62)}
+ .btn3d,.olb,.ch.main,.p.on,.mat,.les.open .mat,.sgo,#hgo,.btn3d.alt,.ch,.p,.olb.alt{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
+.skip{position:fixed;left:12px;top:-60px;z-index:200;background:#3F4A26;color:#fff;padding:10px 14px;border-radius:12px;font-size:14px;text-decoration:none}.skip:focus{top:12px}
+#main:focus{outline:none}

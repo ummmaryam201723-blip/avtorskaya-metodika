@@ -38,7 +38,7 @@ button.l{background:#FBF8F2;color:#4C5B3F;border-color:#B9C2A8}
 .crit li{font-family:Arial;font-size:13px;line-height:1.5}
 
 .where{font-size:13px;color:#596748;background:#EEF1E6;border-radius:10px;padding:5px 10px;margin:4px 0 6px;display:inline-block}
-</style><link rel="stylesheet" href="img/theme.css"><link rel="icon" href="img/girl_soft_b.png"><meta name="robots" content="noindex,nofollow"><style>:root{
+</style><link rel="stylesheet" href="img/theme.css"><link rel="icon" href="icons/icon-192.png" type="image/png"><meta name="robots" content="noindex,nofollow"><style>:root{
  --base:#EFEDE6;--panel:#F7F6F1;--card:#FCFBF8;
  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
  --stone:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .3 0 0 0 0 .26 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='.35'/%3E%3C/svg%3E");
@@ -52,11 +52,11 @@ body{background-color:#EFEDE6!important;background-image:var(--grain)!important;
 .b,button,.tab.on{border-radius:999px!important;background:linear-gradient(180deg,#8D9C74,#7F8E67 60%,#76855F)!important;box-shadow:var(--clay)!important;min-height:46px}
 .b2,button.l,.tab{border-radius:999px!important;background:linear-gradient(180deg,#FFFFFF,#F2F1EB)!important;color:#596748!important;box-shadow:var(--clayL)!important;min-height:46px}
 textarea,input,select{border-radius:18px!important;border:0!important;background:#FCFBF8!important;box-shadow:inset 0 1px 3px rgba(84,80,62,.12),0 1px 0 #fff!important}
-</style><link rel="stylesheet" href="glass2027.css?v=8"><link rel="stylesheet" href="offline.css?v=3"></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html" class=on>Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
+</style><link rel="stylesheet" href="glass2027.css?v=9"><link rel="stylesheet" href="offline.css?v=3"></head><body><div class="pg"><nav class="topnav"><a href="index.html">Главная</a><a href="index.html#prog">Программа обучения</a><a href="konstruktor.html" class=on>Мой проект курса</a><a href="https://t.me/+zDj6L_XIXr84NDM0" target="_blank" rel="noopener">Группа домашних заданий</a></nav>
 
 <div class="tabs"><div class="tab on" data-t="st">Ученица</div><div class="tab" data-t="cu">Проверка куратора</div></div>
 
-<div id="st">
+<div id="st" role="main">
 <div class="cd">
 <h1>Мой проект курса</h1>
 <p>Здесь вы выполняете задания, сохраняете свои решения и готовите материалы для создания курса.</p>
@@ -70,7 +70,7 @@ textarea,input,select{border-radius:18px!important;border:0!important;background
 <p><b>Как файлы</b> в проект загружаются только два: <b>06_Комплект</b> и картинка вашего пробного слайда. <b>Инструкция и промпты — текстом:</b> инструкцию вставьте в поле «Инструкции» проекта, промпты 1–4 — по одному в поле сообщения в чате проекта. Каждый раз дождитесь ответа Kimi.</p>
 <p>Kimi сам файлы не открывает — поэтому в каждом промпте уже написано точное название файла. Назовите картинку пробного слайда так, как указано ниже, или впишите её название:</p>
 <p><label><b>Название файла пробного слайда</b><br><input id="dfile" placeholder="Дизайн_выбранный.jpg" style="width:100%"></label></p></div>
-<div class="cd"><h2>Резервная копия</h2><p>Сохраните копию, чтобы не потерять ответы при смене телефона или браузера.</p>
+<div class="cd"><h2>Резервная копия</h2><p>Сохраните копию, чтобы не потерять ответы при смене телефона или браузера.</p><p class="stor"><b>Где хранятся ответы.</b> Ваши ответы хранятся только на вашем устройстве, их не видит ни куратор, ни другие ученицы, пока вы сами не отправите их боту.</p>
 <div class="bs"><button class="l" id="bk">Скачать копию</button><button class="l" id="rs">Загрузить копию</button><input type="file" id="rsf" accept=".json" style="display:none"></div><div class="ok" id="okb"></div></div>
 </div>
 
@@ -283,4 +283,4 @@ document.getElementById('c_go').onclick=function(){var t='Ты помогаеш�
 document.querySelectorAll('.tab').forEach(function(t){t.onclick=function(){document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});t.classList.add('on');document.getElementById('st').style.display=t.dataset.t=='st'?'':'none';document.getElementById('cu').style.display=t.dataset.t=='cu'?'':'none'}});
 
 function goHash(){var h=location.hash;if(/^#l\d+$/.test(h)){var d=document.getElementById('d'+h.slice(2));if(d){d.open=true;d.scrollIntoView()}}else if(h=='#kits'){document.getElementById('kits').scrollIntoView()}}goHash();window.addEventListener('hashchange',goHash);
-</script><script src="glass2027.js?v=5"></script><script src="offline.js?v=3"></script></body></html>
+</script><script src="glass2027.js?v=6"></script><script src="offline.js?v=3"></script></body></html>
