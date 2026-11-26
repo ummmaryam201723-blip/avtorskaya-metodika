@@ -1,4 +1,4 @@
-var V='df-v5',CORE=['./','index.html','kimi-1.html','kimi-2.html','konstruktor.html','glass2027.css','glass2027.js','dostizheniya.css','dostizheniya.js','offline.css','offline.js','icons/icon-192.png'];
+var V='df-v6',CORE=['./','index.html','kimi-1.html','kimi-2.html','konstruktor.html','glass2027.css','glass2027.js','dostizheniya.css','dostizheniya.js','offline.css','offline.js','icons/icon-192.png'];
 self.addEventListener('install',function(e){e.waitUntil(caches.open(V).then(function(c){return Promise.all(CORE.map(function(u){return c.add(u).catch(function(){})}))}).then(function(){return self.skipWaiting()}))});
 self.addEventListener('activate',function(e){e.waitUntil(caches.keys().then(function(k){return Promise.all(k.filter(function(x){return x!==V}).map(function(x){return caches.delete(x)}))}).then(function(){return self.clients.claim()}))});
 self.addEventListener('fetch',function(e){var r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
