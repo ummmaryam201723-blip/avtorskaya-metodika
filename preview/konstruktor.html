@@ -27,6 +27,7 @@ summary::-webkit-details-marker{display:none}
 .st.full{color:#4C6B35}
 .tt{display:block;min-width:0}.tt b{display:block;font-weight:700}.tt small{display:block;font-size:12.5px;color:#6B6657;margin-top:1px}details.lk{opacity:.6}details.lk summary{cursor:not-allowed}
 .body{padding:0 13px 13px}
+.bh{margin:22px 0 8px;padding:10px 12px;border-left:4px solid #7E9467;background:#F3F0E6;border-radius:8px;font-family:Arial}.bh b{display:block;font-size:15px;color:#3F4E33}.bh span{display:block;font-size:12.5px;color:#555;margin-top:3px;line-height:1.4}.rep{display:inline-block;margin-top:3px;font-weight:normal;font-size:12px;color:#7A6A3A;background:#F6EBCB;border-radius:6px;padding:1px 6px}
 .blk{font-family:Arial;font-size:11px;letter-spacing:.1em;color:#6B7A5E;margin:16px 2px 6px}
 .out{white-space:pre-wrap;font-family:Arial;font-size:12.5px;background:#F6F1E7;border:1px solid #E2DACB;border-radius:9px;padding:10px;margin-top:6px;max-height:220px;overflow:auto}
 .bs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 2px}
@@ -80,18 +81,27 @@ textarea,input,select{border-radius:18px!important;border:0!important;background
 var TG='https://t.me/+zDj6L_XIXr84NDM0'; // группа учениц
 var BOT='https://t.me/dz_df2027_bot'; // бот домашних заданий
 var L=[
-{n:1,t:'Архитектура мышления',note:'<b>Ответьте на вопросы по шагам, по порядку.</b> Каждый следующий шаг опирается на предыдущий.<br>Из ваших ответов получится ваш лист замысла и ответы на шесть вопросов. Они отправятся боту вместе с заданием.',f:[
- ['qs','Шаг 1 · Трудности ваших учениц: 5–10 трудностей, которые повторяются у разных людей, и где вы их увидели','1. Путают Ш и Щ в словах — чат родителей прошлой группы. 2. Не различают И и Й — мои записи с уроков. 3. Читают по слогам и не могут сложить слово — вопросы родителей в комментариях'],
- ['main','Шаг 1 · Главная трудность: выберите одну, которая повторяется чаще всего','Путают похожие буквы в слове (Ш и Щ, И и Й) — об этом писали почти все родители'],
- ['pA','Шаг 2 · Точка А: где ваша ученица сейчас. Опишите состояние, а не тему','Знает буквы по картинкам, но в слове путает Ш и Щ, И и Й и угадывает'],
- ['pB','Шаг 3 · Точка Б: что ученица сделает сама после курса и как вы это увидите или услышите','Без подсказки читает короткие слова «шар», «щука», «мой» и называет каждую букву; я слышу это при чтении вслух'],
- ['what','Шаг 4 · Что я создаю: направление и продукт','Курс «Русский алфавит с нуля»: 12 онлайн-уроков с рабочей тетрадью'],
- ['whom','Шаг 4 · Для кого: ваша аудитория','Дети 6–7 лет перед школой, учатся с нуля, на уроке рядом родитель'],
- ['why','Шаг 4 · Зачем: цель курса','Чтобы ребёнок пришёл в школу, уверенно узнавая все буквы и читая короткие слова'],
- ['q1','Шаг 5 · Кто я как преподаватель','Учу детей 6–7 лет читать 4 года, онлайн, в группах до 5 человек'],
- ['q5','Шаг 5 · Каким путём я приведу ученицу от точки А к точке Б (черновик, уточним на уроке 4)','Слышим звук → находим букву → сравниваем похожие буквы рядом → ищем их в словах → читаем слова'],
- ['q6','Шаг 5 · Какие материалы и инструменты мне нужны (черновик, уточним на уроке 3)','Азбука, карточки похожих букв, рабочая тетрадь, презентации к урокам'],
- ['chk1','Шаг 6 · Проверка: прочитайте лист замысла и шесть ответов подряд. Что сходится, что уточните','Цепочка сходится: трудность → точка А → точка Б. Путь пока черновой, уточню на уроке 4']]},
+{n:1,t:'Архитектура мышления',note:'<b>Что вы сдаёте:</b> лист замысла и ответы на шесть вопросов.<br>Отвечайте по порядку: каждый блок опирается на предыдущий. В конце вы увидите, как связаны ваши ответы.',f:[
+ ['#','Блок 1. Трудности ваших учениц','С них начинается курс: он отвечает на реальную трудность, которая повторяется у разных людей.'],
+ ['qs','5–10 трудностей, которые повторяются, и где вы их увидели','1. Путают Ш и Щ в словах — чат родителей прошлой группы. 2. Не различают И и Й — мои записи с уроков. 3. Читают по слогам и не могут сложить слово — вопросы родителей в комментариях'],
+ ['main','Главная трудность: какая повторяется чаще всего','Путают похожие буквы в слове (Ш и Щ, И и Й) — об этом писали почти все родители'],
+ ['#','Блок 2. Точка А и точка Б','Откуда ученица начинает и куда вы её приведёте.'],
+ ['pA','Точка А: где ученица сейчас. Опишите состояние, а не тему','Знает буквы по картинкам, но в слове путает Ш и Щ, И и Й и угадывает'],
+ ['pB','Точка Б: что ученица сделает сама после курса и как вы это увидите или услышите','Без подсказки читает короткие слова «шар», «щука», «мой» и называет каждую букву; я слышу это при чтении вслух'],
+ ['#','Блок 3. Лист замысла: четыре вопроса','Лист замысла — ваш замысел на одной странице. В него входят ответы на четыре вопроса: что, для кого, зачем, какой результат.'],
+ ['what','1. Что я создаю? Направление и продукт','Курс «Русский алфавит с нуля»: 12 онлайн-уроков с рабочей тетрадью'],
+ ['whom','2. Для кого? Аудитория и её главная трудность','Дети 6–7 лет перед школой, учатся с нуля; главная трудность — путают похожие буквы в слове'],
+ ['why','3. Зачем? Цель курса','Чтобы ребёнок пришёл в школу, уверенно узнавая все буквы и читая короткие слова'],
+ ['res','4. Какой результат? Точка Б и как вы её проверите<br><span class=rep>↻ Вопрос повторяется: ответ можно скопировать из точки Б (блок 2).</span>','Без подсказки читает «шар», «щука», «мой» и называет каждую букву. Проверка: чтение вслух на последнем уроке'],
+ ['#','Блок 4. Шесть вопросов: архитектура мышления','Порядок мысли: сначала замысел, потом путь, потом материалы. Некоторые вопросы повторяют предыдущие блоки — так и задумано: это нужно для структуры и вашего понимания. Такой ответ просто скопируйте.'],
+ ['q1','1. Кто я как преподаватель?','Учу детей 6–7 лет читать 4 года, онлайн, в группах до 5 человек'],
+ ['q2','2. Какую задачу решает моё обучение?<br><span class=rep>↻ Вопрос повторяется: ответ можно скопировать из главной трудности (блок 1).</span>','Ребёнок перестаёт путать похожие буквы в слове'],
+ ['q3','3. Для кого я создаю курс?<br><span class=rep>↻ Вопрос повторяется: ответ можно скопировать из вопроса «Для кого?» (блок 3).</span>','Дети 6–7 лет перед школой, учатся с нуля'],
+ ['q4','4. Какой результат получит ученица?<br><span class=rep>↻ Вопрос повторяется: ответ можно скопировать из вопроса «Какой результат?» (блок 3).</span>','Без подсказки читает короткие слова и называет каждую букву'],
+ ['q5','5. Каким путём я её приведу? Черновик, уточним на уроке 4','Слышим звук → находим букву → сравниваем похожие буквы рядом → ищем их в словах → читаем слова'],
+ ['q6','6. Какие материалы и инструменты нужны? Черновик, уточним на уроке 3','Азбука, карточки похожих букв, рабочая тетрадь, презентации к урокам'],
+ ['#','Блок 5. Что у вас сложилось','Заполнять не нужно: здесь из ваших ответов видно, как одно вытекает из другого.'],
+ ['chk1','Проверка: прочитайте цепочку. Что сходится, что уточните?','Цепочка сходится: трудность → точка А → точка Б. Путь пока черновой, уточню на уроке 4']]},
 {n:2,t:'Проблема и результат обучения',note:'Домашнее задание урока 2: допишите рабочую карту полностью. То, что начали на уроке (направление, аудиторию, боль, причину), перенесите сюда и уточните. Каждую причину пишите как гипотезу и сразу указывайте, как её проверите. Результат записывайте по четырём элементам: действие, материал и условия, критерий, проверка. В конце сверьте карту с шестью критериями куратора: аудитория, боль, подтверждение, причины, результат, продукт. Ориентир по конкретности — сквозной пример со слайда 12.',f:[
  ['dir','Направление диплома: таджвид, хифз, арабский язык, тафсир или другое','Другое: обучение детей русскому алфавиту с нуля'],
  ['aud2','Целевая аудитория: кто конкретно (взрослые начинающие, взрослые с опытом, дети, преподаватели или смешанная)','Дети 6–7 лет перед школой, учатся с нуля, на уроке рядом родитель'],
@@ -165,11 +175,10 @@ function v(n,id){return (ST.get(key(n,id))||'').trim()}
 function getAdds(n){try{return JSON.parse(ST.get('adds'+n)||'[]')}catch(e){return []}}
 function addsText(n){var a=getAdds(n).filter(function(x){return x.w||x.p});return a.length?'\nДОПОЛНЕНИЯ АВТОРА (поставить строго на указанные места, затем перенумеровать слайды):\n'+a.map(function(x,i){return (i+1)+') '+(x.w||'—')+' → куда: '+(x.p||'—')}).join('\n'):''}
 function x1(id){return v(1,id)||'…'}
-function sheet1(){return [['1. Что я создаю',x1('what')],['2. Для кого',x1('whom')+'. Главная трудность: '+x1('main')+'. Точка А: '+x1('pA')],['3. Зачем',x1('why')],['4. Какой результат',x1('pB')]]}
-function arch1(){return [['1. Кто я как преподаватель',x1('q1')],['2. Какую задачу решает моё обучение',x1('main')],['3. Для кого я создаю курс',x1('whom')],['4. Какой результат получит ученица',x1('pB')],['5. Каким путём я её приведу',x1('q5')],['6. Какие материалы и инструменты нужны',x1('q6')]]}
-function draw1(){var a=document.getElementById('sheet1'),b=document.getElementById('arch1');if(a)a.innerHTML='<b>Ваш лист замысла</b><br>'+sheet1().map(function(r){return '<b>'+r[0]+':</b> '+r[1].replace(/</g,'&lt;')}).join('<br>');if(b)b.innerHTML='<b>Ваша архитектура мышления: ответы на шесть вопросов</b><br>'+arch1().map(function(r){return '<b>'+r[0]+':</b> '+r[1].replace(/</g,'&lt;')}).join('<br>')}
-function lessonText(n){if(n==1)return lt0(1)+'\n\nЛИСТ ЗАМЫСЛА\n'+sheet1().map(function(r){return r[0]+': '+r[1]}).join('\n')+'\n\nАРХИТЕКТУРА МЫШЛЕНИЯ: ШЕСТЬ ВОПРОСОВ\n'+arch1().map(function(r){return r[0]+': '+r[1]}).join('\n');return lt0(n)}
-function lt0(n){var l=L.filter(function(x){return x.n==n})[0];return l.f.map(function(f){return f[1]+': '+(v(n,f[0])||'—')}).join('\n')+(l.add?addsText(n):'')}
+function chain1(){return [['Главная трудность',x1('main')],['Точка А',x1('pA')],['Точка Б',x1('pB')],['Замысел','что: '+x1('what')+'; для кого: '+x1('whom')+'; зачем: '+x1('why')],['Путь',x1('q5')],['Материалы',x1('q6')]]}
+function draw1(){var a=document.getElementById('chain1');if(a)a.innerHTML=chain1().map(function(r){return '<b>'+r[0]+':</b> '+r[1].replace(/</g,'&lt;')}).join('<br>↓<br>')}
+function lessonText(n){if(n==1)return lt0(1)+'\n\nЧТО СЛОЖИЛОСЬ\n'+chain1().map(function(r){return r[0]+': '+r[1]}).join('\n↓\n');return lt0(n)}
+function lt0(n){var l=L.filter(function(x){return x.n==n})[0];return FF(l).map(function(f){return f[1].replace(/<br>[\s\S]*$/,'').replace(/<[^>]+>/g,'')+': '+(v(n,f[0])||'—')}).join('\n')+(l.add?addsText(n):'')}
 function drawAdds(n){var box=document.getElementById('adds'+n);if(!box)return;var a=getAdds(n);box.innerHTML=a.map(function(x,i){return '<div class="kit" style="background:#fff"><label>Что добавить</label><textarea data-an="'+n+'" data-ai="'+i+'" data-ak="w" placeholder="Приветствие: «Ассаляму алейкум! Как настроение?» / Дуа перед уроком / Приём «Выбор и объяснение»">'+(x.w||'').replace(/</g,'&lt;')+'</textarea><label>Куда поставить</label><input data-an="'+n+'" data-ai="'+i+'" data-ak="p" placeholder="после слайда 1" value="'+(x.p||'').replace(/"/g,'&quot;')+'"><div class="bs"><button class="l" data-adel="'+n+'_'+i+'">Удалить</button></div></div>'}).join('')}
 document.addEventListener('input',function(e){var t=e.target;if(t.dataset&&t.dataset.an){var a=getAdds(t.dataset.an);a[+t.dataset.ai][t.dataset.ak]=t.value;ST.set('adds'+t.dataset.an,JSON.stringify(a))}});
 function esc(s){return s.replace(/"/g,'&quot;')}
@@ -177,7 +186,7 @@ var H='';
 L.forEach(function(l){
  H+='<details id="d'+l.n+'"><summary><span class="nm">'+(l.n<10?'0':'')+l.n+'</span><span class="tt"><b>Домашнее задание к уроку '+l.n+'</b><small>'+l.t+'</small></span><span class="st" id="s'+l.n+'"></span></summary><div class="body">';
  if(l.note)H+='<div class="note">'+l.note+(l.n==9?' <a href="'+TG+'" target="_blank" style="color:#4C5B3F">Открыть группу</a>':'')+'</div>';
- l.f.forEach(function(f){H+='<label>'+f[1]+'</label><textarea data-n="'+l.n+'" data-id="'+f[0]+'" placeholder="'+esc(f[2]||'')+'"></textarea>';if(f[0]=='self')H+=schHTML();if(l.n==1&&f[0]=='why')H+='<div class="note" id="sheet1"></div>';if(l.n==1&&f[0]=='q6')H+='<div class="note" id="arch1"></div>'});
+ l.f.forEach(function(f){if(f[0]=='#'){H+='<div class="bh"><b>'+f[1]+'</b><span>'+f[2]+'</span></div>';if(l.n==1&&f[1].indexOf('Блок 5')==0)H+='<div class="note" id="chain1"></div>';return}H+='<label>'+f[1]+'</label><textarea data-n="'+l.n+'" data-id="'+f[0]+'" placeholder="'+esc(f[2]||'')+'"></textarea>';if(f[0]=='self')H+=schHTML()});
  if(l.add) H+='<div class="blk">ДОПОЛНЕНИЯ</div><p class="hint">Хотите добавить свой слайд: приветствие, дуа, приём, игру? Нажмите кнопку и напишите, куда его поставить. Kimi расставит по местам.</p><div id="adds'+l.n+'"></div><div class="bs"><button class="l" data-addnew="'+l.n+'">+ Добавить слайд или приём</button></div>';
  if(l.design) H+='<h2>Промпт 1 · Три пробных дизайна</h2><div class="out" id="dp1"></div><div class="bs"><button data-cp="dp1">Скопировать</button></div><h2>Промпт 2 · Дизайн для сборки</h2><div class="out" id="dp2"></div><div class="bs"><button data-cp="dp2">Скопировать</button></div>';
  if(l.n==19) H+='<h2>Промпт · Черновик записки</h2><div class="out" id="zp"></div><div class="bs"><button data-cp="zp">Скопировать</button></div>';
@@ -217,10 +226,10 @@ function designPrompts(){
  var p2='Собери презентацию курса «'+ph('cname','название')+'». Формат 16:9. Шрифт '+ph('font','шрифт')+'. Основной текст 30–32 pt. При большом объёме уменьши размер, но не сокращай текст.\nРаботай строго в дизайне слайда, который я прикладываю: я выбрала его из трёх пробных.\nФон '+ph('bg','фон')+', текст '+ph('tx','текст')+', акцент '+ph('ac','акцент')+', карточки '+ph('cd','карточки')+'.\nОбращайся на «вы». Межстрочный интервал не меньше 1,2.';
  return [p1,p2]}
 function noteprompt(){return 'СОСТАВЬ ПОЯСНИТЕЛЬНУЮ ЗАПИСКУ К МОЕМУ ДИПЛОМУ\nТы — редактор и методический помощник. На основании моих файлов и ответов ниже подготовь связный черновик пояснительной записки примерно на один лист A4. Это сопровождение диплома, не речь и не рекламный текст.\nАвтор: '+(document.getElementById('who').value||'[имя]')+'. Курс: '+(v(11,'cname')||'[название]')+'.\nПрикладываю четыре учебные презентации и защитную презентацию.\nСначала перечисли прочитанные файлы. Неизвестное обозначь [УТОЧНИТЬ У АВТОРА].\nПять подзаголовков: автор и работа; проблема и цель; архитектура и четыре работы; решения и источники; проверка и комплект.\nРазличай цель и доказанный результат, готовое и планируемое, содержание источника и мои решения. Не придумывай квалификацию, отзывы, факты практики, цитаты и арабский текст.\n\nМои ответы:\n'+['z1','z2','z3','z4','z5'].map(function(id,i){return ['Автор и работа','Проблема и цель','Архитектура и четыре работы','Решения и источники','Проверка и комплект'][i]+': '+(v(19,id)||'—')}).join('\n')}
-function isDone(l){return ST.get('sent'+l.n)=='1'||l.f.every(function(f){return v(l.n,f[0])})}
+function isDone(l){return ST.get('sent'+l.n)=='1'||FF(l).every(function(f){return v(l.n,f[0])})}
 function lockAll(){L.forEach(function(l,i){var d=document.getElementById('d'+l.n),s=document.getElementById('s'+l.n);if(!d||i==0)return;var p=L[i-1],ok=isDone(p);d.classList.toggle('lk',!ok);if(!ok){d.open=false;s.textContent='🔒 откроется после задания к уроку '+p.n;s.className='st'}})}
 function refresh(){draw1();var d=designPrompts();document.getElementById('dp1').textContent=d[0];document.getElementById('dp2').textContent=d[1];document.getElementById('zp').textContent=noteprompt();
- L.forEach(function(l){var c=l.f.filter(function(f){return v(l.n,f[0])}).length,s=document.getElementById('s'+l.n);s.textContent=c?c+' из '+l.f.length:'';s.className='st'+(c==l.f.length?' full':'')});lockAll()}
+ L.forEach(function(l){var c=FF(l).filter(function(f){return v(l.n,f[0])}).length,s=document.getElementById('s'+l.n);s.textContent=c?c+' из '+FF(l).length:'';s.className='st'+(c==FF(l).length?' full':'')});lockAll()}
 document.querySelectorAll('textarea[data-n]').forEach(function(t){t.value=ST.get(key(t.dataset.n,t.dataset.id))||'';t.addEventListener('input',function(){ST.set(key(t.dataset.n,t.dataset.id),t.value);refresh()})});
 var who=document.getElementById('who');who.value=ST.get('who')||'';who.addEventListener('input',function(){ST.set('who',who.value);refresh()});
 refresh();
